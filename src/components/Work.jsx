@@ -30,10 +30,12 @@ function Visual({ type }) {
     case 'bars':
       return (
         <div className="vis" aria-hidden="true">
-          <div className="bars">
-            <div className="col"><em>{t({ es: '0,5', en: '0.5' })}</em><div className="bar b0" /><small>{t({ es: 'Antes', en: 'Before' })}</small></div>
-            <div className="col"><em>10</em><div className="bar b1" /><small>{t({ es: 'Después', en: 'After' })}</small></div>
-            <span className="unit">{t({ es: 'lotes por minuto', en: 'batches per minute' })}</span>
+          <div className="chart">
+            <span className="unit">{t({ es: 'Lotes migrados por minuto', en: 'Batches migrated per minute' })}</span>
+            <div className="bars">
+              <div className="col"><em>{t({ es: '0,5', en: '0.5' })}</em><div className="bar b0" /><small>{t({ es: 'Antes', en: 'Before' })}</small></div>
+              <div className="col"><em>10</em><div className="bar b1" /><small>{t({ es: 'Después', en: 'After' })}</small></div>
+            </div>
           </div>
         </div>
       );

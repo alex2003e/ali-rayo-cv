@@ -9,7 +9,7 @@
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23150E22'/%3E%3Cg transform='translate(12 12)'%3E%3Cpath d='M20 22 36 30 20 38 4 30Z' fill='%234B3A7D'/%3E%3Cpath d='M20 14 36 22 20 30 4 22Z' fill='%236C59A6'/%3E%3Cpath d='M20 2 36 10 20 18 4 10Z' fill='%23B9A4FF'/%3E%3Ccircle cx='34' cy='4' r='3.4' fill='%236FE3C1'/%3E%3C/g%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=UnifrakturCook:wght@700&display=swap">
 <style>
 /*
   Propuesta B · "Producto en capas".
@@ -77,7 +77,7 @@ p{margin:0}
 .row{display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-top:1px solid var(--paper-line);font-size:14px}
 .badge{font-size:12px;border-radius:999px;padding:2px 10px;background:var(--paper-line);white-space:nowrap}
 .badge.ok{background:var(--mint)}
-.stack-hint{position:absolute;right:0;bottom:-6px;font-size:13px;color:var(--muted)}
+.stack-hint{position:absolute;left:0;bottom:-6px;font-size:13px;color:var(--muted)}
 
 /* Stats */
 .stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;padding-bottom:24px}
@@ -174,6 +174,26 @@ dialog::backdrop{background:rgba(10,6,18,.72);backdrop-filter:blur(6px)}
 [hidden]{display:none!important}
 
 
+
+/* Figura de Ali */
+.figbtn{position:absolute;right:-5%;bottom:-70px;width:min(300px,46%);padding:0;border:0;background:none;cursor:pointer;z-index:4;-webkit-tap-highlight-color:transparent}
+.figbtn .fig{display:block;width:100%;height:auto;filter:drop-shadow(0 24px 30px rgba(0,0,0,.45));transition:transform .3s cubic-bezier(.2,.7,.2,1)}
+.figbtn:hover .fig{transform:translateY(-6px) rotate(-1.5deg)}
+.fig .capg{display:none}
+.figbtn.cap .fig .capg{display:inline}
+.figbtn.cap .fig .fh{display:none}
+.fig .wave{transform-box:view-box;transform-origin:96px 362px}
+.fig-tip{position:absolute;left:50%;top:-6px;transform:translateX(-50%);white-space:nowrap;font-size:12.5px;font-weight:600;padding:6px 11px;border-radius:999px;background:var(--s3);border:1px solid var(--line2);color:var(--ink);opacity:0;transition:opacity .25s}
+.figbtn:hover .fig-tip,.figbtn:focus-visible .fig-tip{opacity:1}
+@media (prefers-reduced-motion:no-preference){
+  .fig .wave{animation:wave 1.4s ease-in-out .8s 1}
+  .figbtn:hover .fig .wave{animation:wave 1.2s ease-in-out infinite}
+  .figbtn.pop .fig{animation:pop2 .45s cubic-bezier(.2,.8,.2,1)}
+}
+@keyframes wave{0%,100%{transform:rotate(0)}20%{transform:rotate(-16deg)}40%{transform:rotate(8deg)}60%{transform:rotate(-14deg)}80%{transform:rotate(6deg)}}
+@keyframes pop2{0%{transform:scale(1)}40%{transform:scale(1.06,.94) translateY(4px)}100%{transform:scale(1)}}
+@media (hover:none){.fig-tip{opacity:1;top:-14px}}
+
 /* Nav extras */
 .nav-r{display:flex;align-items:center;gap:8px}
 .lang{min-height:42px;padding:0 14px;border-radius:999px;border:1px solid var(--line);background:var(--s2);color:var(--ink);font:600 14px/1 var(--f);cursor:pointer;display:inline-flex;gap:6px;align-items:center}
@@ -256,6 +276,7 @@ dialog::backdrop{background:rgba(10,6,18,.72);backdrop-filter:blur(6px)}
   .mock .grid{grid-template-columns:1fr}.mock nav{flex-direction:row;overflow-x:auto}
   .dlg{padding:24px}
   .stack-hint{display:none}
+  .figbtn{width:42%;right:-2%;bottom:-20px}
   .pills{padding:4px}.pills a{padding:7px 10px;font-size:13.5px}
   .lang{padding:0 10px;min-height:38px}
   .brand{font-size:16px;gap:8px}.brand .mark{width:28px;height:28px}
@@ -321,6 +342,110 @@ dialog::backdrop{background:rgba(10,6,18,.72);backdrop-filter:blur(6px)}
         </div>
       </div>
       <p class="stack-hint" data-en="Move your cursor over the layers">Mueve el cursor sobre las capas</p>
+      <button class="figbtn" type="button" id="figbtn" aria-pressed="false" aria-label="Ponerle la gorra a Ali" data-en-aria="Put the cap on Ali"><svg class="fig" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 600" aria-hidden="true">
+<defs>
+  <radialGradient id="skin" cx=".38" cy=".32" r=".8"><stop offset="0" stop-color="#D7A47C"/><stop offset=".55" stop-color="#BC8760"/><stop offset="1" stop-color="#9A6744"/></radialGradient>
+  <linearGradient id="skinL" x1="0" x2="1"><stop offset="0" stop-color="#C79570"/><stop offset="1" stop-color="#A26E4A"/></linearGradient>
+  <linearGradient id="hair" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2A2028"/><stop offset="1" stop-color="#140F13"/></linearGradient>
+  <linearGradient id="shirt" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2E2838"/><stop offset=".5" stop-color="#1C1823"/><stop offset="1" stop-color="#121016"/></linearGradient>
+  <linearGradient id="jean" x1="0" x2="1"><stop offset="0" stop-color="#5677AE"/><stop offset=".6" stop-color="#3E5F96"/><stop offset="1" stop-color="#2D4877"/></linearGradient>
+  <linearGradient id="capg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2E2838"/><stop offset="1" stop-color="#0F0C13"/></linearGradient>
+  <clipPath id="eL"><ellipse cx="166" cy="193" rx="14" ry="9"/></clipPath>
+  <clipPath id="eR"><ellipse cx="234" cy="193" rx="14" ry="9"/></clipPath>
+</defs>
+<ellipse cx="200" cy="566" rx="120" ry="16" fill="#000" opacity=".35"/>
+<!-- piernas -->
+<path d="M138 446 L198 446 L194 546 L146 546Z" fill="url(#jean)"/>
+<path d="M202 446 L262 446 L254 546 L206 546Z" fill="url(#jean)"/>
+<path d="M146 530 L194 530 M206 530 L254 530" stroke="#7B98C8" stroke-width="3"/>
+<path d="M170 456 L168 528 M230 456 L232 528" stroke="#2A4370" stroke-width="2" opacity=".6"/>
+<!-- zapatos -->
+<path d="M140 544 h56 v12 a8 8 0 0 1 -8 8 h-58 a8 8 0 0 1 -8 -8 v-2 a10 10 0 0 1 18 -10Z" fill="#26212E"/>
+<path d="M260 544 h-56 v12 a8 8 0 0 0 8 8 h58 a8 8 0 0 0 8 -8 v-2 a10 10 0 0 0 -18 -10Z" fill="#26212E"/>
+<path d="M124 558 h72 M204 558 h72" stroke="#F1ECFA" stroke-width="4" stroke-linecap="round"/>
+<!-- pelo trasero (rizos de la nuca) -->
+<path d="M104 210 C92 150 120 84 200 80 C280 84 308 150 296 210 C300 236 292 252 280 258 L120 258 C108 252 100 236 104 210Z" fill="url(#hair)"/>
+<g fill="#1A1419">
+  <circle cx="104" cy="236" r="10"/><circle cx="112" cy="252" r="9"/><circle cx="100" cy="220" r="9"/>
+  <circle cx="296" cy="236" r="10"/><circle cx="288" cy="252" r="9"/><circle cx="300" cy="220" r="9"/>
+</g>
+<g fill="none" stroke="#4A3A44" stroke-width="2" stroke-linecap="round"><path d="M98 232 a6 6 0 0 1 10 -2"/><path d="M106 248 a6 6 0 0 1 10 -2"/><path d="M292 232 a6 6 0 0 1 10 -2"/><path d="M284 248 a6 6 0 0 1 10 -2"/></g>
+<g fill="#1C1519"><circle cx="105.1" cy="155.8" r="14"/><circle cx="110.7" cy="138.1" r="14"/><circle cx="119.6" cy="121.8" r="14"/><circle cx="131.4" cy="107.4" r="17"/><circle cx="145.8" cy="95.6" r="17"/><circle cx="162.1" cy="86.7" r="17"/><circle cx="179.8" cy="81.1" r="17"/><circle cx="198.3" cy="79.0" r="17"/><circle cx="216.8" cy="80.5" r="17"/><circle cx="234.8" cy="85.4" r="17"/><circle cx="251.4" cy="93.7" r="17"/><circle cx="266.2" cy="105.1" r="17"/><circle cx="278.5" cy="119.0" r="17"/><circle cx="287.9" cy="135.0" r="14"/><circle cx="294.1" cy="152.5" r="14"/></g><g fill="none" stroke="#4E3E49" stroke-width="2.4" stroke-linecap="round"><path d="M102.7 139.1 a8 8 0 0 1 13 -6"/><path d="M123.4 108.4 a8 8 0 0 1 13 -6"/><path d="M154.1 87.7 a8 8 0 0 1 13 -6"/><path d="M190.3 80.0 a8 8 0 0 1 13 -6"/><path d="M226.8 86.4 a8 8 0 0 1 13 -6"/><path d="M258.2 106.1 a8 8 0 0 1 13 -6"/><path d="M279.9 136.0 a8 8 0 0 1 13 -6"/></g>
+<!-- cuello -->
+<rect x="180" y="262" width="40" height="46" rx="10" fill="#A87350"/>
+<!-- brazo que saluda -->
+<g class="wave"><path d="M96 362 L74 300" stroke="url(#skinL)" stroke-width="26" stroke-linecap="round"/>
+<g fill="url(#skin)"><circle cx="70" cy="286" r="18"/><rect x="56" y="250" width="9" height="28" rx="4.5" transform="rotate(-12 60 264)"/><rect x="66" y="246" width="9" height="30" rx="4.5" transform="rotate(-4 70 260)"/><rect x="76" y="248" width="9" height="29" rx="4.5" transform="rotate(6 80 262)"/><rect x="85" y="256" width="8" height="24" rx="4" transform="rotate(16 89 268)"/><ellipse cx="52" cy="292" rx="7" ry="12" transform="rotate(-40 52 292)"/></g></g>
+<!-- torso: polo oscura -->
+<path d="M200 296 C160 296 128 304 118 330 L112 438 C112 452 122 458 134 458 L266 458 C278 458 288 452 288 438 L282 330 C272 304 240 296 200 296Z" fill="url(#shirt)"/>
+<path d="M124 312 C100 318 84 336 80 358 L114 372 L122 336Z" fill="#221D2A"/>
+<path d="M276 312 C300 318 316 336 320 358 L286 372 L278 336Z" fill="#17141C"/>
+<path d="M178 298 L200 330 L168 338 L158 306Z" fill="#2E2838"/>
+<path d="M222 298 L200 330 L232 338 L242 306Z" fill="#26212E"/>
+<rect x="196" y="330" width="8" height="44" rx="2" fill="#15121A"/>
+<circle cx="200" cy="346" r="2.6" fill="#3E3650"/><circle cx="200" cy="362" r="2.6" fill="#3E3650"/>
+<!-- collar con anillo -->
+<path d="M176 302 C174 340 190 370 200 376" stroke="#C9CCD6" stroke-width="3" stroke-dasharray="5 2.5" fill="none" stroke-linecap="round"/>
+<path d="M224 302 C226 340 210 370 200 376" stroke="#C9CCD6" stroke-width="3" stroke-dasharray="5 2.5" fill="none" stroke-linecap="round"/>
+<circle cx="200" cy="387" r="9" fill="none" stroke="#DDE0EA" stroke-width="4"/>
+<path d="M194 381 a8 8 0 0 1 8 -3" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/>
+<!-- laptop con el logo -->
+<g transform="rotate(-8 322 404)">
+  <rect x="282" y="372" width="82" height="58" rx="9" fill="#B9A4FF"/>
+  <rect x="282" y="424" width="82" height="7" rx="3" fill="#8C78D6"/>
+  <g transform="translate(311 388) scale(.62)"><path d="M20 22 36 30 20 38 4 30Z" fill="#3A2A60"/><path d="M20 14 36 22 20 30 4 22Z" fill="#6C59A6"/><path d="M20 2 36 10 20 18 4 10Z" fill="#F1ECFA"/><circle cx="34" cy="4" r="3.4" fill="#6FE3C1"/></g>
+</g>
+<path d="M304 364 L302 412" stroke="url(#skinL)" stroke-width="26" stroke-linecap="round"/>
+<circle cx="302" cy="420" r="16" fill="url(#skin)"/>
+<!-- orejas y aretes -->
+<ellipse cx="111" cy="202" rx="14" ry="21" fill="#AF7A55"/><ellipse cx="289" cy="202" rx="14" ry="21" fill="#AF7A55"/>
+<path d="M108 194 a6 8 0 0 1 6 12 M292 194 a6 8 0 0 0 -6 12" stroke="#8C5A3A" stroke-width="2" fill="none"/>
+<circle cx="113" cy="226" r="6.5" fill="none" stroke="#DDE0EA" stroke-width="2.8"/>
+<circle cx="287" cy="226" r="6.5" fill="none" stroke="#DDE0EA" stroke-width="2.8"/>
+<!-- cara -->
+<path d="M112 180 C112 120 150 96 200 96 C250 96 288 120 288 180 C288 235 262 284 200 288 C138 284 112 235 112 180Z" fill="url(#skin)"/>
+<ellipse cx="150" cy="232" rx="13" ry="7" fill="#E08B6C" opacity=".25"/><ellipse cx="250" cy="232" rx="13" ry="7" fill="#E08B6C" opacity=".25"/>
+<!-- barba ligera -->
+<path d="M126 226 C132 262 160 286 200 289 C240 286 268 262 274 226 C264 256 242 270 226 266 C216 278 184 278 174 266 C158 270 136 256 126 226Z" fill="#2A1D17" opacity=".3"/>
+<ellipse cx="200" cy="274" rx="13" ry="7" fill="#2A1D17" opacity=".35"/>
+<!-- cejas -->
+<path d="M146 170 C156 160 174 159 186 165" stroke="#1B1418" stroke-width="8" stroke-linecap="round" fill="none"/>
+<path d="M214 165 C226 159 244 160 254 170" stroke="#1B1418" stroke-width="8" stroke-linecap="round" fill="none"/>
+<!-- ojos (párpados relajados) -->
+<g clip-path="url(#eL)"><rect x="150" y="182" width="32" height="22" fill="#fff"/><circle cx="167" cy="195" r="7.5" fill="#3B2416"/><circle cx="167" cy="195" r="3.6" fill="#120C0A"/><circle cx="170" cy="192" r="2" fill="#fff"/><rect x="150" y="182" width="32" height="7" fill="#AE7853"/></g>
+<g clip-path="url(#eR)"><rect x="218" y="182" width="32" height="22" fill="#fff"/><circle cx="233" cy="195" r="7.5" fill="#3B2416"/><circle cx="233" cy="195" r="3.6" fill="#120C0A"/><circle cx="236" cy="192" r="2" fill="#fff"/><rect x="218" y="182" width="32" height="7" fill="#AE7853"/></g>
+<path d="M151 190 C158 186 175 186 181 190" stroke="#2A1C16" stroke-width="3.2" fill="none" stroke-linecap="round"/>
+<path d="M219 190 C225 186 242 186 249 190" stroke="#2A1C16" stroke-width="3.2" fill="none" stroke-linecap="round"/>
+<!-- nariz -->
+<path d="M195 204 C193 220 186 228 190 234 C196 239 204 239 210 234 C214 228 207 220 205 204" fill="none" stroke="#8A5838" stroke-width="2.6" stroke-linecap="round" opacity=".65"/>
+<ellipse cx="200" cy="226" rx="6" ry="4" fill="#E2B08A" opacity=".5"/>
+<!-- bigote y labios -->
+<path d="M175 246 C186 238 196 240 200 243 C204 240 214 238 225 246 C214 244 186 244 175 246Z" fill="#24180F" opacity=".55"/>
+<path d="M178 252 C188 246 196 248 200 250 C204 248 212 246 222 252 C212 256 188 256 178 252Z" fill="#7E4A3A"/>
+<path d="M180 253 C190 266 210 266 220 253 C210 258 190 258 180 253Z" fill="#A0644E"/>
+<path d="M190 259 C196 261 204 261 210 259" stroke="#C88E74" stroke-width="2" fill="none" stroke-linecap="round" opacity=".7"/>
+
+
+  <g class="fh"><g fill="#1C1519"><circle cx="122" cy="160" r="11"/><circle cx="278" cy="160" r="11"/><circle cx="140" cy="134" r="10"/><circle cx="260" cy="134" r="10"/></g>
+  <g fill="none" stroke="#5A4652" stroke-linecap="round" opacity=".7">
+    <path d="M140 118 C170 100 212 97 244 108" stroke-width="3"/>
+    <path d="M150 133 C178 117 216 115 250 126" stroke-width="2.5"/>
+    <path d="M126 152 C136 132 156 121 176 116" stroke-width="2.5"/>
+    <path d="M272 150 C266 136 254 126 238 120" stroke-width="2.5"/>
+  </g>
+
+</g>
+<g class="capg"><g transform="translate(0 -8)">
+    <path d="M108 150 L108 140 C108 84 150 60 200 60 C250 60 292 84 292 140 L292 150Z" fill="url(#capg)"/>
+    <path d="M200 62 L200 140 M160 66 C150 92 146 118 146 140 M240 66 C250 92 254 118 254 140" stroke="#2B2433" stroke-width="2" fill="none"/>
+    <circle cx="200" cy="63" r="6" fill="#2B2433"/>
+    <text x="200" y="121" text-anchor="middle" font-family="'UnifrakturCook','Old English Text MT',Georgia,serif" font-weight="700" font-size="34" fill="#F1ECFA" letter-spacing="1">Compton</text>
+    <path d="M98 130 C140 147 260 147 302 130 C306 143 302 152 292 156 C250 168 150 168 108 156 C98 152 94 143 98 130Z" fill="#0E0B12"/>
+    <path d="M104 134 C150 150 250 150 296 134" stroke="#2B2433" stroke-width="2" fill="none"/>
+    <ellipse cx="200" cy="168" rx="80" ry="9" fill="#3D2416" opacity=".22"/>
+  </g>
+</g>
+</svg><span class="fig-tip" data-en="Tap me: cap on / off">Tócame: gorra sí / no</span></button>
     </div>
   </section>
 
@@ -578,6 +703,12 @@ dialog::backdrop{background:rgba(10,6,18,.72);backdrop-filter:blur(6px)}
       l3.style.setProperty('--ry',(-14+x*18)+'deg');l3.style.setProperty('--rx',(8-y*12)+'deg')});
     stack.addEventListener('pointerleave',()=>{l3.style.removeProperty('--ry');l3.style.removeProperty('--rx')});
   }
+
+
+  /* ---------- Figura: gorra sí / no ---------- */
+  const fb=document.getElementById('figbtn');
+  fb.addEventListener('click',()=>{const on=!fb.classList.contains('cap');fb.classList.toggle('cap',on);fb.setAttribute('aria-pressed',on);
+    fb.classList.remove('pop');void fb.offsetWidth;fb.classList.add('pop');});
 
   /* ---------- Escena: las capas se separan con el scroll ---------- */
   const scene=document.getElementById('capas'),iso=scene.querySelector('.iso'),items=[...scene.querySelectorAll('.ll li')],slabs=[...scene.querySelectorAll('.sl')],hint=scene.querySelector('.scroll-hint');

@@ -173,6 +173,71 @@ dialog::backdrop{background:rgba(10,6,18,.72);backdrop-filter:blur(6px)}
 .toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--mint);color:var(--paper-ink);font-weight:600;padding:12px 18px;border-radius:12px;font-size:14px;z-index:60}
 [hidden]{display:none!important}
 
+
+/* Nav extras */
+.nav-r{display:flex;align-items:center;gap:8px}
+.lang{min-height:42px;padding:0 14px;border-radius:999px;border:1px solid var(--line);background:var(--s2);color:var(--ink);font:600 14px/1 var(--f);cursor:pointer;display:inline-flex;gap:6px;align-items:center}
+.lang b{color:var(--lilac);font-weight:700}
+.lang span{color:var(--muted);font-weight:500}
+.btn svg{flex:none}
+
+/* Scroll scene: las capas se separan */
+.scene{position:relative;height:340vh;margin-top:110px}
+.sticky{position:sticky;top:72px;height:calc(100vh - 72px);display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:40px;align-items:center}
+.scene h2{font-size:clamp(38px,4.6vw,58px);font-weight:800;letter-spacing:-.04em;line-height:1}
+.scene .sub{color:var(--muted);margin-top:14px;max-width:40ch}
+.ll{list-style:none;margin:30px 0 0;padding:0;display:grid;gap:8px}
+.ll li{border:1px solid var(--line);border-radius:18px;padding:14px 18px;transition:background .3s,border-color .3s,opacity .3s;opacity:.55}
+.ll li h3{font-size:19px;font-weight:700;display:flex;justify-content:space-between;gap:12px;align-items:center}
+.ll li h3 i{width:9px;height:9px;border-radius:50%;background:var(--line2);flex:none}
+.ll li .body{display:grid;grid-template-rows:0fr;transition:grid-template-rows .4s ease}
+.ll li .body > div{overflow:hidden}
+.ll li p{color:var(--soft);font-size:15px;margin-top:8px}
+.ll .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px;padding-bottom:2px}
+.ll .chips span{font-size:13px;padding:5px 10px;border-radius:999px;background:var(--s3);border:1px solid var(--line)}
+.ll li.on{opacity:1;background:var(--s2);border-color:var(--line2)}
+.ll li.on h3 i{background:var(--mint);box-shadow:0 0 0 4px color-mix(in srgb,var(--mint) 22%,transparent)}
+.ll li.on .body{grid-template-rows:1fr}
+.stage{position:relative;height:min(78vh,620px);perspective:1600px;display:grid;place-items:center}
+.iso{position:relative;width:min(300px,62vw);aspect-ratio:1;transform-style:preserve-3d;transform:rotateX(58deg) rotateZ(-38deg) translateZ(calc(var(--p,0) * var(--sink,-150px)))}
+.sl{position:absolute;inset:0;border-radius:26px;transform:translateZ(calc(var(--i) * (14px + var(--p,0) * var(--gap,92px)) + var(--lift,0px)));transition:transform .45s cubic-bezier(.2,.7,.2,1),box-shadow .4s,outline-color .3s;padding:22px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:-18px 22px 40px -18px rgba(0,0,0,.7);outline:2px solid transparent;outline-offset:6px}
+.sl b{font-size:26px;font-weight:800;letter-spacing:-.02em}
+.sl small{font-size:13px;opacity:.75}
+.sl .g{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.sl .g i{height:34px;border-radius:9px;background:rgba(255,255,255,.1)}
+.s0{background:#2B1F47;border:1px solid #4A3A74}
+.s1{background:#3A2A60;border:1px solid #5A4884}
+.s2{background:#4B3A7D;border:1px solid #6C59A6}
+.s3{background:var(--paper);color:var(--paper-ink)}
+.s3 .g i{background:var(--paper-line)}.s3 .g i:nth-child(2){background:var(--mint)}
+.sl.on{--lift:34px;outline-color:var(--mint)}
+.scroll-hint{position:absolute;bottom:8px;left:50%;transform:translateX(-50%);font-size:13px;color:var(--muted);transition:opacity .3s}
+.scene.static{height:auto}
+.scene.static .sticky{position:static;height:auto;padding-block:20px}
+.scene.static .ll li{opacity:1}.scene.static .ll li .body{grid-template-rows:1fr}
+.scene.static .scroll-hint{display:none}
+
+/* Consola */
+.demo{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:40px;align-items:start}
+.demo h2{font-size:clamp(38px,4.6vw,58px);font-weight:800;letter-spacing:-.04em;line-height:1}
+.demo .sub{color:var(--soft);margin-top:16px;max-width:42ch}
+.demo .actions{margin-top:28px}
+.term{background:#0F0A19;border:1px solid var(--line2);border-radius:22px;overflow:hidden;box-shadow:0 50px 90px -50px #000}
+.term-top{display:flex;align-items:center;gap:8px;padding:14px 18px;border-bottom:1px solid var(--line);font-size:13px;color:var(--muted)}
+.term-top i{width:11px;height:11px;border-radius:50%;background:var(--line2)}
+.term-top span{margin-left:8px}
+.term-top em{margin-left:auto;font-style:normal;font-size:12px;padding:3px 9px;border-radius:999px;background:var(--s3)}
+.log{margin:0;padding:20px 22px;min-height:330px;font:13.5px/1.8 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:#D9D2EA;white-space:pre-wrap;word-break:break-word}
+.log .k{color:var(--lilac)}.log .ok{color:var(--mint)}.log .err{color:#FF8FA3}.log .dim{color:#7E7299}.log .t{color:#7E7299;float:right}
+.log .line{display:block;animation:in .25s ease}
+@keyframes in{from{opacity:0;transform:translateX(-6px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.log .line{animation:none}}
+.hops{display:flex;gap:6px;padding:0 22px 20px;flex-wrap:wrap}
+.hops span{font-size:12.5px;padding:6px 11px;border-radius:999px;border:1px solid var(--line);color:var(--muted);transition:all .25s}
+.hops span.on{background:var(--mint);border-color:var(--mint);color:var(--paper-ink);font-weight:600}
+.hops span.bad{background:#FF8FA3;border-color:#FF8FA3;color:var(--paper-ink);font-weight:600}
+.btn[disabled]{opacity:.5;cursor:default}
+
 @media (max-width:980px){
   .hero{grid-template-columns:1fr;padding-top:28px}
   .stack{height:530px;margin-top:10px}
@@ -191,6 +256,24 @@ dialog::backdrop{background:rgba(10,6,18,.72);backdrop-filter:blur(6px)}
   .mock .grid{grid-template-columns:1fr}.mock nav{flex-direction:row;overflow-x:auto}
   .dlg{padding:24px}
   .stack-hint{display:none}
+  .pills{padding:4px}.pills a{padding:7px 10px;font-size:13.5px}
+  .lang{padding:0 10px;min-height:38px}
+  .brand{font-size:16px;gap:8px}.brand .mark{width:28px;height:28px}
+  .top .wrap{gap:8px}
+}
+
+@media (max-width:980px){
+  .sticky{grid-template-columns:1fr;gap:6px;align-content:start;padding-top:18px}
+  .stage{height:38vh;order:-1}
+  .iso{width:min(190px,46vw);--gap:44px;--sink:-70px}
+  .sl.on{--lift:18px}
+  .sl b{font-size:20px}.sl{padding:16px}
+  .scene .sub{display:none}
+  .ll{margin-top:14px}
+  .ll li{padding:10px 14px}
+  .scene h2{font-size:30px}
+  .demo{grid-template-columns:1fr}
+  .nav-r .cvlink{display:none}
 }
 </style>
 </head>
@@ -198,178 +281,193 @@ dialog::backdrop{background:rgba(10,6,18,.72);backdrop-filter:blur(6px)}
 
 <header class="top">
   <div class="wrap">
-    <a class="brand" href="#inicio" aria-label="Ali Rayo, inicio"><svg class="mark" viewBox="0 0 40 40" width="34" height="34" aria-hidden="true"><path d="M20 22 36 30 20 38 4 30Z" fill="#3A2A60"/><path d="M20 14 36 22 20 30 4 22Z" fill="#6C59A6"/><path d="M20 2 36 10 20 18 4 10Z" fill="#B9A4FF"/><circle cx="34" cy="4" r="3.4" fill="#6FE3C1"/></svg><span class="word">ali<span>.</span>rayo</span></a>
-    <nav class="pills" aria-label="Secciones">
-      <a href="#trabajo" class="keep">Trabajo</a>
-      <a href="#capas">Capas</a>
-      <a href="#experiencia">Experiencia</a>
-      <a href="#contacto" class="keep">Contacto</a>
-    </nav>
+    <a class="brand" href="#inicio" aria-label="Ali Rayo" ><svg class="mark" viewBox="0 0 40 40" width="34" height="34" aria-hidden="true"><path d="M20 22 36 30 20 38 4 30Z" fill="#3A2A60"/><path d="M20 14 36 22 20 30 4 22Z" fill="#6C59A6"/><path d="M20 2 36 10 20 18 4 10Z" fill="#B9A4FF"/><circle cx="34" cy="4" r="3.4" fill="#6FE3C1"/></svg><span class="word">ali<span>.</span>rayo</span></a>
+    <div class="nav-r">
+      <nav class="pills" aria-label="Secciones" data-en-aria="Sections">
+        <a href="#trabajo" class="keep" data-en="Work">Trabajo</a>
+        <a href="#capas" data-en="Layers">Capas</a>
+        <a href="#demo" data-en="Demo">Demo</a>
+        <a href="#contacto" class="keep" data-en="Contact">Contacto</a>
+      </nav>
+      <button class="lang" type="button" id="lang" aria-label="Switch to English" data-en-aria="Cambiar a español"><b>ES</b><span>/ EN</span></button>
+    </div>
   </div>
 </header>
 
 <main id="inicio">
-  <section class="wrap hero" aria-label="Presentación">
+  <section class="wrap hero" aria-label="Presentación" data-en-aria="Introduction">
     <div>
-      <p class="status"><i></i>Disponible · Medellín y remoto</p>
-      <h1>Backend sólido.<span>Interfaz con criterio.</span></h1>
-      <p class="lead">Soy Ali Rayo. Construyo APIs y plataformas con NestJS, Python y AWS, y las pantallas que las usan con HTML, CSS, JavaScript, React y Next.js.</p>
+      <p class="status"><i></i><span data-en="Available · Medellín and remote">Disponible · Medellín y remoto</span></p>
+      <h1 data-en="Solid backend.<span>Thoughtful interfaces.</span>">Backend sólido.<span>Interfaz con criterio.</span></h1>
+      <p class="lead" data-en="I’m Ali Rayo. I build APIs and platforms with NestJS, Python and AWS, and the screens that use them with HTML, CSS, JavaScript, React and Next.js.">Soy Ali Rayo. Construyo APIs y plataformas con NestJS, Python y AWS, y las pantallas que las usan con HTML, CSS, JavaScript, React y Next.js.</p>
       <div class="actions">
-        <a class="btn primary" href="#trabajo">Ver mi trabajo</a>
-        <button class="btn" type="button" data-copy="alirayopuches@gmail.com">Copiar correo</button>
+        <a class="btn primary" href="#trabajo" data-en="See my work">Ver mi trabajo</a>
+        <a class="btn" href="cv-ali-rayo.pdf" download="CV-Ali-Rayo-Backend.pdf"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0-5-5m5 5 5-5M5 21h14"/></svg><span data-en="Download CV (PDF, Spanish)">Descargar CV</span></a>
       </div>
     </div>
 
-    <div class="stack" id="stack" aria-label="Las cuatro capas de un producto: interfaz, API, datos y nube">
+    <div class="stack" id="stack" aria-label="Las cuatro capas de un producto: interfaz, API, datos y nube" data-en-aria="The four layers of a product: interface, API, data and cloud">
       <div class="layers3d">
-        <div class="plate p-cloud"><small>Nube</small><b>AWS · Terraform · Docker</b></div>
-        <div class="plate p-data"><small>Datos</small><b>PostgreSQL · MongoDB</b></div>
+        <div class="plate p-cloud"><small data-en="Cloud">Nube</small><b>AWS · Terraform · Docker</b></div>
+        <div class="plate p-data"><small data-en="Data">Datos</small><b>PostgreSQL · MongoDB</b></div>
         <div class="plate p-api"><small>API</small><b>NestJS · Python · JWT</b></div>
         <div class="plate p-ui" aria-hidden="true">
           <div class="dots"><i></i><i></i><i></i></div>
-          <small>Interfaz · Next.js</small>
-          <b style="margin-bottom:12px">Panel de catálogo</b>
-          <div class="row"><span>Pizza margarita</span><span class="badge ok">Activo</span></div>
-          <div class="row"><span>Lasagna boloñesa</span><span class="badge">Borrador</span></div>
-          <div class="row"><span>Tiramisú</span><span class="badge ok">Activo</span></div>
+          <small data-en="Interface · Next.js">Interfaz · Next.js</small>
+          <b style="margin-bottom:12px" data-en="Catalog dashboard">Panel de catálogo</b>
+          <div class="row"><span>Pizza margarita</span><span class="badge ok" data-en="Active">Activo</span></div>
+          <div class="row"><span data-en="Lasagna bolognese">Lasagna boloñesa</span><span class="badge" data-en="Draft">Borrador</span></div>
+          <div class="row"><span>Tiramisú</span><span class="badge ok" data-en="Active">Activo</span></div>
         </div>
       </div>
-      <p class="stack-hint">Mueve el cursor sobre las capas</p>
+      <p class="stack-hint" data-en="Move your cursor over the layers">Mueve el cursor sobre las capas</p>
     </div>
   </section>
 
   <div class="wrap stats" role="list">
-    <div class="stat" role="listitem"><b>20+</b><span>APIs REST en producción</span></div>
-    <div class="stat" role="listitem"><b>20×</b><span>más throughput en una migración</span></div>
-    <div class="stat" role="listitem"><b>−90%</b><span>tiempo para corregir lotes fallidos</span></div>
-    <div class="stat" role="listitem"><b>4+ años</b><span>llevando backend a producción</span></div>
+    <div class="stat" role="listitem"><b>20+</b><span data-en="REST APIs in production">APIs REST en producción</span></div>
+    <div class="stat" role="listitem"><b>20×</b><span data-en="more throughput in a data migration">más throughput en una migración</span></div>
+    <div class="stat" role="listitem"><b>−90%</b><span data-en="time to fix failed batches">tiempo para corregir lotes fallidos</span></div>
+    <div class="stat" role="listitem"><b data-en="4+ years">4+ años</b><span data-en="shipping backend to production">llevando backend a producción</span></div>
   </div>
 
   <!-- Trabajo -->
   <section class="wrap sec" id="trabajo" aria-labelledby="h-trabajo">
     <div class="head">
-      <h2 id="h-trabajo">Trabajo seleccionado</h2>
-      <p>Abre cualquier proyecto para ver el problema, cómo lo construí y en qué estado está.</p>
+      <h2 id="h-trabajo" data-en="Selected work">Trabajo seleccionado</h2>
+      <p data-en="Open any project to see the problem, how I built it and where it stands.">Abre cualquier proyecto para ver el problema, cómo lo construí y en qué estado está.</p>
     </div>
 
     <div class="bento">
       <button class="card big" type="button" data-open="d-oc">
         <div class="mock" aria-hidden="true">
           <div class="grid">
-            <nav><span>Panel</span><span class="on">Catálogo</span><span>Usuarios</span><span>Tenants</span></nav>
+            <nav><span data-en="Dashboard">Panel</span><span class="on" data-en="Catalog">Catálogo</span><span data-en="Users">Usuarios</span><span>Tenants</span></nav>
             <div>
-              <strong>Roles por tenant</strong>
-              <div class="row"><span>TENANT_ADMIN</span><span>Catálogo y usuarios</span></div>
-              <div class="row"><span>TENANT_STAFF</span><span>Menú y combos</span></div>
-              <div class="row"><span>SUPER_ADMIN</span><span>Todos los tenants</span></div>
+              <strong data-en="Roles per tenant">Roles por tenant</strong>
+              <div class="row"><span>TENANT_ADMIN</span><span data-en="Catalog and users">Catálogo y usuarios</span></div>
+              <div class="row"><span>TENANT_STAFF</span><span data-en="Menu and combos">Menú y combos</span></div>
+              <div class="row"><span>SUPER_ADMIN</span><span data-en="All tenants">Todos los tenants</span></div>
             </div>
           </div>
         </div>
         <div>
-          <span class="tag live">Código público</span>
+          <span class="tag live" data-en="Public code">Código público</span>
           <h3 style="margin-top:12px">OpenClaw Platform</h3>
-          <p>Plataforma multi-tenant: NestJS con Clean Architecture, PostgreSQL con row-level security y panel en Next.js.</p>
-          <span class="more">Ver el caso</span>
+          <p data-en="Multi-tenant platform: NestJS with Clean Architecture, PostgreSQL row-level security and a Next.js dashboard.">Plataforma multi-tenant: NestJS con Clean Architecture, PostgreSQL con row-level security y panel en Next.js.</p>
+          <span class="more" data-en="Read the case">Ver el caso</span>
         </div>
       </button>
 
       <button class="card" type="button" data-open="d-mg">
         <div class="vis" aria-hidden="true">
-          <div class="bars"><div><div class="b0"></div><small>Antes</small></div><div><div class="b1"></div><small>Después</small></div></div>
+          <div class="bars"><div><div class="b0"></div><small data-en="Before">Antes</small></div><div><div class="b1"></div><small data-en="After">Después</small></div></div>
         </div>
         <div>
-          <span class="tag live">En producción</span>
-          <h3 style="margin-top:12px">Migración 20×</h3>
-          <p>10 años de SQL Server a MongoDB: de 0,5 a 10 lotes por minuto.</p>
-          <span class="more">Ver el caso</span>
+          <span class="tag live" data-en="In production">En producción</span>
+          <h3 style="margin-top:12px" data-en="20× migration">Migración 20×</h3>
+          <p data-en="10 years of SQL Server data moved to MongoDB: from 0.5 to 10 batches per minute.">10 años de SQL Server a MongoDB: de 0,5 a 10 lotes por minuto.</p>
+          <span class="more" data-en="Read the case">Ver el caso</span>
         </div>
       </button>
 
       <button class="card" type="button" data-open="d-pg">
-        <div class="vis" aria-hidden="true"><div class="flow"><span>Borrador IA</span><span class="on">Aprobación</span><span>Programado</span><span>Publicado</span></div></div>
+        <div class="vis" aria-hidden="true"><div class="flow"><span data-en="AI draft">Borrador IA</span><span class="on" data-en="Approval">Aprobación</span><span data-en="Scheduled">Programado</span><span data-en="Published">Publicado</span></div></div>
         <div>
           <span class="tag">MVP</span>
           <h3 style="margin-top:12px">PostGate</h3>
-          <p>La IA redacta, tu equipo aprueba y se publica en varias redes.</p>
-          <span class="more">Ver el caso</span>
+          <p data-en="AI drafts, your team approves, and it’s published across networks.">La IA redacta, tu equipo aprueba y se publica en varias redes.</p>
+          <span class="more" data-en="Read the case">Ver el caso</span>
         </div>
       </button>
 
       <button class="card" type="button" data-open="d-tc">
-        <div class="vis" aria-hidden="true"><div class="cal"><span>Lun 6–14</span><span class="n">Mar 22–6</span><span>Vie 14–22</span><span class="s">Dom 22–6</span><span class="n">Mié 22–6</span><span>Jue 6–14</span><span>Sáb 14–22</span><span class="s">Dom 6–14</span></div></div>
+        <div class="vis" aria-hidden="true"><div class="cal"><span data-en="Mon 6–14">Lun 6–14</span><span class="n" data-en="Tue 22–6">Mar 22–6</span><span data-en="Fri 14–22">Vie 14–22</span><span class="s" data-en="Sun 22–6">Dom 22–6</span><span class="n" data-en="Wed 22–6">Mié 22–6</span><span data-en="Thu 6–14">Jue 6–14</span><span data-en="Sat 14–22">Sáb 14–22</span><span class="s" data-en="Sun 6–14">Dom 6–14</span></div></div>
         <div>
-          <span class="tag">En diseño</span>
+          <span class="tag" data-en="In design">En diseño</span>
           <h3 style="margin-top:12px">TurnosCO</h3>
-          <p>El costo laboral de un turno, con recargos, antes de publicarlo.</p>
-          <span class="more">Ver el caso</span>
+          <p data-en="The labor cost of a shift, surcharges included, before you publish it.">El costo laboral de un turno, con recargos, antes de publicarlo.</p>
+          <span class="more" data-en="Read the case">Ver el caso</span>
         </div>
       </button>
 
       <button class="card" type="button" data-open="d-ps">
-        <div class="vis" aria-hidden="true"><div class="trace"><div><span>Nacimiento · lote 114</span><em>ICA</em></div><div><span>Vacunación</span><em>ICA</em></div><div><span>Movilización</span><em>ICA</em></div></div></div>
+        <div class="vis" aria-hidden="true"><div class="trace"><div><span data-en="Birth · batch 114">Nacimiento · lote 114</span><em>ICA</em></div><div><span data-en="Vaccination">Vacunación</span><em>ICA</em></div><div><span data-en="Transport">Movilización</span><em>ICA</em></div></div></div>
         <div>
-          <span class="tag">Especificación</span>
+          <span class="tag" data-en="Specification">Especificación</span>
           <h3 style="margin-top:12px">PorcSync 360</h3>
-          <p>Trazabilidad porcina y cumplimiento de la normativa ICA.</p>
-          <span class="more">Ver el caso</span>
+          <p data-en="Pig farm traceability and compliance with Colombia’s ICA regulations.">Trazabilidad porcina y cumplimiento de la normativa ICA.</p>
+          <span class="more" data-en="Read the case">Ver el caso</span>
         </div>
       </button>
 
       <button class="card wide" type="button" data-open="d-up" style="grid-column:span 6">
         <div class="vis" aria-hidden="true" style="min-height:0">
-<div class="code"><span class="c"># varios archivos en una sola petición</span>
+<div class="code"><span class="c" data-en="# several files in a single request"># varios archivos en una sola petición</span>
 <span class="k">POST</span> /files/upload  →  <span class="g">201 Created</span>  ·  factura.pdf, foto.jpg  →  S3</div>
         </div>
         <div>
-          <span class="tag live">Completo</span>
+          <span class="tag live" data-en="Complete">Completo</span>
           <h3 style="margin-top:12px">Upload File MS</h3>
-          <p>Microservicio NestJS reutilizable para subir, validar y guardar archivos en AWS S3.</p>
-          <span class="more">Ver el caso</span>
+          <p data-en="Reusable NestJS microservice to upload, validate and store files in AWS S3.">Microservicio NestJS reutilizable para subir, validar y guardar archivos en AWS S3.</p>
+          <span class="more" data-en="Read the case">Ver el caso</span>
         </div>
       </button>
     </div>
   </section>
 
-  <!-- Capas -->
-  <section class="wrap sec" id="capas" aria-labelledby="h-capas">
-    <div class="head">
-      <h2 id="h-capas">Cuatro capas, un solo producto</h2>
-      <p>Mi fuerte es el backend, pero trabajo en todas las capas: desde la pantalla que ve el usuario hasta la infraestructura que la sostiene.</p>
+  <!-- Capas: se separan con el scroll -->
+  <section class="wrap scene" id="capas" aria-labelledby="h-capas">
+    <div class="sticky">
+      <div>
+        <h2 id="h-capas" data-en="Four layers, one product">Cuatro capas, un solo producto</h2>
+        <p class="sub" data-en="Backend is my strength, but I work across every layer: from the screen people use to the infrastructure behind it.">Mi fuerte es el backend, pero trabajo en todas las capas: desde la pantalla que ve el usuario hasta la infraestructura que la sostiene.</p>
+        <ol class="ll" id="ll">
+          <li data-l="3"><h3><span data-en="Interface">Interfaz</span><i></i></h3><div class="body"><div><p data-en="Dashboards, validated forms and role-based flows.">Paneles, formularios validados y flujos con roles.</p><div class="chips"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>TypeScript</span><span>React</span><span>Next.js</span><span>TanStack Query</span><span>Zod</span></div></div></div></li>
+          <li data-l="2"><h3><span data-en="API and logic">API y lógica</span><i></i></h3><div class="body"><div><p data-en="REST, microservices and Clean Architecture.">REST, microservicios y Clean Architecture.</p><div class="chips"><span>NestJS</span><span>Node.js</span><span>Python</span><span>Flask</span><span>Django</span><span>C#</span><span>JWT</span><span>Swagger</span></div></div></div></li>
+          <li data-l="1"><h3><span data-en="Data">Datos</span><i></i></h3><div class="body"><div><p data-en="Data modeling, per-tenant isolation and large migrations.">Modelado, aislamiento por cliente y migraciones grandes.</p><div class="chips"><span>PostgreSQL</span><span>MongoDB</span><span>SQL Server</span><span>MySQL</span><span>Prisma</span><span>ETL</span></div></div></div></li>
+          <li data-l="0"><h3><span data-en="Cloud and DevOps">Nube y DevOps</span><i></i></h3><div class="body"><div><p data-en="Reproducible, automated deployments.">Despliegues reproducibles y automatizados.</p><div class="chips"><span>AWS</span><span>Lambda</span><span>API Gateway</span><span>S3</span><span>RDS</span><span>Terraform</span><span>Docker</span><span>GitHub Actions</span></div></div></div></li>
+        </ol>
+      </div>
+      <div class="stage" aria-hidden="true">
+        <div class="iso">
+          <div class="sl s0" style="--i:0"><small>04</small><div><b data-en="Cloud">Nube</b></div></div>
+          <div class="sl s1" style="--i:1"><small>03</small><div><b data-en="Data">Datos</b></div></div>
+          <div class="sl s2" style="--i:2"><small>02</small><div><b>API</b></div></div>
+          <div class="sl s3" style="--i:3"><div class="g"><i></i><i></i><i></i><i></i><i></i><i></i></div><div><b data-en="Interface">Interfaz</b></div></div>
+        </div>
+        <p class="scroll-hint" data-en="Keep scrolling to separate the layers">Sigue bajando para separar las capas</p>
+      </div>
     </div>
-    <div class="layers">
-      <div class="layer l-ui">
-        <h3>Interfaz</h3>
-        <p>Paneles, formularios validados y flujos con roles.</p>
-        <div class="chips"><span class="k">HTML</span><span class="k">CSS</span><span class="k">JavaScript</span><span class="k">TypeScript</span><span class="k">React</span><span class="k">Next.js</span><span>TanStack Query</span><span>Zod</span><span>Responsive</span><span>Accesibilidad</span></div>
+  </section>
+
+  <!-- Demo: una petición de punta a punta -->
+  <section class="wrap sec demo" id="demo" aria-labelledby="h-demo">
+    <div>
+      <h2 id="h-demo" data-en="One request, end to end">Una petición, de punta a punta</h2>
+      <p class="sub" data-en="This is how an API I build handles an order: it validates, checks the session, applies the business rules and stores it isolated per client. Try the happy path or an expired token.">Así responde una API construida por mí cuando llega un pedido: valida, revisa la sesión, aplica las reglas de negocio y lo guarda aislado por cliente. Prueba el camino feliz o un token vencido.</p>
+      <div class="actions">
+        <button class="btn primary" type="button" data-run="ok" data-en="Send request">Enviar petición</button>
+        <button class="btn" type="button" data-run="expired" data-en="Send with expired token">Enviar con token vencido</button>
       </div>
-      <div class="layer l-api">
-        <h3>API y lógica</h3>
-        <p>REST, microservicios y Clean Architecture.</p>
-        <div class="chips"><span>NestJS</span><span>Node.js</span><span>Python</span><span>Flask</span><span>Django</span><span>C#</span><span>JWT</span><span>Swagger</span></div>
-      </div>
-      <div class="layer l-data">
-        <h3>Datos</h3>
-        <p>Modelado, aislamiento por cliente y migraciones grandes.</p>
-        <div class="chips"><span>PostgreSQL</span><span>MongoDB</span><span>SQL Server</span><span>MySQL</span><span>Prisma</span><span>ETL</span></div>
-      </div>
-      <div class="layer l-cloud">
-        <h3>Nube y DevOps</h3>
-        <p>Despliegues reproducibles y automatizados.</p>
-        <div class="chips"><span>AWS</span><span>Lambda</span><span>API Gateway</span><span>S3</span><span>RDS</span><span>Terraform</span><span>Docker</span><span>GitHub Actions</span></div>
-      </div>
+    </div>
+    <div class="term">
+      <div class="term-top"><i></i><i></i><i></i><span>api.forno-doro · orders</span><em data-en="Simulation">Simulación</em></div>
+      <pre class="log" id="log" aria-live="polite"><span class="dim" data-en="// Press “Send request” to watch it travel through each layer.">// Pulsa “Enviar petición” para ver cómo recorre cada capa.</span></pre>
+      <div class="hops" id="hops"><span data-en="Interface">Interfaz</span><span>API</span><span>Auth</span><span data-en="Rules">Reglas</span><span>PostgreSQL</span><span data-en="Queue">Cola</span></div>
     </div>
   </section>
 
   <!-- Experiencia -->
   <section class="wrap sec" id="experiencia" aria-labelledby="h-xp">
     <div class="head">
-      <h2 id="h-xp">Experiencia</h2>
-      <p>Backend para operaciones reales: energía solar, mercadeo y pymes.</p>
+      <h2 id="h-xp" data-en="Experience">Experiencia</h2>
+      <p data-en="Backend for real operations: solar energy, marketing and small businesses.">Backend para operaciones reales: energía solar, mercadeo y pymes.</p>
     </div>
     <div class="xp">
-      <article class="job"><time>Jul 2025 – hoy</time><div><h3>Desarrollador Backend Semi-Senior</h3><p class="co">Home Power Colombia</p></div><ul><li>Más de 10 APIs REST con NestJS y Python sobre AWS.</li><li>CI/CD con GitHub Actions y Terraform.</li><li>Integración de Odoo, Zoho, Sunrun y Palmeto.</li></ul></article>
-      <article class="job"><time>Jun 2023 – Ene 2025</time><div><h3>Desarrollador Backend</h3><p class="co">Mercadeo Virtual</p></div><ul><li>5 microservicios desde cero y 6 evolucionados.</li><li>Migración de 10 años de datos, 20 veces más rápida.</li><li>Reportes de producción automatizados.</li></ul></article>
-      <article class="job"><time>2022 – 2024</time><div><h3>Desarrollador Backend Freelance</h3><p class="co">Restaurantes, comercios y pymes</p></div><ul><li>Pedidos, inventario y facturación electrónica con Siigo y la DIAN.</li><li>Atención al cliente con IA generativa.</li></ul></article>
+      <article class="job"><time data-en="Jul 2025 – present">Jul 2025 – hoy</time><div><h3 data-en="Semi-Senior Backend Developer">Desarrollador Backend Semi-Senior</h3><p class="co">Home Power Colombia</p></div><ul><li data-en="10+ REST APIs with NestJS and Python on AWS.">Más de 10 APIs REST con NestJS y Python sobre AWS.</li><li data-en="CI/CD with GitHub Actions and Terraform.">CI/CD con GitHub Actions y Terraform.</li><li data-en="Integrations with Odoo, Zoho, Sunrun and Palmetto.">Integración de Odoo, Zoho, Sunrun y Palmeto.</li></ul></article>
+      <article class="job"><time data-en="Jun 2023 – Jan 2025">Jun 2023 – Ene 2025</time><div><h3 data-en="Backend Developer">Desarrollador Backend</h3><p class="co">Mercadeo Virtual</p></div><ul><li data-en="5 microservices built from scratch and 6 evolved.">5 microservicios desde cero y 6 evolucionados.</li><li data-en="Migration of 10 years of data, 20 times faster.">Migración de 10 años de datos, 20 veces más rápida.</li><li data-en="Automated production reports.">Reportes de producción automatizados.</li></ul></article>
+      <article class="job"><time>2022 – 2024</time><div><h3 data-en="Freelance Backend Developer">Desarrollador Backend Freelance</h3><p class="co" data-en="Restaurants, shops and small businesses">Restaurantes, comercios y pymes</p></div><ul><li data-en="Orders, inventory and e-invoicing with Siigo and the DIAN (Colombian tax authority).">Pedidos, inventario y facturación electrónica con Siigo y la DIAN.</li><li data-en="Customer support with generative AI.">Atención al cliente con IA generativa.</li></ul></article>
     </div>
   </section>
 
@@ -377,8 +475,11 @@ dialog::backdrop{background:rgba(10,6,18,.72);backdrop-filter:blur(6px)}
   <section class="wrap" id="contacto" aria-labelledby="h-cta">
     <div class="cta">
       <div>
-        <h2 id="h-cta">¿Construimos<br>algo juntos?</h2>
-        <div class="actions"><button class="btn dark" type="button" data-copy="alirayopuches@gmail.com">Copiar correo</button></div>
+        <h2 id="h-cta" data-en="Shall we build<br>something together?">¿Construimos<br>algo juntos?</h2>
+        <div class="actions">
+          <button class="btn dark" type="button" data-copy="alirayopuches@gmail.com" data-en="Copy email">Copiar correo</button>
+          <a class="btn" href="cv-ali-rayo.pdf" download="CV-Ali-Rayo-Backend.pdf" data-en="Download CV">Descargar CV</a>
+        </div>
       </div>
       <div class="links">
         <strong>alirayopuches@gmail.com</strong>
@@ -393,50 +494,50 @@ dialog::backdrop{background:rgba(10,6,18,.72);backdrop-filter:blur(6px)}
 
 <!-- Diálogos de proyectos -->
 <dialog id="d-oc" aria-labelledby="dh-oc"><div class="dlg">
-  <div class="dlg-top"><div><span class="tag live">Código público</span><h3 id="dh-oc">OpenClaw Platform</h3></div><button class="close" type="button" aria-label="Cerrar">✕</button></div>
-  <p class="intro">La base de una plataforma de automatización para muchos negocios a la vez. Cada cliente ve solo sus datos, y ese aislamiento lo garantiza la base de datos, no solo el código.</p>
-  <ul><li>API en NestJS con Clean Architecture por módulo: dominio, casos de uso e infraestructura.</li><li>PostgreSQL con row-level security y un rol de aplicación que no puede saltarse esas reglas.</li><li>JWT de 15 minutos con refresh tokens rotativos en cookie httpOnly.</li><li>Panel en Next.js y React con control de acceso por rol: super admin, admin y staff de cada tenant.</li></ul>
+  <div class="dlg-top"><div><span class="tag live" data-en="Public code">Código público</span><h3 id="dh-oc">OpenClaw Platform</h3></div><button class="close" type="button" aria-label="Cerrar" data-en-aria="Close">✕</button></div>
+  <p class="intro" data-en="The foundation of an automation platform serving many businesses at once. Each client sees only its own data, and that isolation is enforced by the database, not just the code.">La base de una plataforma de automatización para muchos negocios a la vez. Cada cliente ve solo sus datos, y ese aislamiento lo garantiza la base de datos, no solo el código.</p>
+  <ul><li data-en="NestJS API with Clean Architecture per module: domain, use cases and infrastructure.">API en NestJS con Clean Architecture por módulo: dominio, casos de uso e infraestructura.</li><li data-en="PostgreSQL row-level security with an application role that can’t bypass those rules.">PostgreSQL con row-level security y un rol de aplicación que no puede saltarse esas reglas.</li><li data-en="15-minute JWTs with rotating refresh tokens in an httpOnly cookie.">JWT de 15 minutos con refresh tokens rotativos en cookie httpOnly.</li><li data-en="Next.js and React dashboard with role-based access: super admin, plus admin and staff per tenant.">Panel en Next.js y React con control de acceso por rol: super admin, admin y staff de cada tenant.</li></ul>
   <div class="meta"><span class="chip">NestJS</span><span class="chip">Prisma</span><span class="chip">PostgreSQL</span><span class="chip">Next.js</span><span class="chip">React</span><span class="chip">Zod</span><span class="chip">pnpm</span></div>
-  <a class="btn primary" href="https://github.com/alex2003e/manager-agents-whatsapp" target="_blank" rel="noopener" style="justify-self:start">Ver el código en GitHub</a>
+  <a class="btn primary" href="https://github.com/alex2003e/manager-agents-whatsapp" target="_blank" rel="noopener" style="justify-self:start" data-en="See the code on GitHub">Ver el código en GitHub</a>
 </div></dialog>
 
 <dialog id="d-mg" aria-labelledby="dh-mg"><div class="dlg">
-  <div class="dlg-top"><div><span class="tag live">En producción · Mercadeo Virtual</span><h3 id="dh-mg">Migración de 10 años de datos</h3></div><button class="close" type="button" aria-label="Cerrar">✕</button></div>
-  <p class="intro">Una década de información en SQL Server tenía que pasar a MongoDB sin perder relaciones ni detener la operación. Diseñé y construí el pipeline completo.</p>
-  <ul><li>ETL en Python: unas 25 tablas relacionadas por lote, de 100 a 200 registros cada uno.</li><li>De 5 lotes cada 10 minutos a 50 lotes cada 5 minutos: 20 veces más rápido.</li><li>Re-migración selectiva: corregir un lote pasó de 10 minutos a menos de 1.</li><li>Monitoreo que levanta contenedores Docker para reprocesar y avisa por correo si el error persiste.</li></ul>
+  <div class="dlg-top"><div><span class="tag live" data-en="In production · Mercadeo Virtual">En producción · Mercadeo Virtual</span><h3 id="dh-mg" data-en="Migrating 10 years of data">Migración de 10 años de datos</h3></div><button class="close" type="button" aria-label="Cerrar" data-en-aria="Close">✕</button></div>
+  <p class="intro" data-en="A decade of SQL Server data had to move to MongoDB without losing relationships or stopping operations. I designed and built the whole pipeline.">Una década de información en SQL Server tenía que pasar a MongoDB sin perder relaciones ni detener la operación. Diseñé y construí el pipeline completo.</p>
+  <ul><li data-en="Python ETL: about 25 related tables per batch, 100 to 200 records each.">ETL en Python: unas 25 tablas relacionadas por lote, de 100 a 200 registros cada uno.</li><li data-en="From 5 batches every 10 minutes to 50 batches every 5 minutes: 20 times faster.">De 5 lotes cada 10 minutos a 50 lotes cada 5 minutos: 20 veces más rápido.</li><li data-en="Selective re-migration: fixing a batch went from 10 minutes to under 1.">Re-migración selectiva: corregir un lote pasó de 10 minutos a menos de 1.</li><li data-en="Monitoring that spins up Docker containers to reprocess and sends an email if the error persists.">Monitoreo que levanta contenedores Docker para reprocesar y avisa por correo si el error persiste.</li></ul>
   <div class="meta"><span class="chip">Python</span><span class="chip">SQL Server</span><span class="chip">MongoDB</span><span class="chip">Docker</span></div>
 </div></dialog>
 
 <dialog id="d-pg" aria-labelledby="dh-pg"><div class="dlg">
-  <div class="dlg-top"><div><span class="tag">MVP en desarrollo</span><h3 id="dh-pg">PostGate</h3></div><button class="close" type="button" aria-label="Cerrar">✕</button></div>
-  <p class="intro">La IA propone y el equipo decide. Genera publicaciones para redes sociales siguiendo las reglas de marca de cada cliente, y nada sale sin aprobación humana.</p>
-  <ul><li>Reglas de marca por cliente: tono, público, hashtags y temas a evitar.</li><li>Cola de aprobación por Telegram o Slack y publicación programada en Instagram, Facebook, LinkedIn y X.</li><li>Registro de auditoría: quién aprobó, qué se editó y cuándo salió.</li></ul>
+  <div class="dlg-top"><div><span class="tag" data-en="MVP in progress">MVP en desarrollo</span><h3 id="dh-pg">PostGate</h3></div><button class="close" type="button" aria-label="Cerrar" data-en-aria="Close">✕</button></div>
+  <p class="intro" data-en="AI proposes, the team decides. It generates social media posts following each client’s brand rules, and nothing goes out without human approval.">La IA propone y el equipo decide. Genera publicaciones para redes sociales siguiendo las reglas de marca de cada cliente, y nada sale sin aprobación humana.</p>
+  <ul><li data-en="Brand rules per client: tone, audience, hashtags and topics to avoid.">Reglas de marca por cliente: tono, público, hashtags y temas a evitar.</li><li data-en="Approval queue via Telegram or Slack, and scheduled publishing to Instagram, Facebook, LinkedIn and X.">Cola de aprobación por Telegram o Slack y publicación programada en Instagram, Facebook, LinkedIn y X.</li><li data-en="Audit log: who approved, what was edited and when it went out.">Registro de auditoría: quién aprobó, qué se editó y cuándo salió.</li></ul>
   <div class="meta"><span class="chip">Node.js</span><span class="chip">Python</span><span class="chip">PostgreSQL multi-tenant</span><span class="chip">OpenClaw</span></div>
-  <p class="note">Repositorio privado. Puedo mostrarlo en una entrevista.</p>
+  <p class="note" data-en="Private repository. Happy to walk through it in an interview.">Repositorio privado. Puedo mostrarlo en una entrevista.</p>
 </div></dialog>
 
 <dialog id="d-tc" aria-labelledby="dh-tc"><div class="dlg">
-  <div class="dlg-top"><div><span class="tag">En diseño</span><h3 id="dh-tc">TurnosCO</h3></div><button class="close" type="button" aria-label="Cerrar">✕</button></div>
-  <p class="intro">El software de nómina liquida lo que ya pasó. TurnosCO responde antes: ¿cabe en el presupuesto ese turno del domingo en la noche?</p>
-  <ul><li>Estima recargos nocturnos, dominicales, horas extra y topes legales de la Ley 2466 de 2025.</li><li>Doce reglas de negocio documentadas como fuente de verdad.</li><li>Desarrollo guiado por especificación: especificar, planear, dividir en tareas e implementar.</li></ul>
-  <div class="meta"><span class="chip">Motor de cálculo</span><span class="chip">Spec-driven</span><span class="chip">Git Flow</span></div>
-  <p class="note">Repositorio privado. Puedo mostrarlo en una entrevista.</p>
+  <div class="dlg-top"><div><span class="tag" data-en="In design">En diseño</span><h3 id="dh-tc">TurnosCO</h3></div><button class="close" type="button" aria-label="Cerrar" data-en-aria="Close">✕</button></div>
+  <p class="intro" data-en="Payroll software settles what already happened. TurnosCO answers before: does that Sunday night shift fit the budget?">El software de nómina liquida lo que ya pasó. TurnosCO responde antes: ¿cabe en el presupuesto ese turno del domingo en la noche?</p>
+  <ul><li data-en="Estimates night and Sunday surcharges, overtime and legal limits under Colombia’s Law 2466 of 2025.">Estima recargos nocturnos, dominicales, horas extra y topes legales de la Ley 2466 de 2025.</li><li data-en="Twelve business rules documented as the source of truth.">Doce reglas de negocio documentadas como fuente de verdad.</li><li data-en="Spec-driven development: specify, plan, break into tasks and implement.">Desarrollo guiado por especificación: especificar, planear, dividir en tareas e implementar.</li></ul>
+  <div class="meta"><span class="chip" data-en="Calculation engine">Motor de cálculo</span><span class="chip">Spec-driven</span><span class="chip">Git Flow</span></div>
+  <p class="note" data-en="Private repository. Happy to walk through it in an interview.">Repositorio privado. Puedo mostrarlo en una entrevista.</p>
 </div></dialog>
 
 <dialog id="d-ps" aria-labelledby="dh-ps"><div class="dlg">
-  <div class="dlg-top"><div><span class="tag">Especificación</span><h3 id="dh-ps">PorcSync 360</h3></div><button class="close" type="button" aria-label="Cerrar">✕</button></div>
-  <p class="intro">Software para granjas porcinas: trazabilidad de cada animal, cumplimiento de la normativa del ICA y, más adelante, predicción de carne magra.</p>
-  <ul><li>Escribí la especificación, la matriz de cumplimiento ICA y el plan de entregas.</li><li>Tres entregas: registros y normativa, reproducción y genética, predicción.</li><li>Reutiliza la base de AgroSync, con autorización de su autor.</li></ul>
-  <div class="meta"><span class="chip">Spec Kit</span><span class="chip">Cumplimiento normativo</span></div>
-  <p class="note">Aún sin código: el proyecto está en fase de especificación.</p>
+  <div class="dlg-top"><div><span class="tag" data-en="Specification">Especificación</span><h3 id="dh-ps">PorcSync 360</h3></div><button class="close" type="button" aria-label="Cerrar" data-en-aria="Close">✕</button></div>
+  <p class="intro" data-en="Software for pig farms: traceability for every animal, compliance with Colombia’s ICA regulations and, later on, lean meat prediction.">Software para granjas porcinas: trazabilidad de cada animal, cumplimiento de la normativa del ICA y, más adelante, predicción de carne magra.</p>
+  <ul><li data-en="I wrote the specification, the ICA compliance matrix and the delivery plan.">Escribí la especificación, la matriz de cumplimiento ICA y el plan de entregas.</li><li data-en="Three releases: records and compliance, breeding and genetics, prediction.">Tres entregas: registros y normativa, reproducción y genética, predicción.</li><li data-en="Builds on AgroSync, with its author’s permission.">Reutiliza la base de AgroSync, con autorización de su autor.</li></ul>
+  <div class="meta"><span class="chip">Spec Kit</span><span class="chip" data-en="Regulatory compliance">Cumplimiento normativo</span></div>
+  <p class="note" data-en="No code yet: the project is in the specification phase.">Aún sin código: el proyecto está en fase de especificación.</p>
 </div></dialog>
 
 <dialog id="d-up" aria-labelledby="dh-up"><div class="dlg">
-  <div class="dlg-top"><div><span class="tag live">Completo</span><h3 id="dh-up">Upload File MS</h3></div><button class="close" type="button" aria-label="Cerrar">✕</button></div>
-  <p class="intro">Un microservicio pequeño y reutilizable para que cualquier sistema suba y gestione archivos sin reinventar la carga, la validación ni el almacenamiento.</p>
-  <ul><li>Varios archivos por petición en multipart/form-data.</li><li>Validación por tipo de archivo y tamaño.</li><li>Almacenamiento configurable en AWS S3.</li></ul>
+  <div class="dlg-top"><div><span class="tag live" data-en="Complete">Completo</span><h3 id="dh-up">Upload File MS</h3></div><button class="close" type="button" aria-label="Cerrar" data-en-aria="Close">✕</button></div>
+  <p class="intro" data-en="A small, reusable microservice so any system can upload and manage files without reinventing uploads, validation or storage.">Un microservicio pequeño y reutilizable para que cualquier sistema suba y gestione archivos sin reinventar la carga, la validación ni el almacenamiento.</p>
+  <ul><li data-en="Several files per request with multipart/form-data.">Varios archivos por petición en multipart/form-data.</li><li data-en="Validation by file type and size.">Validación por tipo de archivo y tamaño.</li><li data-en="Configurable storage in AWS S3.">Almacenamiento configurable en AWS S3.</li></ul>
   <div class="meta"><span class="chip">NestJS</span><span class="chip">Multer</span><span class="chip">AWS S3</span></div>
-  <p class="note">Repositorio privado. Puedo mostrarlo en una entrevista.</p>
+  <p class="note" data-en="Private repository. Happy to walk through it in an interview.">Repositorio privado. Puedo mostrarlo en una entrevista.</p>
 </div></dialog>
 
 <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
@@ -444,32 +545,100 @@ dialog::backdrop{background:rgba(10,6,18,.72);backdrop-filter:blur(6px)}
 <script>
 (function(){
   const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let lang='es';
 
-  // Capas 3D: siguen al cursor
-  const stack=document.getElementById('stack'), l3=stack.querySelector('.layers3d');
+  /* ---------- Idioma ES / EN ---------- */
+  const META={
+    es:{title:'Ali Rayo · Backend sólido, interfaz con criterio',copied:'Correo copiado: ',btn:'<b>ES</b><span>/ EN</span>',aria:'Switch to English'},
+    en:{title:'Ali Rayo · Solid backend, thoughtful interfaces',copied:'Email copied: ',btn:'<b>EN</b><span>/ ES</span>',aria:'Cambiar a español'}
+  };
+  function setLang(l){
+    lang=l;document.documentElement.lang=l;document.title=META[l].title;
+    document.querySelectorAll('[data-en]').forEach(el=>{
+      if(el.dataset.es===undefined)el.dataset.es=el.innerHTML;
+      el.innerHTML=l==='en'?el.dataset.en:el.dataset.es;
+    });
+    document.querySelectorAll('[data-en-aria]').forEach(el=>{
+      if(el.dataset.esAria===undefined)el.dataset.esAria=el.getAttribute('aria-label')||'';
+      el.setAttribute('aria-label',l==='en'?el.dataset.enAria:el.dataset.esAria);
+    });
+    const b=document.getElementById('lang');b.innerHTML=META[l].btn;b.setAttribute('aria-label',META[l].aria);
+    try{localStorage.setItem('lang',l)}catch(e){}
+    const u=new URL(location.href);if(l==='en')u.searchParams.set('lang','en');else u.searchParams.delete('lang');history.replaceState(null,'',u);
+  }
+  document.getElementById('lang').addEventListener('click',()=>{setLang(lang==='es'?'en':'es');resetLog()});
+  let start=new URLSearchParams(location.search).get('lang');
+  if(!start){try{start=localStorage.getItem('lang')}catch(e){}}
+  if(start==='en')setLang('en');
+
+  /* ---------- Capas del hero: siguen al cursor ---------- */
+  const stack=document.getElementById('stack'),l3=stack.querySelector('.layers3d');
   if(!reduce){
     stack.addEventListener('pointermove',e=>{const r=stack.getBoundingClientRect();const x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
       l3.style.setProperty('--ry',(-14+x*18)+'deg');l3.style.setProperty('--rx',(8-y*12)+'deg')});
     stack.addEventListener('pointerleave',()=>{l3.style.removeProperty('--ry');l3.style.removeProperty('--rx')});
   }
 
-  // Proyectos en diálogo
-  document.querySelectorAll('[data-open]').forEach(b=>b.addEventListener('click',()=>{const d=document.getElementById(b.dataset.open);d.showModal();}));
-  document.querySelectorAll('dialog').forEach(d=>{
-    d.querySelector('.close').addEventListener('click',()=>d.close());
-    d.addEventListener('click',e=>{if(e.target===d)d.close()});
-  });
+  /* ---------- Escena: las capas se separan con el scroll ---------- */
+  const scene=document.getElementById('capas'),iso=scene.querySelector('.iso'),items=[...scene.querySelectorAll('.ll li')],slabs=[...scene.querySelectorAll('.sl')],hint=scene.querySelector('.scroll-hint');
+  function activate(idx){items.forEach((li,i)=>li.classList.toggle('on',i===idx));slabs.forEach(s=>s.classList.toggle('on',+s.style.getPropertyValue('--i')===3-idx))}
+  if(reduce){scene.classList.add('static');iso.style.setProperty('--p',1);activate(0)}
+  else{
+    let ticking=false;
+    function update(){ticking=false;const r=scene.getBoundingClientRect();const total=r.height-innerHeight;
+      const p=Math.min(1,Math.max(0,-r.top/total));
+      const spread=Math.min(1,p/.25);           // primer cuarto: se separan
+      iso.style.setProperty('--p',spread.toFixed(3));
+      const idx=p<.25?0:Math.min(3,Math.floor((p-.25)/.1875));
+      activate(idx);hint.style.opacity=p>.2?0:1;}
+    addEventListener('scroll',()=>{if(!ticking){ticking=true;requestAnimationFrame(update)}},{passive:true});
+    addEventListener('resize',update);update();
+  }
+  items.forEach((li,i)=>li.addEventListener('click',()=>{if(scene.classList.contains('static'))return;const r=scene.getBoundingClientRect();const total=r.height-innerHeight;const target=scrollY+r.top+total*(.25+.1875*i+.09);scrollTo({top:target,behavior:reduce?'auto':'smooth'})}));
 
-  // Navegación activa según la sección visible
+  /* ---------- Demo: petición simulada ---------- */
+  const log=document.getElementById('log'),hops=[...document.querySelectorAll('#hops span')],runBtns=[...document.querySelectorAll('[data-run]')];
+  const T={
+    es:{idle:'// Pulsa “Enviar petición” para ver cómo recorre cada capa.',val:'Validación del cuerpo (class-validator)',jwt:'JWT válido · rol TENANT_STAFF',exp:'JWT vencido hace 2 min',rule:'Regla de negocio: hay stock de los 2 ítems',db:'PostgreSQL · RLS tenant=forno-doro · INSERT',q:'Evento order.created → cola de notificaciones',refresh:'El frontend usa el refresh token (cookie httpOnly) y reintenta…',newtok:'Nuevo access token emitido · 15 min',retry:'Reintento'},
+    en:{idle:'// Press “Send request” to watch it travel through each layer.',val:'Body validation (class-validator)',jwt:'Valid JWT · role TENANT_STAFF',exp:'JWT expired 2 min ago',rule:'Business rule: both items in stock',db:'PostgreSQL · RLS tenant=forno-doro · INSERT',q:'Event order.created → notification queue',refresh:'The frontend uses the refresh token (httpOnly cookie) and retries…',newtok:'New access token issued · 15 min',retry:'Retry'}
+  };
+  let timer=[];
+  function clearT(){timer.forEach(clearTimeout);timer=[]}
+  function resetLog(){clearT();runBtns.forEach(b=>b.disabled=false);hops.forEach(h=>h.className='');log.innerHTML='<span class="dim">'+T[lang].idle+'</span>'}
+  function line(html){const s=document.createElement('span');s.className='line';s.innerHTML=html;log.appendChild(s)}
+  function hop(i,cls){if(hops[i])hops[i].className=cls||'on'}
+  const ok=(txt,ms)=>`<span class="ok">✓</span> ${txt}<span class="t">${ms} ms</span>`;
+  function run(kind){
+    clearT();runBtns.forEach(b=>b.disabled=true);hops.forEach(h=>h.className='');log.innerHTML='';
+    const t=T[lang];const req=`<span class="k">POST</span> /api/v1/orders  <span class="dim">{"items":2,"table":7}</span>`;
+    const steps=[()=>{line('→ '+req);hop(0)},()=>{line(ok(t.val,2));hop(1)}];
+    if(kind==='expired'){
+      steps.push(()=>{line(`<span class="err">✗</span> ${t.exp}<span class="t">1 ms</span>`);hop(2,'bad')},
+        ()=>{line(`<span class="err">← 401 Unauthorized</span>  <span class="dim">{"error":"token_expired"}</span>`)},
+        ()=>{line(`<span class="dim">// ${t.refresh}</span>`)},
+        ()=>{line(ok(t.newtok,6));hop(2)},
+        ()=>{line('→ '+req+`  <span class="dim">(${t.retry})</span>`)});
+    }else steps.push(()=>{line(ok(t.jwt,1));hop(2)});
+    steps.push(()=>{line(ok(t.rule,4));hop(3)},()=>{line(ok(t.db,11));hop(4)},()=>{line(ok(t.q,3));hop(5)},
+      ()=>{line(`<span class="ok">← 201 Created</span>  <span class="dim">{"id":"ord_8F2K","status":"confirmed"}</span><span class="t">${kind==='expired'?31:24} ms</span>`);runBtns.forEach(b=>b.disabled=false)});
+    const gap=reduce?0:520;steps.forEach((f,i)=>timer.push(setTimeout(f,i*gap)));
+  }
+  runBtns.forEach(b=>b.addEventListener('click',()=>run(b.dataset.run)));
+
+  /* ---------- Proyectos en diálogo ---------- */
+  document.querySelectorAll('[data-open]').forEach(b=>b.addEventListener('click',()=>document.getElementById(b.dataset.open).showModal()));
+  document.querySelectorAll('dialog').forEach(d=>{d.querySelector('.close').addEventListener('click',()=>d.close());d.addEventListener('click',e=>{if(e.target===d)d.close()})});
+
+  /* ---------- Navegación activa ---------- */
   const links=[...document.querySelectorAll('.pills a')];
-  const io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){links.forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+en.target.id))}}),{rootMargin:'-45% 0px -50% 0px'});
-  ['trabajo','capas','experiencia','contacto'].forEach(id=>io.observe(document.getElementById(id)));
+  const io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting)links.forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+en.target.id))}),{rootMargin:'-45% 0px -50% 0px'});
+  ['trabajo','capas','demo','contacto'].forEach(id=>io.observe(document.getElementById(id)));
 
-  // Copiar correo
-  const toast=document.getElementById('toast');let t;
-  function show(m){toast.textContent=m;toast.hidden=false;clearTimeout(t);t=setTimeout(()=>toast.hidden=true,2400)}
+  /* ---------- Copiar correo ---------- */
+  const toast=document.getElementById('toast');let tt;
+  function show(m){toast.textContent=m;toast.hidden=false;clearTimeout(tt);tt=setTimeout(()=>toast.hidden=true,2400)}
   document.querySelectorAll('[data-copy]').forEach(b=>b.addEventListener('click',()=>{const v=b.dataset.copy;
-    if(navigator.clipboard)navigator.clipboard.writeText(v).then(()=>show('Correo copiado: '+v),()=>show(v));else show(v)}));
+    if(navigator.clipboard)navigator.clipboard.writeText(v).then(()=>show(META[lang].copied+v),()=>show(v));else show(v)}));
 })();
 </script>
 </body>

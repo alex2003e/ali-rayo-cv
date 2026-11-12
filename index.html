@@ -3,716 +3,470 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Ali Rayo · Backend & Producto</title>
-<meta name="description" content="Ali Alexander Rayo Gutiérrez: desarrollador backend semi-senior (NestJS, Python, AWS) que también construye interfaces con Next.js y React. Medellín, disponible remoto.">
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%232643E9'/%3E%3Ctext x='50%25' y='54%25' text-anchor='middle' dominant-baseline='middle' font-family='Arial Black,Arial,sans-serif' font-weight='900' font-size='30' fill='white'%3EAR%3C/text%3E%3Ccircle cx='50' cy='14' r='5' fill='%23F2A93B'/%3E%3C/svg%3E">
-<meta name="theme-color" content="#2643E9">
+<title>Ali Rayo · Backend sólido, interfaz con criterio</title>
+<meta name="description" content="Ali Alexander Rayo Gutiérrez: desarrollador backend semi-senior (NestJS, Python, AWS) que también construye interfaces con HTML, CSS, JavaScript, React y Next.js. Medellín, disponible remoto.">
+<meta name="theme-color" content="#150E22">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23150E22'/%3E%3Crect x='10' y='34' width='34' height='18' rx='5' fill='%233A2A60' transform='rotate(-8 27 43)'/%3E%3Crect x='16' y='14' width='38' height='24' rx='6' fill='%23B9A4FF'/%3E%3Ccircle cx='48' cy='48' r='5' fill='%236FE3C1'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&display=swap">
 <style>
 /*
-  Concepto: "el sistema a la vista". El hero es un diagrama vivo de la arquitectura que Ali construye
-  (peticiones viajando entre servicios). Debajo, un visor de proyectos: lista a la izquierda,
-  una maqueta de interfaz a la derecha que cambia al elegir cada proyecto.
+  Propuesta B · "Producto en capas".
+  Un solo mundo oscuro (berenjena) con dos acentos: lila para la acción y menta para el estado.
+  Lo memorable: las capas apiladas del hero que reaccionan al cursor. Todo lo demás, sobrio.
 */
 :root{
-  --bg:#EEF1F7; --surface:#FFFFFF; --ink:#0D1B3D; --muted:#56607A; --line:#CDD3E1;
-  --accent:#2643E9; --accent-strong:#2643E9; --accent-soft:#DCE2FF; --signal:#E39A21; --ok:#1E8E5A;
-  --f:"Archivo", "Helvetica Neue", Arial, sans-serif;
-  --mono:"JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
-  --gutter:max(20px, env(safe-area-inset-left, 0px));
-  color-scheme:light;
+  --bg:#150E22; --s1:#1D1430; --s2:#221838; --s3:#2B1F47; --s4:#3A2A60;
+  --line:#3A2C5A; --line2:#4A3A74;
+  --ink:#F1ECFA; --soft:#CFC5E3; --muted:#B7AACF;
+  --lilac:#B9A4FF; --mint:#6FE3C1; --paper:#F1ECFA; --paper-ink:#150E22; --paper-line:#E2DAF0; --paper-muted:#5E5277;
+  --f:"Sora", "Segoe UI", system-ui, sans-serif;
+  color-scheme:dark;
 }
-@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
-  --bg:#0B1430; --surface:#121D40; --ink:#E8ECF7; --muted:#98A2BD; --line:#24315C;
-  --accent:#8297FF; --accent-strong:#2B44D6; --accent-soft:#1B2A5C; --signal:#FFC062; --ok:#4CC88A; color-scheme:dark }}
-:root[data-theme="dark"]{
-  --bg:#0B1430; --surface:#121D40; --ink:#E8ECF7; --muted:#98A2BD; --line:#24315C;
-  --accent:#8297FF; --accent-strong:#2B44D6; --accent-soft:#1B2A5C; --signal:#FFC062; --ok:#4CC88A; color-scheme:dark }
-
 *{box-sizing:border-box}
 html,body{margin:0}
-body{background:var(--bg);color:var(--ink);font-family:var(--f);font-size:17px;line-height:1.6;font-variation-settings:"wdth" 100;-webkit-font-smoothing:antialiased}
-img{max-width:100%}
-a{color:inherit}
-:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
-.wrap{max-width:1200px;margin:0 auto;padding-left:var(--gutter);padding-right:max(20px, env(safe-area-inset-right, 0px))}
-h1,h2,h3{margin:0;line-height:1;text-wrap:balance}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{background:var(--bg);color:var(--ink);font-family:var(--f);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:var(--lilac)}
+:focus-visible{outline:2px solid var(--mint);outline-offset:3px;border-radius:6px}
+.wrap{max-width:1280px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+h1,h2,h3{margin:0;text-wrap:balance}
 p{margin:0}
-.btn{display:inline-flex;align-items:center;gap:10px;padding:14px 22px;border-radius:999px;font:600 15px/1 var(--f);text-decoration:none;cursor:pointer;border:1.5px solid var(--ink);background:transparent;color:var(--ink);transition:background .2s,color .2s}
-.btn:hover{background:var(--ink);color:var(--bg)}
-.btn.solid{background:var(--accent);border-color:var(--accent);color:var(--on-accent,#fff)}
-.btn.solid:hover{filter:brightness(1.08);background:var(--accent);color:var(--on-accent,#fff)}
-@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){--on-accent:#0B1430} }
-:root[data-theme="dark"]{--on-accent:#0B1430}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 24px;border-radius:14px;font:600 15px/1 var(--f);text-decoration:none;cursor:pointer;border:1px solid var(--line2);background:transparent;color:var(--ink);transition:background .2s,border-color .2s,transform .2s}
+.btn:hover{border-color:var(--lilac)}
+.btn.primary{background:var(--lilac);border-color:var(--lilac);color:var(--paper-ink);font-weight:700}
+.btn.primary:hover{background:#CDBEFF}
 
 /* Nav */
-.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid transparent;transition:border-color .2s}
-.nav.scrolled{border-color:var(--line)}
-.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px;gap:16px}
-.logo{font-weight:800;font-variation-settings:"wdth" 125;letter-spacing:-.02em;text-decoration:none;font-size:18px}
-.nav ul{display:flex;gap:28px;list-style:none;margin:0;padding:0;font-size:15px}
-.nav ul a{text-decoration:none;color:var(--muted)}
-.nav ul a:hover{color:var(--ink)}
-.theme{width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer;display:grid;place-items:center}
+.top{position:sticky;top:0;z-index:30;padding-top:env(safe-area-inset-top,0px);background:color-mix(in srgb,var(--bg) 78%,transparent);backdrop-filter:blur(14px)}
+.top .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px;height:72px}
+.brand{font-weight:800;font-size:18px;text-decoration:none;color:var(--ink);letter-spacing:-.01em}
+.brand span{color:var(--lilac)}
+.pills{display:flex;gap:4px;padding:5px;border-radius:999px;background:var(--s2);border:1px solid var(--line)}
+.pills a{text-decoration:none;color:var(--soft);font-size:14px;padding:8px 16px;border-radius:999px;transition:background .2s,color .2s}
+.pills a:hover,.pills a.on{background:var(--s4);color:#fff}
 
 /* Hero */
-.hero{position:relative;min-height:min(88vh,820px);display:flex;align-items:flex-end;overflow:hidden;border-bottom:1px solid var(--line)}
-.hero::before{content:"";position:absolute;inset:0;pointer-events:none;
-  background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
-  background-size:48px 48px;opacity:.45;
-  -webkit-mask-image:radial-gradient(ellipse 70% 80% at 72% 40%,#000 20%,transparent 75%);mask-image:radial-gradient(ellipse 70% 80% at 72% 40%,#000 20%,transparent 75%)}
-.hero::after{content:"";position:absolute;inset:0;pointer-events:none;
-  background:radial-gradient(420px circle at var(--mx,72%) var(--my,40%),color-mix(in srgb,var(--accent) 16%,transparent),transparent 70%)}
-#sys{position:absolute;inset:0;width:100%;height:100%;display:block;z-index:1}
-.hero .wrap{position:relative;z-index:2;width:100%;padding-block:0 56px;pointer-events:none}
-.hero .wrap > *{pointer-events:auto}
-.status{display:inline-flex;align-items:center;gap:10px;font-size:14px;color:var(--muted);margin-bottom:22px;background:color-mix(in srgb,var(--bg) 70%,transparent);padding:6px 12px 6px 10px;border-radius:999px;border:1px solid var(--line)}
-.dot{width:8px;height:8px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 4px color-mix(in srgb,var(--ok) 22%,transparent)}
-.name{font-size:clamp(52px,10.5vw,148px);font-weight:850;font-variation-settings:"wdth" 125;letter-spacing:-.045em;line-height:.88}
-.name span{display:block;margin-top:14px;font-size:clamp(26px,3.4vw,48px);line-height:1.05;font-weight:300;font-variation-settings:"wdth" 70;letter-spacing:-.015em;max-width:16ch}
-.role{margin-top:26px;max-width:46ch;font-size:clamp(18px,2vw,22px);line-height:1.45;color:var(--ink)}
-.role strong{font-weight:650}
-.hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
-.hint{position:absolute;right:var(--gutter);bottom:20px;z-index:2;font-size:13px;color:var(--muted);max-width:26ch;text-align:right}
+.hero{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;padding-block:56px 48px}
+.hero > *{min-width:0}
+.status{display:inline-flex;gap:10px;align-items:center;font-size:14px;color:var(--muted);padding:8px 14px;border:1px solid var(--line);border-radius:999px;margin-bottom:24px}
+.status i{width:8px;height:8px;border-radius:50%;background:var(--mint);box-shadow:0 0 0 4px color-mix(in srgb,var(--mint) 22%,transparent)}
+.hero h1{font-size:clamp(46px,6.4vw,92px);line-height:.98;font-weight:800;letter-spacing:-.045em}
+.hero h1 span{display:block;color:var(--lilac)}
+.lead{margin-top:28px;font-size:clamp(18px,1.6vw,20px);line-height:1.6;color:var(--soft);max-width:36ch}
+.actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
 
-/* Impact */
-.impact{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid var(--line)}
-.impact div{padding:34px 24px 30px 0}
-.impact div + div{padding-left:24px;border-left:1px solid var(--line)}
-.impact b{display:block;font-size:clamp(40px,5vw,64px);font-weight:800;font-variation-settings:"wdth" 112;letter-spacing:-.03em;line-height:1;font-variant-numeric:tabular-nums}
-.impact span{display:block;margin-top:10px;color:var(--muted);font-size:15px;max-width:22ch;line-height:1.4}
+.stack{position:relative;height:540px;perspective:1300px}
+.layers3d{position:absolute;inset:0;transform-style:preserve-3d;transition:transform .35s ease-out;transform:rotateX(var(--rx,8deg)) rotateY(var(--ry,-14deg))}
+.plate{position:absolute;border-radius:22px;padding:22px;box-shadow:0 40px 70px -35px #000;transition:transform .45s cubic-bezier(.2,.7,.2,1)}
+.plate small{display:block;font-size:13px;color:var(--muted)}
+.plate b{display:block;margin-top:8px;font-size:21px;font-weight:700;letter-spacing:-.01em}
+.p-cloud{left:6%;top:380px;width:72%;height:130px;background:var(--s3);border:1px solid var(--line2);transform:translateZ(-80px) rotate(-7deg)}
+.p-data{left:13%;top:310px;width:74%;height:130px;background:var(--s4);border:1px solid #5A4884;transform:translateZ(-30px) rotate(-3.5deg)}
+.p-api{left:20%;top:240px;width:74%;height:130px;background:#4B3A7D;border:1px solid #6C59A6;transform:translateZ(20px) rotate(-1deg)}
+.p-ui{left:26%;top:0;width:74%;background:var(--paper);color:var(--paper-ink);transform:translateZ(80px)}
+.p-ui small{color:var(--paper-muted)}
+.stack:hover .p-ui{transform:translateZ(120px) translateY(-8px)}
+.stack:hover .p-api{transform:translateZ(40px) rotate(-1deg) translateY(-4px)}
+.dots{display:flex;gap:6px;margin-bottom:14px}.dots i{width:10px;height:10px;border-radius:50%;background:var(--paper-line)}
+.row{display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-top:1px solid var(--paper-line);font-size:14px}
+.badge{font-size:12px;border-radius:999px;padding:2px 10px;background:var(--paper-line);white-space:nowrap}
+.badge.ok{background:var(--mint)}
+.stack-hint{position:absolute;right:0;bottom:-6px;font-size:13px;color:var(--muted)}
 
-/* Section head */
-.sec{padding-block:96px 0}
-.sec-head{display:grid;grid-template-columns:1fr 1.1fr;gap:40px;align-items:end;margin-bottom:44px}
-.sec-head h2{font-size:clamp(38px,5.4vw,72px);font-weight:800;font-variation-settings:"wdth" 108;letter-spacing:-.035em}
-.sec-head p{color:var(--muted);max-width:52ch}
+/* Stats */
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;padding-bottom:24px}
+.stat{background:var(--s2);border:1px solid var(--line);border-radius:20px;padding:24px}
+.stat b{display:block;font-size:clamp(34px,3.6vw,46px);font-weight:800;letter-spacing:-.03em;color:var(--lilac);line-height:1.05;font-variant-numeric:tabular-nums}
+.stat span{display:block;margin-top:8px;color:var(--muted);font-size:15px;line-height:1.4}
 
-/* Project viewer */
-.viewer{display:grid;grid-template-columns:minmax(260px,.85fr) 1.6fr;gap:28px;align-items:start}
-.plist{list-style:none;margin:0;padding:0;border-top:1px solid var(--line);position:sticky;top:84px}
-.plist button{all:unset;box-sizing:border-box;display:grid;grid-template-columns:1fr auto;gap:4px 12px;width:100%;padding:18px 4px;border-bottom:1px solid var(--line);cursor:pointer}
-.plist button:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
-.plist .pt{font-size:21px;font-weight:700;font-variation-settings:"wdth" 110;letter-spacing:-.01em;transition:color .2s}
-.plist .ps{grid-column:1/-1;font-size:14px;color:var(--muted)}
-.plist .tag{font-size:12px;font-weight:600;padding:3px 9px;border-radius:999px;align-self:center;white-space:nowrap}
-.tag.live{background:color-mix(in srgb,var(--ok) 16%,transparent);color:var(--ok)}
-.tag.mvp{background:color-mix(in srgb,var(--signal) 20%,transparent);color:color-mix(in srgb,var(--signal) 75%,var(--ink))}
-.tag.spec{background:var(--accent-soft);color:var(--accent)}
-.plist button[aria-selected="true"] .pt{color:var(--accent)}
-.plist button[aria-selected="true"]{box-shadow:inset 3px 0 0 var(--accent);padding-left:16px}
+/* Sections */
+.sec{padding-top:110px}
+.head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:34px}
+.head h2{font-size:clamp(38px,4.6vw,58px);font-weight:800;letter-spacing:-.04em;line-height:1}
+.head p{color:var(--muted);max-width:44ch}
 
-.stage{background:var(--surface);border:1px solid var(--line);border-radius:22px;overflow:hidden;min-width:0;box-shadow:0 40px 80px -50px color-mix(in srgb,var(--accent) 55%,transparent)}
-.panel{display:none}
-.panel.on{display:block}
-@media (prefers-reduced-motion:no-preference){ .panel.on{animation:swap .45s cubic-bezier(.2,.7,.2,1)} @keyframes swap{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}} }
-.shot{--glow:var(--accent);position:relative;background:var(--bg);border-bottom:1px solid var(--line);padding:34px 26px;min-height:360px;display:flex;align-items:center;justify-content:center;overflow:hidden;perspective:1100px}
-.shot::before{content:"";position:absolute;inset:0;background-image:radial-gradient(color-mix(in srgb,var(--ink) 16%,transparent) 1px,transparent 1px);background-size:18px 18px;opacity:.6}
-.shot::after{content:"";position:absolute;width:70%;height:70%;left:15%;top:15%;border-radius:50%;background:var(--glow);filter:blur(70px);opacity:.28;pointer-events:none}
-.shot > *{position:relative;z-index:1;transition:transform .25s ease-out;transform:rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transform-style:preserve-3d}
-#p-mg .shot{--glow:#1E8E5A} #p-pg .shot{--glow:#E39A21} #p-tc .shot{--glow:#C2410C} #p-ps .shot{--glow:#7C3AED} #p-up .shot{--glow:#0EA5E9}
-.pbody{padding:26px 28px 30px;display:grid;grid-template-columns:1.3fr 1fr;gap:28px}
-.pbody h3{font-size:30px;font-weight:800;font-variation-settings:"wdth" 115;letter-spacing:-.02em;margin-bottom:12px}
-.pbody p{color:var(--muted);font-size:16px}
-.pbody ul{margin:14px 0 0;padding-left:18px;font-size:15.5px;display:grid;gap:6px}
-.meta{display:flex;flex-direction:column;gap:16px;font-size:14px}
-.meta dt{color:var(--muted);margin-bottom:6px}
-.meta dd{margin:0;display:flex;flex-wrap:wrap;gap:6px}
-.chip{border:1px solid var(--line);border-radius:999px;padding:3px 10px;font-size:13px;background:var(--bg)}
-.plink{font-weight:600;color:var(--accent);text-decoration-thickness:1.5px;text-underline-offset:4px}
-.caption{font-size:12.5px;color:var(--muted);padding:10px 22px 0;margin:0}
+/* Bento */
+.bento{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:16px}
+.card{position:relative;grid-column:span 2;background:var(--s2);border:1px solid var(--line);border-radius:26px;padding:28px;display:flex;flex-direction:column;justify-content:space-between;gap:22px;text-align:left;color:var(--ink);font:inherit;cursor:pointer;overflow:hidden;min-width:0;transition:border-color .25s,transform .25s}
+.card:hover{border-color:var(--lilac)}
+.card.big{grid-column:span 4;background:linear-gradient(160deg,var(--s4),var(--s2))}
+.card.wide{grid-column:span 3}
+.card h3{font-size:clamp(22px,2.2vw,30px);font-weight:800;letter-spacing:-.02em;line-height:1.15}
+.card p{margin-top:8px;color:var(--soft);font-size:15.5px;line-height:1.55}
+.card .more{display:inline-flex;margin-top:14px;font-size:14px;font-weight:600;color:var(--lilac)}
+.tag{align-self:flex-start;font-size:12px;font-weight:600;padding:4px 10px;border-radius:999px;background:var(--s4);color:var(--ink)}
+.tag.live{background:color-mix(in srgb,var(--mint) 22%,transparent);color:var(--mint)}
+.vis{min-height:160px;display:flex;align-items:center;justify-content:center}
 
-/* Mock UIs (built in HTML/CSS) */
-.win{width:100%;max-width:640px;background:var(--surface);border:1px solid var(--line);border-radius:14px;box-shadow:0 18px 40px -22px color-mix(in srgb,var(--ink) 45%,transparent);overflow:hidden;font-size:13px}
-.win-bar{display:flex;align-items:center;gap:6px;padding:10px 12px;border-bottom:1px solid var(--line)}
-.win-bar i{width:9px;height:9px;border-radius:50%;background:var(--line)}
-.win-bar span{margin-left:10px;color:var(--muted);font-family:var(--mono);font-size:11.5px}
-.adm{display:grid;grid-template-columns:130px 1fr;min-height:250px}
-.adm nav{border-right:1px solid var(--line);padding:12px 10px;display:flex;flex-direction:column;gap:4px}
-.adm nav b{font-weight:500;padding:6px 8px;border-radius:7px;color:var(--muted)}
-.adm nav b.on{background:var(--accent-soft);color:var(--accent);font-weight:650}
-.adm main{padding:14px}
-.adm .top{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
-.adm .top strong{font-size:15px}
-.pill{font-size:11px;padding:3px 8px;border-radius:999px;background:var(--accent);color:#fff}
-.tbl{width:100%;border-collapse:collapse}
-.tbl td,.tbl th{padding:8px 6px;border-bottom:1px solid var(--line);text-align:left}
-.tbl th{color:var(--muted);font-weight:500;font-size:12px}
-.role-b{font-size:11px;border:1px solid var(--line);border-radius:6px;padding:2px 6px}
-.rls{margin-top:10px;font-family:var(--mono);font-size:11px;color:var(--muted);background:var(--bg);border-radius:8px;padding:8px 10px}
+/* mini visuals */
+.mock{width:100%;background:var(--paper);color:var(--paper-ink);border-radius:14px;padding:16px;font-size:13px;box-shadow:0 30px 50px -30px #000}
+.mock .grid{display:grid;grid-template-columns:110px 1fr;gap:16px}
+.mock nav{display:flex;flex-direction:column;gap:4px}
+.mock nav span{padding:6px 9px;border-radius:8px;color:var(--paper-muted)}
+.mock nav span.on{background:var(--paper-line);color:var(--paper-ink);font-weight:700}
+.bars{display:flex;align-items:flex-end;gap:22px;height:170px;width:100%;padding-left:6px}
+.bars div{width:56px;border-radius:10px 10px 4px 4px}
+.bars .b0{height:9px;background:var(--line2)}
+.bars .b1{height:170px;background:var(--mint)}
+.bars small{display:block;font-size:12px;color:var(--muted);margin-top:8px;text-align:center}
+.flow{display:flex;gap:8px;flex-wrap:wrap}
+.flow span{font-size:13px;padding:7px 12px;border-radius:10px;border:1px solid var(--line2);background:var(--s3)}
+.flow span.on{background:var(--lilac);color:var(--paper-ink);border-color:var(--lilac);font-weight:600}
+.cal{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;width:100%;font-size:12px}
+.cal span{padding:9px 6px;border-radius:9px;background:var(--s3);text-align:center}
+.cal .n{background:#4B3A7D}.cal .s{background:color-mix(in srgb,var(--mint) 30%,var(--s3))}
+.trace{width:100%;display:grid;gap:8px;font-size:13px}
+.trace div{display:flex;justify-content:space-between;gap:10px;padding:9px 12px;border-radius:10px;background:var(--s3)}
+.trace em{font-style:normal;color:var(--mint);font-size:12px}
+.code{width:100%;background:#0F0A19;border-radius:12px;padding:14px 16px;font:12.5px/1.7 ui-monospace,Menlo,Consolas,monospace;color:#D9D2EA;overflow-x:auto;white-space:pre}
+.code .g{color:var(--mint)}.code .k{color:var(--lilac)}.code .c{color:#7E7299}
 
-.chart{width:100%;max-width:600px}
-.chart svg{width:100%;height:auto;display:block}
+/* Dialog */
+dialog{width:min(860px,calc(100vw - 32px));max-height:calc(100vh - 48px);padding:0;border:1px solid var(--line2);border-radius:28px;background:var(--s1);color:var(--ink);box-shadow:0 60px 120px -40px #000}
+dialog::backdrop{background:rgba(10,6,18,.72);backdrop-filter:blur(6px)}
+@media (prefers-reduced-motion:no-preference){dialog[open]{animation:pop .35s cubic-bezier(.2,.8,.2,1)}@keyframes pop{from{opacity:0;transform:translateY(16px) scale(.98)}to{opacity:1;transform:none}}}
+.dlg{padding:34px;display:grid;gap:22px}
+.dlg-top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px}
+.dlg h3{font-size:clamp(28px,3vw,38px);font-weight:800;letter-spacing:-.03em;line-height:1.1;margin-top:10px}
+.close{flex:none;width:44px;height:44px;border-radius:12px;border:1px solid var(--line2);background:var(--s2);color:var(--ink);cursor:pointer;display:grid;place-items:center}
+.dlg .intro{color:var(--soft);font-size:17px;max-width:62ch}
+.dlg ul{margin:0;padding-left:20px;display:grid;gap:8px;font-size:16px}
+.dlg .meta{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font-size:13px;padding:6px 12px;border-radius:999px;background:var(--s3);border:1px solid var(--line)}
+.note{font-size:13px;color:var(--muted)}
 
-.queue{width:100%;max-width:620px;display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-.col{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px;display:flex;flex-direction:column;gap:8px;min-width:0}
-.col h4{margin:0 0 2px;font-size:12px;font-weight:600;color:var(--muted)}
-.card{border:1px solid var(--line);border-radius:9px;padding:9px;font-size:12px;background:var(--bg);line-height:1.4}
-.card .net{font-weight:650;font-size:11px;color:var(--accent)}
-.card .ok{display:inline-block;margin-top:6px;font-size:11px;color:#fff;background:var(--ok);padding:2px 8px;border-radius:999px}
-
-.cal{width:100%;max-width:620px}
-.cal table{width:100%;border-collapse:separate;border-spacing:4px;font-size:12px}
-.cal th{color:var(--muted);font-weight:500;padding-bottom:2px}
-.cal td{background:var(--surface);border:1px solid var(--line);border-radius:7px;padding:6px;height:42px;vertical-align:top}
-.cal td.n{background:color-mix(in srgb,var(--accent) 18%,var(--surface))}
-.cal td.s{background:color-mix(in srgb,var(--signal) 26%,var(--surface))}
-.cal td small{display:block;color:var(--muted);font-size:10.5px}
-.cal .sum{display:flex;justify-content:space-between;margin-top:10px;font-size:13px;padding:10px 12px;border-radius:10px;background:var(--surface);border:1px solid var(--line)}
-.cal .sum b{color:var(--signal)}
-
-.trace{width:100%;max-width:600px;display:flex;flex-direction:column;gap:0}
-.trace .st{display:grid;grid-template-columns:22px 1fr auto;gap:12px;align-items:start;padding:10px 0}
-.trace .st i{width:14px;height:14px;border-radius:50%;border:2px solid var(--accent);margin-top:3px;background:var(--surface);position:relative}
-.trace .st:not(:last-child) i::after{content:"";position:absolute;left:4px;top:14px;width:2px;height:34px;background:var(--line)}
-.trace .st b{font-weight:650;font-size:14px}
-.trace .st small{display:block;color:var(--muted);font-size:12px}
-.trace .st em{font-style:normal;font-size:11px;padding:2px 8px;border-radius:999px;background:var(--accent-soft);color:var(--accent);white-space:nowrap}
-
-.term{width:100%;max-width:600px;background:#0E1630;color:#D7E3F2;border-radius:14px;font-family:var(--mono);font-size:12.5px;line-height:1.75;padding:18px 20px;overflow-x:auto}
-.term .c{color:#7D8DA3}.term .g{color:#6FD39A}.term .y{color:#F2C38B}.term .b{color:#8FC1F0}
-
-/* Front & design */
-.split{display:grid;grid-template-columns:1fr 1fr;gap:24px}
-.box{border:1px solid var(--line);border-radius:20px;padding:28px;background:var(--surface);min-width:0}
-.box h3{font-size:24px;font-weight:750;font-variation-settings:"wdth" 112;margin-bottom:10px}
-.box p{color:var(--muted)}
-.skills{margin-top:18px;display:flex;flex-wrap:wrap;gap:8px}
-.skills .chip{font-size:14px;padding:6px 12px}
-.skills .chip.k{border-color:var(--accent);color:var(--accent);background:var(--accent-soft)}
-
-/* Layers (stack) */
-.layers{display:grid;grid-template-columns:1.05fr 1fr;gap:48px;align-items:center}
-.iso{position:relative;height:440px;perspective:1400px}
-.iso .plane{position:absolute;left:50%;width:min(360px,80%);height:150px;margin-left:calc(min(360px,80%) / -2);border-radius:18px;
-  transform:rotateX(58deg) rotateZ(-38deg);transform-origin:center;border:1.5px solid var(--line);background:var(--surface);
-  box-shadow:0 30px 40px -30px color-mix(in srgb,var(--ink) 60%,transparent);cursor:pointer;transition:transform .35s cubic-bezier(.2,.7,.2,1),border-color .2s,background .2s;
-  display:grid;place-items:center}
-.iso .plane span{font-weight:800;font-variation-settings:"wdth" 112;font-size:22px;letter-spacing:-.01em;transform:rotate(0)}
-.iso .plane:nth-child(1){top:0} .iso .plane:nth-child(2){top:90px} .iso .plane:nth-child(3){top:180px} .iso .plane:nth-child(4){top:270px}
-.iso .plane[aria-pressed="true"]{border-color:var(--accent);background:color-mix(in srgb,var(--accent) 14%,var(--surface));transform:rotateX(58deg) rotateZ(-38deg) translateZ(34px)}
-.iso .plane:hover{transform:rotateX(58deg) rotateZ(-38deg) translateZ(20px)}
-.iso .plane:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
-.ldesc h3{font-size:30px;font-weight:800;font-variation-settings:"wdth" 108;letter-spacing:-.02em;margin-bottom:10px}
-.ldesc p{color:var(--muted);max-width:46ch}
-.ldesc .skills .chip{font-size:15px;padding:7px 14px}
-.lnav{display:flex;gap:8px;margin-bottom:22px;flex-wrap:wrap}
-.lnav button{font:500 14px var(--f);padding:7px 14px;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--muted);cursor:pointer}
-.lnav button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+/* Layers section */
+.layers{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.layer{border-radius:22px;padding:26px;border:1px solid var(--line);min-width:0}
+.layer h3{font-size:22px;font-weight:800}
+.layer p{margin-top:8px;color:var(--soft);font-size:15px}
+.layer .chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:18px}
+.layer .chips span{font-size:13.5px;padding:6px 11px;border-radius:999px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12)}
+.l-ui{background:var(--paper);color:var(--paper-ink);border-color:var(--paper)}
+.l-ui p{color:var(--paper-muted)}
+.l-ui .chips span{background:var(--paper-line);border-color:transparent;color:var(--paper-ink)}
+.l-ui .chips span.k{background:var(--paper-ink);color:var(--paper)}
+.l-api{background:#4B3A7D}.l-data{background:var(--s4)}.l-cloud{background:var(--s2)}
 
 /* Experience */
-.xp{border-top:1px solid var(--line)}
-.xp article{display:grid;grid-template-columns:180px 1fr 1fr;gap:28px;padding:28px 0;border-bottom:1px solid var(--line)}
-.xp time{font-size:15px;color:var(--muted);font-variant-numeric:tabular-nums}
-.xp h3{font-size:22px;font-weight:750;font-variation-settings:"wdth" 108}
-.xp .co{color:var(--muted);margin-top:6px;font-size:15px}
-.xp ul{margin:0;padding-left:18px;font-size:15.5px;display:grid;gap:6px}
+.xp{display:grid;gap:14px}
+.job{display:grid;grid-template-columns:200px 1fr 1.1fr;gap:28px;padding:28px;border-radius:22px;background:var(--s1);border:1px solid var(--line)}
+.job time{color:var(--muted);font-size:15px}
+.job h3{font-size:21px;font-weight:700}
+.job .co{color:var(--muted);font-size:15px;margin-top:4px}
+.job ul{margin:0;padding-left:18px;display:grid;gap:6px;font-size:15.5px;color:var(--soft)}
 
-/* Footer CTA */
-.end{margin-top:110px;background:var(--accent-strong);color:#fff;position:relative;overflow:hidden}
-.end::before{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.18) 1px,transparent 1px);background-size:22px 22px;pointer-events:none}
-.end .wrap{position:relative}
-.end .wrap{padding-block:80px 40px}
-.end h2{font-size:clamp(42px,7vw,104px);font-weight:850;font-variation-settings:"wdth" 112;letter-spacing:-.045em;line-height:.9}
-.end p{margin-top:22px;max-width:48ch;opacity:.9;font-size:18px}
-.end .row{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
-.end .btn{border-color:#fff;color:#fff}
-.end .btn:hover{background:#fff;color:var(--accent-strong)}
-.end .btn.solid{background:#fff;color:var(--accent-strong);border-color:#fff}
-.end small{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-top:70px;padding-top:20px;border-top:1px solid rgba(255,255,255,.3);font-size:14px;opacity:.85}
-.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:10px;font-size:14px;z-index:50}
+/* Contact */
+.cta{margin:110px 0 56px;border-radius:34px;background:var(--lilac);color:var(--paper-ink);padding:clamp(32px,6vw,72px);display:flex;justify-content:space-between;align-items:flex-end;gap:32px;flex-wrap:wrap}
+.cta h2{font-size:clamp(42px,6vw,80px);line-height:.95;font-weight:800;letter-spacing:-.045em}
+.cta .links{display:flex;flex-direction:column;gap:10px;font-size:18px}
+.cta .links a{color:var(--paper-ink);font-weight:600}
+.cta .btn{border-color:var(--paper-ink);color:var(--paper-ink)}
+.cta .btn.dark{background:var(--paper-ink);color:var(--paper)}
+.foot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;color:var(--muted);font-size:14px;padding-bottom:calc(36px + env(safe-area-inset-bottom,0px))}
+.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--mint);color:var(--paper-ink);font-weight:600;padding:12px 18px;border-radius:12px;font-size:14px;z-index:60}
 [hidden]{display:none!important}
 
-@media (max-width:900px){
-  .nav ul{display:none}
-  .impact{grid-template-columns:1fr 1fr}
-  .impact div:nth-child(3){padding-left:0;border-left:0}
-  .impact div:nth-child(n+3){border-top:1px solid var(--line)}
-  .sec-head,.viewer,.split,.pbody{grid-template-columns:1fr}
-  .plist{position:static}
-  .xp article{grid-template-columns:1fr;gap:10px}
-  .layers{grid-template-columns:1fr;gap:12px}
-  .iso{height:470px;transform:scale(.78);transform-origin:top center;margin-bottom:-90px}
-  .hint{display:none}
-  .hero{flex-direction:column;align-items:stretch;min-height:0}
-  #sys{position:relative;inset:auto;height:300px}
-  .hero .wrap{padding-block:8px 48px}
-  .sec{padding-block:72px 0}
+@media (max-width:980px){
+  .hero{grid-template-columns:1fr;padding-top:28px}
+  .stack{height:530px;margin-top:10px}
+  .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .bento{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .card,.card.big,.card.wide{grid-column:span 2}
+  .layers{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .job{grid-template-columns:1fr;gap:10px}
+  .pills a:not(.keep){display:none}
+  .sec{padding-top:84px}
 }
 @media (max-width:560px){
-  .shot{padding:14px;min-height:260px}
-  .adm{grid-template-columns:1fr}.adm nav{flex-direction:row;overflow-x:auto;border-right:0;border-bottom:1px solid var(--line)}
-  .queue{grid-template-columns:1fr}
-  .impact div{padding:24px 12px 22px 0}
-  .impact div + div{padding-left:12px}
-  .pbody{padding:22px 18px 24px}
+  .stack{height:520px}
+  .p-ui{left:8%;width:90%}.p-api{left:4%;width:88%}.p-data{left:2%;width:88%}.p-cloud{left:0;width:86%}
+  .layers{grid-template-columns:1fr}
+  .mock .grid{grid-template-columns:1fr}.mock nav{flex-direction:row;overflow-x:auto}
+  .dlg{padding:24px}
+  .stack-hint{display:none}
 }
 </style>
 </head>
 <body>
 
-<header class="nav" id="nav">
+<header class="top">
   <div class="wrap">
-    <a class="logo" href="#top">Ali Rayo</a>
-    <ul>
-      <li><a href="#proyectos">Proyectos</a></li>
-      <li><a href="#front">Front y diseño</a></li>
-      <li><a href="#experiencia">Experiencia</a></li>
-      <li><a href="#contacto">Contacto</a></li>
-    </ul>
-    <button class="theme" id="theme" type="button" aria-label="Cambiar tema claro u oscuro">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="5"/><path d="M12 1v3M12 20v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M1 12h3M20 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg>
-    </button>
+    <a class="brand" href="#inicio">ali<span>.</span>rayo</a>
+    <nav class="pills" aria-label="Secciones">
+      <a href="#trabajo" class="keep">Trabajo</a>
+      <a href="#capas">Capas</a>
+      <a href="#experiencia">Experiencia</a>
+      <a href="#contacto" class="keep">Contacto</a>
+    </nav>
   </div>
 </header>
 
-<main id="top">
-  <section class="hero" aria-label="Presentación">
-    <canvas id="sys" aria-hidden="true"></canvas>
-    <div class="wrap">
-      <p class="status"><span class="dot"></span>Disponible para trabajo remoto o híbrido en Medellín</p>
-      <h1 class="name">Ali Rayo<span>Backend que también diseña producto</span></h1>
-      <p class="role">Construyo <strong>APIs, microservicios y plataformas multi-tenant</strong> con NestJS, Python y AWS, y las interfaces que las usan con Next.js y React. Más de 4 años llevando sistemas a producción.</p>
-      <div class="hero-cta">
-        <a class="btn solid" href="#proyectos">Ver proyectos</a>
+<main id="inicio">
+  <section class="wrap hero" aria-label="Presentación">
+    <div>
+      <p class="status"><i></i>Disponible · Medellín y remoto</p>
+      <h1>Backend sólido.<span>Interfaz con criterio.</span></h1>
+      <p class="lead">Soy Ali Rayo. Construyo APIs y plataformas con NestJS, Python y AWS, y las pantallas que las usan con HTML, CSS, JavaScript, React y Next.js.</p>
+      <div class="actions">
+        <a class="btn primary" href="#trabajo">Ver mi trabajo</a>
         <button class="btn" type="button" data-copy="alirayopuches@gmail.com">Copiar correo</button>
       </div>
     </div>
-    <p class="hint">Mueve el cursor sobre el diagrama: son los servicios con los que trabajo a diario.</p>
+
+    <div class="stack" id="stack" aria-label="Las cuatro capas de un producto: interfaz, API, datos y nube">
+      <div class="layers3d">
+        <div class="plate p-cloud"><small>Nube</small><b>AWS · Terraform · Docker</b></div>
+        <div class="plate p-data"><small>Datos</small><b>PostgreSQL · MongoDB</b></div>
+        <div class="plate p-api"><small>API</small><b>NestJS · Python · JWT</b></div>
+        <div class="plate p-ui" aria-hidden="true">
+          <div class="dots"><i></i><i></i><i></i></div>
+          <small>Interfaz · Next.js</small>
+          <b style="margin-bottom:12px">Panel de catálogo</b>
+          <div class="row"><span>Pizza margarita</span><span class="badge ok">Activo</span></div>
+          <div class="row"><span>Lasagna boloñesa</span><span class="badge">Borrador</span></div>
+          <div class="row"><span>Tiramisú</span><span class="badge ok">Activo</span></div>
+        </div>
+      </div>
+      <p class="stack-hint">Mueve el cursor sobre las capas</p>
+    </div>
   </section>
 
-  <div class="wrap">
-    <div class="impact" role="list">
-      <div role="listitem"><b>20+</b><span>APIs REST diseñadas y en producción</span></div>
-      <div role="listitem"><b>20×</b><span>más throughput en una migración de datos</span></div>
-      <div role="listitem"><b>−90%</b><span>tiempo para corregir lotes fallidos</span></div>
-      <div role="listitem"><b>10 años</b><span>de datos históricos migrados a MongoDB</span></div>
-    </div>
+  <div class="wrap stats" role="list">
+    <div class="stat" role="listitem"><b>20+</b><span>APIs REST en producción</span></div>
+    <div class="stat" role="listitem"><b>20×</b><span>más throughput en una migración</span></div>
+    <div class="stat" role="listitem"><b>−90%</b><span>tiempo para corregir lotes fallidos</span></div>
+    <div class="stat" role="listitem"><b>4+ años</b><span>llevando backend a producción</span></div>
   </div>
 
-  <!-- Proyectos -->
-  <section class="sec wrap" id="proyectos" aria-labelledby="h-proy">
-    <div class="sec-head">
-      <h2 id="h-proy">Proyectos</h2>
-      <p>De plataformas en producción a productos que estoy diseñando. Elige uno para ver qué resuelve, cómo está construido y una vista de su interfaz.</p>
+  <!-- Trabajo -->
+  <section class="wrap sec" id="trabajo" aria-labelledby="h-trabajo">
+    <div class="head">
+      <h2 id="h-trabajo">Trabajo seleccionado</h2>
+      <p>Abre cualquier proyecto para ver el problema, cómo lo construí y en qué estado está.</p>
     </div>
 
-    <div class="viewer">
-      <ul class="plist" role="tablist" aria-label="Lista de proyectos">
-        <li><button role="tab" id="t-oc" aria-controls="p-oc" aria-selected="true"><span class="pt">OpenClaw Platform</span><span class="tag live">Código público</span><span class="ps">Plataforma multi-tenant · NestJS + Next.js</span></button></li>
-        <li><button role="tab" id="t-mg" aria-controls="p-mg" aria-selected="false" tabindex="-1"><span class="pt">Migración de 10 años de datos</span><span class="tag live">En producción</span><span class="ps">Pipeline ETL · Mercadeo Virtual</span></button></li>
-        <li><button role="tab" id="t-pg" aria-controls="p-pg" aria-selected="false" tabindex="-1"><span class="pt">PostGate</span><span class="tag mvp">MVP</span><span class="ps">Contenido con IA y aprobación humana</span></button></li>
-        <li><button role="tab" id="t-tc" aria-controls="p-tc" aria-selected="false" tabindex="-1"><span class="pt">TurnosCO</span><span class="tag spec">En diseño</span><span class="ps">Costo laboral antes de publicar turnos</span></button></li>
-        <li><button role="tab" id="t-ps" aria-controls="p-ps" aria-selected="false" tabindex="-1"><span class="pt">PorcSync 360</span><span class="tag spec">Especificación</span><span class="ps">Trazabilidad porcina y normativa ICA</span></button></li>
-        <li><button role="tab" id="t-up" aria-controls="p-up" aria-selected="false" tabindex="-1"><span class="pt">Upload File MS</span><span class="tag live">Completo</span><span class="ps">Microservicio de archivos sobre S3</span></button></li>
-      </ul>
-
-      <div class="stage">
-        <!-- OpenClaw -->
-        <article class="panel on" id="p-oc" role="tabpanel" aria-labelledby="t-oc">
-          <div class="shot">
-            <div class="win" aria-hidden="true">
-              <div class="win-bar"><i></i><i></i><i></i><span>admin.openclaw / catálogo</span></div>
-              <div class="adm">
-                <nav><b>Panel</b><b class="on">Catálogo</b><b>Combos</b><b>Usuarios</b><b>Tenants</b></nav>
-                <main>
-                  <div class="top"><strong>Menú · Forno D'Oro</strong><span class="pill">+ Nuevo ítem</span></div>
-                  <table class="tbl">
-                    <tr><th>Ítem</th><th>Precio</th><th>Rol que edita</th></tr>
-                    <tr><td>Pizza margarita</td><td>$32.000</td><td><span class="role-b">TENANT_ADMIN</span></td></tr>
-                    <tr><td>Lasagna boloñesa</td><td>$38.500</td><td><span class="role-b">TENANT_STAFF</span></td></tr>
-                    <tr><td>Tiramisú</td><td>$14.000</td><td><span class="role-b">TENANT_STAFF</span></td></tr>
-                  </table>
-                  <div class="rls">set_config('app.current_tenant_id', …) → la base de datos solo devuelve filas de este tenant</div>
-                </main>
-              </div>
-            </div>
-          </div>
-          <p class="caption">Vista ilustrativa del panel administrativo, con los datos de ejemplo del proyecto.</p>
-          <div class="pbody">
+    <div class="bento">
+      <button class="card big" type="button" data-open="d-oc">
+        <div class="mock" aria-hidden="true">
+          <div class="grid">
+            <nav><span>Panel</span><span class="on">Catálogo</span><span>Usuarios</span><span>Tenants</span></nav>
             <div>
-              <h3>OpenClaw Platform</h3>
-              <p>La base de una plataforma de automatización para muchos negocios a la vez: cada cliente ve solo sus datos, y el aislamiento lo garantiza la base de datos, no solo el código.</p>
-              <ul>
-                <li>API en NestJS con Clean Architecture por módulo: dominio, casos de uso, infraestructura.</li>
-                <li>PostgreSQL con row-level security y un rol de aplicación sin permisos para saltarla.</li>
-                <li>JWT de 15 minutos con refresh tokens rotativos en cookie httpOnly.</li>
-                <li>Panel en Next.js y React con control de acceso por rol.</li>
-              </ul>
+              <strong>Roles por tenant</strong>
+              <div class="row"><span>TENANT_ADMIN</span><span>Catálogo y usuarios</span></div>
+              <div class="row"><span>TENANT_STAFF</span><span>Menú y combos</span></div>
+              <div class="row"><span>SUPER_ADMIN</span><span>Todos los tenants</span></div>
             </div>
-            <dl class="meta">
-              <div><dt>Stack</dt><dd><span class="chip">NestJS</span><span class="chip">Prisma</span><span class="chip">PostgreSQL</span><span class="chip">Next.js</span><span class="chip">React</span><span class="chip">Zod</span></dd></div>
-              <div><dt>Mi rol</dt><dd>Diseño y desarrollo de punta a punta</dd></div>
-              <div><dt>Código</dt><dd><a class="plink" href="https://github.com/alex2003e/manager-agents-whatsapp" target="_blank" rel="noopener">Ver en GitHub</a></dd></div>
-            </dl>
           </div>
-        </article>
+        </div>
+        <div>
+          <span class="tag live">Código público</span>
+          <h3 style="margin-top:12px">OpenClaw Platform</h3>
+          <p>Plataforma multi-tenant: NestJS con Clean Architecture, PostgreSQL con row-level security y panel en Next.js.</p>
+          <span class="more">Ver el caso</span>
+        </div>
+      </button>
 
-        <!-- Migración -->
-        <article class="panel" id="p-mg" role="tabpanel" aria-labelledby="t-mg" hidden>
-          <div class="shot">
-            <figure class="chart" style="margin:0" aria-label="Lotes procesados por minuto antes y después de optimizar">
-              <svg viewBox="0 0 600 280" role="img">
-                <title>Lotes por minuto: 0,5 antes y 10 después</title>
-                <g font-family="Archivo, sans-serif" font-size="13" fill="currentColor">
-                  <line x1="60" y1="230" x2="580" y2="230" stroke="var(--line)"/>
-                  <line x1="60" y1="130" x2="580" y2="130" stroke="var(--line)" stroke-dasharray="3 5"/>
-                  <line x1="60" y1="30" x2="580" y2="30" stroke="var(--line)" stroke-dasharray="3 5"/>
-                  <text x="50" y="234" text-anchor="end" fill="var(--muted)">0</text>
-                  <text x="50" y="134" text-anchor="end" fill="var(--muted)">5</text>
-                  <text x="50" y="34" text-anchor="end" fill="var(--muted)">10</text>
-                  <rect x="140" y="220" width="120" height="10" rx="4" fill="var(--muted)"/>
-                  <rect class="grow" x="360" y="30" width="120" height="200" rx="6" fill="var(--accent)"/>
-                  <text x="200" y="256" text-anchor="middle" fill="var(--muted)">Antes</text>
-                  <text x="420" y="256" text-anchor="middle" fill="var(--muted)">Después</text>
-                  <text x="200" y="208" text-anchor="middle" font-weight="700" font-size="18" fill="var(--ink)">0,5 / min</text>
-                  <text x="420" y="20" text-anchor="middle" font-weight="700" font-size="18" fill="var(--ink)">10 / min</text>
-                  <text x="60" y="274" fill="var(--muted)" font-size="12">Lotes procesados por minuto, misma escala</text>
-                </g>
-              </svg>
-            </figure>
-          </div>
-          <div class="pbody">
-            <div>
-              <h3>Migración de 10 años de datos</h3>
-              <p>Una década de información en SQL Server tenía que vivir en MongoDB sin perder relaciones ni detener la operación. Diseñé y construí el pipeline completo.</p>
-              <ul>
-                <li>ETL en Python: unas 25 tablas relacionadas por lote, de 100 a 200 registros cada uno.</li>
-                <li>De 5 lotes cada 10 minutos a 50 lotes cada 5 minutos: 20 veces más rápido.</li>
-                <li>Re-migración selectiva: corregir un lote pasó de 10 minutos a menos de 1.</li>
-                <li>Monitoreo que levanta contenedores Docker para reprocesar y avisa por correo si el error persiste.</li>
-              </ul>
-            </div>
-            <dl class="meta">
-              <div><dt>Stack</dt><dd><span class="chip">Python</span><span class="chip">SQL Server</span><span class="chip">MongoDB</span><span class="chip">Docker</span></dd></div>
-              <div><dt>Dónde</dt><dd>Mercadeo Virtual S.A.S, 2023–2025</dd></div>
-            </dl>
-          </div>
-        </article>
+      <button class="card" type="button" data-open="d-mg">
+        <div class="vis" aria-hidden="true">
+          <div class="bars"><div><div class="b0"></div><small>Antes</small></div><div><div class="b1"></div><small>Después</small></div></div>
+        </div>
+        <div>
+          <span class="tag live">En producción</span>
+          <h3 style="margin-top:12px">Migración 20×</h3>
+          <p>10 años de SQL Server a MongoDB: de 0,5 a 10 lotes por minuto.</p>
+          <span class="more">Ver el caso</span>
+        </div>
+      </button>
 
-        <!-- PostGate -->
-        <article class="panel" id="p-pg" role="tabpanel" aria-labelledby="t-pg" hidden>
-          <div class="shot">
-            <div class="queue" aria-hidden="true">
-              <div class="col"><h4>Borradores de la IA</h4>
-                <div class="card"><span class="net">LinkedIn</span><br>Tres aprendizajes de nuestro primer año atendiendo pymes en Medellín…</div>
-                <div class="card"><span class="net">Instagram</span><br>Detrás de cámaras: así preparamos el pedido de los viernes…</div>
-              </div>
-              <div class="col"><h4>Esperando aprobación</h4>
-                <div class="card"><span class="net">Facebook</span><br>Este sábado abrimos hasta las 10 p. m. Te esperamos con…<br><span style="color:var(--muted);font-size:11px">Editado por Laura · tono de marca</span></div>
-              </div>
-              <div class="col"><h4>Programado</h4>
-                <div class="card"><span class="net">X</span><br>Nuevo horario de atención desde el lunes…<br><span class="ok">Aprobado · vie 9:00</span></div>
-              </div>
-            </div>
-          </div>
-          <p class="caption">Vista ilustrativa del flujo de aprobación. Los textos son de ejemplo.</p>
-          <div class="pbody">
-            <div>
-              <h3>PostGate</h3>
-              <p>La IA propone y el equipo decide. Genera publicaciones para redes sociales siguiendo las reglas de marca de cada cliente, y nada sale sin aprobación humana.</p>
-              <ul>
-                <li>Reglas de marca por cliente: tono, público, hashtags y temas a evitar.</li>
-                <li>Cola de aprobación por Telegram o Slack, y publicación programada en varias redes.</li>
-                <li>Registro de auditoría: quién aprobó, qué se editó y cuándo salió.</li>
-              </ul>
-            </div>
-            <dl class="meta">
-              <div><dt>Stack</dt><dd><span class="chip">Node.js</span><span class="chip">Python</span><span class="chip">PostgreSQL multi-tenant</span><span class="chip">OpenClaw</span></dd></div>
-              <div><dt>Estado</dt><dd>MVP en desarrollo · repositorio privado</dd></div>
-            </dl>
-          </div>
-        </article>
+      <button class="card" type="button" data-open="d-pg">
+        <div class="vis" aria-hidden="true"><div class="flow"><span>Borrador IA</span><span class="on">Aprobación</span><span>Programado</span><span>Publicado</span></div></div>
+        <div>
+          <span class="tag">MVP</span>
+          <h3 style="margin-top:12px">PostGate</h3>
+          <p>La IA redacta, tu equipo aprueba y se publica en varias redes.</p>
+          <span class="more">Ver el caso</span>
+        </div>
+      </button>
 
-        <!-- TurnosCO -->
-        <article class="panel" id="p-tc" role="tabpanel" aria-labelledby="t-tc" hidden>
-          <div class="shot">
-            <div class="cal" aria-hidden="true">
-              <table>
-                <tr><th></th><th>Lun</th><th>Mar</th><th>Mié</th><th>Jue</th><th>Vie</th><th>Sáb</th><th>Dom</th></tr>
-                <tr><th>Ana</th><td>6–14<small>ordinario</small></td><td>6–14</td><td>6–14</td><td></td><td>14–22</td><td>14–22</td><td class="s">22–6<small>dom. nocturno</small></td></tr>
-                <tr><th>Juan</th><td>14–22</td><td class="n">22–6<small>nocturno</small></td><td class="n">22–6</td><td>14–22</td><td></td><td>6–14</td><td>6–14<small>dominical</small></td></tr>
-                <tr><th>Sara</th><td></td><td>14–22</td><td>14–22</td><td class="n">22–6</td><td class="n">22–6</td><td></td><td>14–22</td></tr>
-              </table>
-              <div class="sum"><span>Costo estimado de la semana, con recargos</span><b>antes de publicar</b></div>
-            </div>
-          </div>
-          <p class="caption">Vista ilustrativa. Los turnos son de ejemplo y el proyecto está en etapa de diseño.</p>
-          <div class="pbody">
-            <div>
-              <h3>TurnosCO</h3>
-              <p>El software de nómina liquida lo que ya pasó. TurnosCO responde antes: ¿cabe en el presupuesto ese turno del domingo en la noche?</p>
-              <ul>
-                <li>Estima recargos nocturnos, dominicales, horas extra y topes legales de la Ley 2466 de 2025.</li>
-                <li>Doce reglas de negocio documentadas como fuente de verdad.</li>
-                <li>Desarrollo guiado por especificación: especificar, planear, dividir en tareas y luego implementar.</li>
-              </ul>
-            </div>
-            <dl class="meta">
-              <div><dt>Enfoque</dt><dd><span class="chip">Spec-driven</span><span class="chip">Git Flow</span><span class="chip">Motor de cálculo</span></dd></div>
-              <div><dt>Estado</dt><dd>En diseño · repositorio privado</dd></div>
-            </dl>
-          </div>
-        </article>
+      <button class="card" type="button" data-open="d-tc">
+        <div class="vis" aria-hidden="true"><div class="cal"><span>Lun 6–14</span><span class="n">Mar 22–6</span><span>Vie 14–22</span><span class="s">Dom 22–6</span><span class="n">Mié 22–6</span><span>Jue 6–14</span><span>Sáb 14–22</span><span class="s">Dom 6–14</span></div></div>
+        <div>
+          <span class="tag">En diseño</span>
+          <h3 style="margin-top:12px">TurnosCO</h3>
+          <p>El costo laboral de un turno, con recargos, antes de publicarlo.</p>
+          <span class="more">Ver el caso</span>
+        </div>
+      </button>
 
-        <!-- PorcSync -->
-        <article class="panel" id="p-ps" role="tabpanel" aria-labelledby="t-ps" hidden>
-          <div class="shot">
-            <div class="trace" aria-hidden="true">
-              <div class="st"><i></i><div><b>Nacimiento · Lote 2026-114</b><small>Camada de 12, registro de madre y padre</small></div><em>ICA</em></div>
-              <div class="st"><i></i><div><b>Vacunación y tratamientos</b><small>Producto, dosis, responsable y fecha</small></div><em>ICA</em></div>
-              <div class="st"><i></i><div><b>Movilización a ceba</b><small>Guía sanitaria y destino</small></div><em>ICA</em></div>
-              <div class="st"><i></i><div><b>Predicción de carne magra</b><small>Estimación por lote antes del sacrificio</small></div><em>Fase 3</em></div>
-            </div>
-          </div>
-          <p class="caption">Vista ilustrativa del registro de trazabilidad que define la especificación.</p>
-          <div class="pbody">
-            <div>
-              <h3>PorcSync 360</h3>
-              <p>Software para granjas porcinas: trazabilidad de cada animal, cumplimiento de la normativa del ICA y, más adelante, predicción de carne magra.</p>
-              <ul>
-                <li>Escribí la especificación, la matriz de cumplimiento ICA y el plan de entregas.</li>
-                <li>Tres entregas: registros y normativa, reproducción y genética, predicción.</li>
-                <li>Reutiliza la base de AgroSync, con autorización de su autor.</li>
-              </ul>
-            </div>
-            <dl class="meta">
-              <div><dt>Enfoque</dt><dd><span class="chip">Spec Kit</span><span class="chip">Cumplimiento normativo</span></dd></div>
-              <div><dt>Estado</dt><dd>Especificación · aún sin código</dd></div>
-            </dl>
-          </div>
-        </article>
+      <button class="card" type="button" data-open="d-ps">
+        <div class="vis" aria-hidden="true"><div class="trace"><div><span>Nacimiento · lote 114</span><em>ICA</em></div><div><span>Vacunación</span><em>ICA</em></div><div><span>Movilización</span><em>ICA</em></div></div></div>
+        <div>
+          <span class="tag">Especificación</span>
+          <h3 style="margin-top:12px">PorcSync 360</h3>
+          <p>Trazabilidad porcina y cumplimiento de la normativa ICA.</p>
+          <span class="more">Ver el caso</span>
+        </div>
+      </button>
 
-        <!-- Upload -->
-        <article class="panel" id="p-up" role="tabpanel" aria-labelledby="t-up" hidden>
-          <div class="shot">
-<pre class="term" aria-label="Ejemplo de petición al microservicio"><span class="c"># subir varios archivos en una sola petición</span>
-<span class="b">POST</span> /files/upload   <span class="c">multipart/form-data</span>
-  files[]: factura.pdf, foto.jpg
-
-<span class="g">201 Created</span>
-[
-  { <span class="y">"name"</span>: "factura.pdf", <span class="y">"type"</span>: "application/pdf", <span class="y">"storage"</span>: "s3" },
-  { <span class="y">"name"</span>: "foto.jpg",    <span class="y">"type"</span>: "image/jpeg",      <span class="y">"storage"</span>: "s3" }
-]</pre>
-          </div>
-          <div class="pbody">
-            <div>
-              <h3>Upload File MS</h3>
-              <p>Un microservicio pequeño y reutilizable para que cualquier sistema suba y gestione archivos sin reinventar la carga, la validación ni el almacenamiento.</p>
-              <ul>
-                <li>Varios archivos por petición en multipart/form-data.</li>
-                <li>Validación por tipo de archivo y tamaño.</li>
-                <li>Almacenamiento configurable en AWS S3.</li>
-              </ul>
-            </div>
-            <dl class="meta">
-              <div><dt>Stack</dt><dd><span class="chip">NestJS</span><span class="chip">Multer</span><span class="chip">AWS S3</span></dd></div>
-              <div><dt>Estado</dt><dd>Completo · repositorio privado</dd></div>
-            </dl>
-          </div>
-        </article>
-      </div>
+      <button class="card wide" type="button" data-open="d-up" style="grid-column:span 6">
+        <div class="vis" aria-hidden="true" style="min-height:0">
+<div class="code"><span class="c"># varios archivos en una sola petición</span>
+<span class="k">POST</span> /files/upload  →  <span class="g">201 Created</span>  ·  factura.pdf, foto.jpg  →  S3</div>
+        </div>
+        <div>
+          <span class="tag live">Completo</span>
+          <h3 style="margin-top:12px">Upload File MS</h3>
+          <p>Microservicio NestJS reutilizable para subir, validar y guardar archivos en AWS S3.</p>
+          <span class="more">Ver el caso</span>
+        </div>
+      </button>
     </div>
   </section>
 
-  <!-- Front y diseño -->
-  <section class="sec wrap" id="front" aria-labelledby="h-front">
-    <div class="sec-head">
-      <h2 id="h-front">Del servidor a la pantalla</h2>
-      <p>Mi fuerte es el backend, pero no me detengo en la API. Trabajo en todas las capas de un producto, desde la interfaz que ve el usuario hasta la infraestructura que la sostiene. Elige una capa.</p>
+  <!-- Capas -->
+  <section class="wrap sec" id="capas" aria-labelledby="h-capas">
+    <div class="head">
+      <h2 id="h-capas">Cuatro capas, un solo producto</h2>
+      <p>Mi fuerte es el backend, pero trabajo en todas las capas: desde la pantalla que ve el usuario hasta la infraestructura que la sostiene.</p>
     </div>
     <div class="layers">
-      <div class="iso" role="group" aria-label="Capas del producto">
-        <button class="plane" type="button" data-layer="ui" aria-pressed="true"><span>Interfaz</span></button>
-        <button class="plane" type="button" data-layer="api" aria-pressed="false"><span>API y lógica</span></button>
-        <button class="plane" type="button" data-layer="data" aria-pressed="false"><span>Datos</span></button>
-        <button class="plane" type="button" data-layer="cloud" aria-pressed="false"><span>Nube y DevOps</span></button>
+      <div class="layer l-ui">
+        <h3>Interfaz</h3>
+        <p>Paneles, formularios validados y flujos con roles.</p>
+        <div class="chips"><span class="k">HTML</span><span class="k">CSS</span><span class="k">JavaScript</span><span class="k">TypeScript</span><span class="k">React</span><span class="k">Next.js</span><span>TanStack Query</span><span>Zod</span><span>Responsive</span><span>Accesibilidad</span></div>
       </div>
-      <div class="ldesc" aria-live="polite">
-        <div data-desc="ui">
-          <h3>Interfaz</h3>
-          <p>Paneles administrativos, formularios validados y flujos con roles. Maqueto con HTML y CSS a mano y construyo la lógica de pantalla con JavaScript, TypeScript y React.</p>
-          <div class="skills"><span class="chip k">HTML</span><span class="chip k">CSS</span><span class="chip k">JavaScript</span><span class="chip k">TypeScript</span><span class="chip k">React</span><span class="chip k">Next.js</span><span class="chip">App Router</span><span class="chip">TanStack Query</span><span class="chip">react-hook-form</span><span class="chip">Zod</span><span class="chip">Diseño responsive</span><span class="chip">Accesibilidad</span></div>
-        </div>
-        <div data-desc="api" hidden>
-          <h3>API y lógica</h3>
-          <p>APIs REST y microservicios con Clean Architecture, autenticación JWT, control de acceso por roles e integraciones con sistemas de negocio.</p>
-          <div class="skills"><span class="chip k">NestJS</span><span class="chip k">Node.js</span><span class="chip k">Python</span><span class="chip">Flask</span><span class="chip">Django</span><span class="chip">C#</span><span class="chip">Swagger / OpenAPI</span><span class="chip">Odoo</span><span class="chip">Zoho</span><span class="chip">Siigo</span><span class="chip">DIAN</span><span class="chip">OpenAI</span></div>
-        </div>
-        <div data-desc="data" hidden>
-          <h3>Datos</h3>
-          <p>Modelado relacional y documental, aislamiento por cliente con row-level security y migraciones grandes sin perder relaciones.</p>
-          <div class="skills"><span class="chip k">PostgreSQL</span><span class="chip k">MongoDB</span><span class="chip">SQL Server</span><span class="chip">MySQL</span><span class="chip">SQLite</span><span class="chip">Prisma</span><span class="chip">ETL en Python</span></div>
-        </div>
-        <div data-desc="cloud" hidden>
-          <h3>Nube y DevOps</h3>
-          <p>Despliegues reproducibles en AWS con infraestructura como código, contenedores y pipelines que prueban y publican solos.</p>
-          <div class="skills"><span class="chip k">AWS</span><span class="chip">Lambda</span><span class="chip">API Gateway</span><span class="chip">EC2</span><span class="chip">RDS</span><span class="chip">S3</span><span class="chip k">Terraform</span><span class="chip k">Docker</span><span class="chip">GitHub Actions</span><span class="chip">Vercel</span></div>
-        </div>
+      <div class="layer l-api">
+        <h3>API y lógica</h3>
+        <p>REST, microservicios y Clean Architecture.</p>
+        <div class="chips"><span>NestJS</span><span>Node.js</span><span>Python</span><span>Flask</span><span>Django</span><span>C#</span><span>JWT</span><span>Swagger</span></div>
+      </div>
+      <div class="layer l-data">
+        <h3>Datos</h3>
+        <p>Modelado, aislamiento por cliente y migraciones grandes.</p>
+        <div class="chips"><span>PostgreSQL</span><span>MongoDB</span><span>SQL Server</span><span>MySQL</span><span>Prisma</span><span>ETL</span></div>
+      </div>
+      <div class="layer l-cloud">
+        <h3>Nube y DevOps</h3>
+        <p>Despliegues reproducibles y automatizados.</p>
+        <div class="chips"><span>AWS</span><span>Lambda</span><span>API Gateway</span><span>S3</span><span>RDS</span><span>Terraform</span><span>Docker</span><span>GitHub Actions</span></div>
       </div>
     </div>
   </section>
 
   <!-- Experiencia -->
-  <section class="sec wrap" id="experiencia" aria-labelledby="h-xp">
-    <div class="sec-head">
+  <section class="wrap sec" id="experiencia" aria-labelledby="h-xp">
+    <div class="head">
       <h2 id="h-xp">Experiencia</h2>
-      <p>Cuatro años construyendo backend para operaciones reales: energía solar, mercadeo y pymes.</p>
+      <p>Backend para operaciones reales: energía solar, mercadeo y pymes.</p>
     </div>
     <div class="xp">
-      <article>
-        <time>Jul 2025 – hoy</time>
-        <div><h3>Desarrollador Backend Semi-Senior</h3><p class="co">Home Power Colombia</p></div>
-        <ul><li>Más de 10 APIs REST con NestJS y Python sobre AWS.</li><li>CI/CD con GitHub Actions y Terraform.</li><li>Integración del CRM Odoo y de Zoho, Sunrun y Palmeto.</li></ul>
-      </article>
-      <article>
-        <time>Jun 2023 – Ene 2025</time>
-        <div><h3>Desarrollador Backend</h3><p class="co">Mercadeo Virtual</p></div>
-        <ul><li>5 microservicios desde cero y 6 evolucionados.</li><li>Migración de 10 años de datos, 20 veces más rápida.</li><li>Reportes de producción automatizados.</li></ul>
-      </article>
-      <article>
-        <time>2022 – 2024</time>
-        <div><h3>Desarrollador Backend Freelance</h3><p class="co">Restaurantes, comercios y pymes</p></div>
-        <ul><li>Pedidos, inventario y facturación electrónica con Siigo y la DIAN.</li><li>Atención al cliente con IA generativa.</li></ul>
-      </article>
+      <article class="job"><time>Jul 2025 – hoy</time><div><h3>Desarrollador Backend Semi-Senior</h3><p class="co">Home Power Colombia</p></div><ul><li>Más de 10 APIs REST con NestJS y Python sobre AWS.</li><li>CI/CD con GitHub Actions y Terraform.</li><li>Integración de Odoo, Zoho, Sunrun y Palmeto.</li></ul></article>
+      <article class="job"><time>Jun 2023 – Ene 2025</time><div><h3>Desarrollador Backend</h3><p class="co">Mercadeo Virtual</p></div><ul><li>5 microservicios desde cero y 6 evolucionados.</li><li>Migración de 10 años de datos, 20 veces más rápida.</li><li>Reportes de producción automatizados.</li></ul></article>
+      <article class="job"><time>2022 – 2024</time><div><h3>Desarrollador Backend Freelance</h3><p class="co">Restaurantes, comercios y pymes</p></div><ul><li>Pedidos, inventario y facturación electrónica con Siigo y la DIAN.</li><li>Atención al cliente con IA generativa.</li></ul></article>
     </div>
+  </section>
+
+  <!-- Contacto -->
+  <section class="wrap" id="contacto" aria-labelledby="h-cta">
+    <div class="cta">
+      <div>
+        <h2 id="h-cta">¿Construimos<br>algo juntos?</h2>
+        <div class="actions"><button class="btn dark" type="button" data-copy="alirayopuches@gmail.com">Copiar correo</button></div>
+      </div>
+      <div class="links">
+        <strong>alirayopuches@gmail.com</strong>
+        <span>+57 313 661 9120</span>
+        <a href="https://linkedin.com/in/ali-rayo" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/alex2003e" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+    <div class="foot"><span>Ali Alexander Rayo Gutiérrez</span><span>Medellín, Colombia</span></div>
   </section>
 </main>
 
-<footer class="end" id="contacto">
-  <div class="wrap">
-    <h2>Hablemos de tu próximo sistema</h2>
-    <p>Busco equipos de habla hispana, en remoto o en Medellín, donde el backend y el producto se piensen juntos.</p>
-    <div class="row">
-      <button class="btn solid" type="button" data-copy="alirayopuches@gmail.com">Copiar correo</button>
-      <a class="btn" href="https://linkedin.com/in/ali-rayo" target="_blank" rel="noopener">LinkedIn</a>
-      <a class="btn" href="https://github.com/alex2003e" target="_blank" rel="noopener">GitHub</a>
-    </div>
-    <small><span>alirayopuches@gmail.com · +57 313 661 9120</span><span>Medellín, Colombia</span></small>
-  </div>
-</footer>
+<!-- Diálogos de proyectos -->
+<dialog id="d-oc" aria-labelledby="dh-oc"><div class="dlg">
+  <div class="dlg-top"><div><span class="tag live">Código público</span><h3 id="dh-oc">OpenClaw Platform</h3></div><button class="close" type="button" aria-label="Cerrar">✕</button></div>
+  <p class="intro">La base de una plataforma de automatización para muchos negocios a la vez. Cada cliente ve solo sus datos, y ese aislamiento lo garantiza la base de datos, no solo el código.</p>
+  <ul><li>API en NestJS con Clean Architecture por módulo: dominio, casos de uso e infraestructura.</li><li>PostgreSQL con row-level security y un rol de aplicación que no puede saltarse esas reglas.</li><li>JWT de 15 minutos con refresh tokens rotativos en cookie httpOnly.</li><li>Panel en Next.js y React con control de acceso por rol: super admin, admin y staff de cada tenant.</li></ul>
+  <div class="meta"><span class="chip">NestJS</span><span class="chip">Prisma</span><span class="chip">PostgreSQL</span><span class="chip">Next.js</span><span class="chip">React</span><span class="chip">Zod</span><span class="chip">pnpm</span></div>
+  <a class="btn primary" href="https://github.com/alex2003e/manager-agents-whatsapp" target="_blank" rel="noopener" style="justify-self:start">Ver el código en GitHub</a>
+</div></dialog>
+
+<dialog id="d-mg" aria-labelledby="dh-mg"><div class="dlg">
+  <div class="dlg-top"><div><span class="tag live">En producción · Mercadeo Virtual</span><h3 id="dh-mg">Migración de 10 años de datos</h3></div><button class="close" type="button" aria-label="Cerrar">✕</button></div>
+  <p class="intro">Una década de información en SQL Server tenía que pasar a MongoDB sin perder relaciones ni detener la operación. Diseñé y construí el pipeline completo.</p>
+  <ul><li>ETL en Python: unas 25 tablas relacionadas por lote, de 100 a 200 registros cada uno.</li><li>De 5 lotes cada 10 minutos a 50 lotes cada 5 minutos: 20 veces más rápido.</li><li>Re-migración selectiva: corregir un lote pasó de 10 minutos a menos de 1.</li><li>Monitoreo que levanta contenedores Docker para reprocesar y avisa por correo si el error persiste.</li></ul>
+  <div class="meta"><span class="chip">Python</span><span class="chip">SQL Server</span><span class="chip">MongoDB</span><span class="chip">Docker</span></div>
+</div></dialog>
+
+<dialog id="d-pg" aria-labelledby="dh-pg"><div class="dlg">
+  <div class="dlg-top"><div><span class="tag">MVP en desarrollo</span><h3 id="dh-pg">PostGate</h3></div><button class="close" type="button" aria-label="Cerrar">✕</button></div>
+  <p class="intro">La IA propone y el equipo decide. Genera publicaciones para redes sociales siguiendo las reglas de marca de cada cliente, y nada sale sin aprobación humana.</p>
+  <ul><li>Reglas de marca por cliente: tono, público, hashtags y temas a evitar.</li><li>Cola de aprobación por Telegram o Slack y publicación programada en Instagram, Facebook, LinkedIn y X.</li><li>Registro de auditoría: quién aprobó, qué se editó y cuándo salió.</li></ul>
+  <div class="meta"><span class="chip">Node.js</span><span class="chip">Python</span><span class="chip">PostgreSQL multi-tenant</span><span class="chip">OpenClaw</span></div>
+  <p class="note">Repositorio privado. Puedo mostrarlo en una entrevista.</p>
+</div></dialog>
+
+<dialog id="d-tc" aria-labelledby="dh-tc"><div class="dlg">
+  <div class="dlg-top"><div><span class="tag">En diseño</span><h3 id="dh-tc">TurnosCO</h3></div><button class="close" type="button" aria-label="Cerrar">✕</button></div>
+  <p class="intro">El software de nómina liquida lo que ya pasó. TurnosCO responde antes: ¿cabe en el presupuesto ese turno del domingo en la noche?</p>
+  <ul><li>Estima recargos nocturnos, dominicales, horas extra y topes legales de la Ley 2466 de 2025.</li><li>Doce reglas de negocio documentadas como fuente de verdad.</li><li>Desarrollo guiado por especificación: especificar, planear, dividir en tareas e implementar.</li></ul>
+  <div class="meta"><span class="chip">Motor de cálculo</span><span class="chip">Spec-driven</span><span class="chip">Git Flow</span></div>
+  <p class="note">Repositorio privado. Puedo mostrarlo en una entrevista.</p>
+</div></dialog>
+
+<dialog id="d-ps" aria-labelledby="dh-ps"><div class="dlg">
+  <div class="dlg-top"><div><span class="tag">Especificación</span><h3 id="dh-ps">PorcSync 360</h3></div><button class="close" type="button" aria-label="Cerrar">✕</button></div>
+  <p class="intro">Software para granjas porcinas: trazabilidad de cada animal, cumplimiento de la normativa del ICA y, más adelante, predicción de carne magra.</p>
+  <ul><li>Escribí la especificación, la matriz de cumplimiento ICA y el plan de entregas.</li><li>Tres entregas: registros y normativa, reproducción y genética, predicción.</li><li>Reutiliza la base de AgroSync, con autorización de su autor.</li></ul>
+  <div class="meta"><span class="chip">Spec Kit</span><span class="chip">Cumplimiento normativo</span></div>
+  <p class="note">Aún sin código: el proyecto está en fase de especificación.</p>
+</div></dialog>
+
+<dialog id="d-up" aria-labelledby="dh-up"><div class="dlg">
+  <div class="dlg-top"><div><span class="tag live">Completo</span><h3 id="dh-up">Upload File MS</h3></div><button class="close" type="button" aria-label="Cerrar">✕</button></div>
+  <p class="intro">Un microservicio pequeño y reutilizable para que cualquier sistema suba y gestione archivos sin reinventar la carga, la validación ni el almacenamiento.</p>
+  <ul><li>Varios archivos por petición en multipart/form-data.</li><li>Validación por tipo de archivo y tamaño.</li><li>Almacenamiento configurable en AWS S3.</li></ul>
+  <div class="meta"><span class="chip">NestJS</span><span class="chip">Multer</span><span class="chip">AWS S3</span></div>
+  <p class="note">Repositorio privado. Puedo mostrarlo en una entrevista.</p>
+</div></dialog>
 
 <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
 
 <script>
 (function(){
-  // Tema
-  const root=document.documentElement, tbtn=document.getElementById('theme');
-  try{const s=localStorage.getItem('theme'); if(s) root.dataset.theme=s;}catch(e){}
-  tbtn.addEventListener('click',()=>{
-    const dark = root.dataset.theme ? root.dataset.theme==='dark' : matchMedia('(prefers-color-scheme: dark)').matches;
-    root.dataset.theme = dark ? 'light' : 'dark';
-    try{localStorage.setItem('theme',root.dataset.theme)}catch(e){}
+  const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Capas 3D: siguen al cursor
+  const stack=document.getElementById('stack'), l3=stack.querySelector('.layers3d');
+  if(!reduce){
+    stack.addEventListener('pointermove',e=>{const r=stack.getBoundingClientRect();const x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
+      l3.style.setProperty('--ry',(-14+x*18)+'deg');l3.style.setProperty('--rx',(8-y*12)+'deg')});
+    stack.addEventListener('pointerleave',()=>{l3.style.removeProperty('--ry');l3.style.removeProperty('--rx')});
+  }
+
+  // Proyectos en diálogo
+  document.querySelectorAll('[data-open]').forEach(b=>b.addEventListener('click',()=>{const d=document.getElementById(b.dataset.open);d.showModal();}));
+  document.querySelectorAll('dialog').forEach(d=>{
+    d.querySelector('.close').addEventListener('click',()=>d.close());
+    d.addEventListener('click',e=>{if(e.target===d)d.close()});
   });
 
-  // Nav con borde al hacer scroll
-  const nav=document.getElementById('nav');
-  addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>10),{passive:true});
+  // Navegación activa según la sección visible
+  const links=[...document.querySelectorAll('.pills a')];
+  const io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){links.forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+en.target.id))}}),{rootMargin:'-45% 0px -50% 0px'});
+  ['trabajo','capas','experiencia','contacto'].forEach(id=>io.observe(document.getElementById(id)));
 
   // Copiar correo
-  const toast=document.getElementById('toast'); let tt;
-  function show(m){toast.textContent=m;toast.hidden=false;clearTimeout(tt);tt=setTimeout(()=>toast.hidden=true,2400)}
-  document.querySelectorAll('[data-copy]').forEach(b=>b.addEventListener('click',()=>{
-    const v=b.dataset.copy;
-    if(navigator.clipboard) navigator.clipboard.writeText(v).then(()=>show('Correo copiado: '+v),()=>show(v)); else show(v);
-  }));
-
-  // Visor de proyectos (tabs accesibles)
-  const tabs=[...document.querySelectorAll('[role=tab]')];
-  function select(t, focus){
-    tabs.forEach(x=>{const on=x===t;x.setAttribute('aria-selected',on);x.tabIndex=on?0:-1;
-      const p=document.getElementById(x.getAttribute('aria-controls'));p.hidden=!on;p.classList.toggle('on',on);});
-    if(focus) t.focus();
-    if(innerWidth<900){document.getElementById(t.getAttribute('aria-controls')).scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});}
-  }
-  tabs.forEach((t,i)=>{
-    t.addEventListener('click',()=>select(t));
-    t.addEventListener('keydown',e=>{
-      if(e.key==='ArrowDown'||e.key==='ArrowRight'){e.preventDefault();select(tabs[(i+1)%tabs.length],true)}
-      if(e.key==='ArrowUp'||e.key==='ArrowLeft'){e.preventDefault();select(tabs[(i-1+tabs.length)%tabs.length],true)}
-    });
-  });
-
-  // Halo del hero que sigue al cursor
-  const hero=document.querySelector('.hero');
-  hero.addEventListener('pointermove',e=>{const r=hero.getBoundingClientRect();hero.style.setProperty('--mx',(e.clientX-r.left)+'px');hero.style.setProperty('--my',(e.clientY-r.top)+'px')});
-
-  // Inclinación 3D de las maquetas según el cursor
-  if(!matchMedia('(prefers-reduced-motion: reduce)').matches){
-    document.querySelectorAll('.shot').forEach(sh=>{
-      sh.addEventListener('pointermove',e=>{const r=sh.getBoundingClientRect();const x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
-        sh.style.setProperty('--ry',(x*10)+'deg');sh.style.setProperty('--rx',(-y*8)+'deg')});
-      sh.addEventListener('pointerleave',()=>{sh.style.setProperty('--ry','0deg');sh.style.setProperty('--rx','0deg')});
-    });
-  }
-
-  // Capas del producto
-  const planes=[...document.querySelectorAll('.plane')];
-  planes.forEach(p=>p.addEventListener('click',()=>{
-    planes.forEach(q=>q.setAttribute('aria-pressed',q===p));
-    document.querySelectorAll('[data-desc]').forEach(d=>d.hidden=d.dataset.desc!==p.dataset.layer);
-  }));
-
-  // Diagrama del sistema (canvas)
-  const cv=document.getElementById('sys'), ctx=cv.getContext('2d');
-  const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
-  // Coordenadas normalizadas dentro del área del diagrama (0..1)
-  const N=[
-    {id:'c',  l:'Cliente web',      x:.04,y:.10},
-    {id:'nx', l:'Next.js / React',  x:.30,y:.04},
-    {id:'gw', l:'API Gateway',      x:.24,y:.36},
-    {id:'api',l:'NestJS API',       x:.58,y:.22},
-    {id:'lb', l:'Lambda',           x:.86,y:.36},
-    {id:'pg', l:'PostgreSQL · RLS', x:.66,y:.66},
-    {id:'mg', l:'MongoDB',          x:.40,y:.62},
-    {id:'py', l:'Workers Python',   x:.10,y:.70},
-    {id:'s3', l:'S3',               x:.90,y:.06},
-    {id:'od', l:'Odoo · Zoho',      x:.18,y:.96},
-    {id:'tf', l:'Terraform',        x:.90,y:.92},
-  ];
-  const E=[['c','nx'],['nx','gw'],['gw','api'],['api','lb'],['api','pg'],['api','mg'],['py','mg'],['gw','py'],['lb','s3'],['py','od'],['api','s3'],['tf','pg'],['tf','lb']];
-  const byId=Object.fromEntries(N.map(n=>[n.id,n]));
-  let W,H,dpr,pts=[],mouse={x:-999,y:-999},hot=null,col={};
-  function readColors(){const cs=getComputedStyle(root);['--ink','--muted','--line','--accent','--signal','--bg'].forEach(k=>col[k]=cs.getPropertyValue(k).trim())}
-  function size(){dpr=Math.min(devicePixelRatio||1,2);W=cv.clientWidth;H=cv.clientHeight;cv.width=W*dpr;cv.height=H*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);
-    // Escritorio: el diagrama vive en la mitad derecha del hero. Móvil: ocupa toda su franja.
-    const narrow=innerWidth<900;
-    const box = narrow ? {x:20,y:24,w:W-150,h:H-48} : {x:W*.55,y:H*.14,w:W*.45-150,h:H*.66};
-    N.forEach(n=>{n.px=box.x+n.x*box.w; n.py=box.y+n.y*box.h;});}
-  function spawn(){const e=E[Math.random()*E.length|0];const rev=Math.random()<.5;pts.push({a:byId[rev?e[1]:e[0]],b:byId[rev?e[0]:e[1]],t:0,s:.004+Math.random()*.006})}
-  for(let i=0;i<14;i++){spawn();pts[i].t=Math.random()}
-  function draw(){
-    ctx.clearRect(0,0,W,H);
-    hot=null;let best=60;
-    N.forEach(n=>{const d=Math.hypot(n.px-mouse.x,n.py-mouse.y);if(d<best){best=d;hot=n}});
-    ctx.lineWidth=1;
-    E.forEach(([a,b])=>{const A=byId[a],B=byId[b];const on=hot&&(hot===A||hot===B);
-      ctx.strokeStyle=on?col['--accent']:col['--line'];ctx.globalAlpha=on?1:.9;ctx.setLineDash(on?[]:[4,6]);
-      ctx.beginPath();ctx.moveTo(A.px,A.py);ctx.lineTo(B.px,B.py);ctx.stroke();});
-    ctx.setLineDash([]);ctx.globalAlpha=1;
-    pts.forEach(p=>{p.t+=reduce?0:p.s;const x=p.a.px+(p.b.px-p.a.px)*p.t,y=p.a.py+(p.b.py-p.a.py)*p.t;
-      ctx.fillStyle=col['--signal'];ctx.beginPath();ctx.arc(x,y,3,0,7);ctx.fill();});
-    pts=pts.filter(p=>p.t<1);while(pts.length<14)spawn();
-    ctx.font='500 13px Archivo, sans-serif';ctx.textBaseline='middle';
-    N.forEach(n=>{const on=n===hot;
-      ctx.fillStyle=col['--bg'];ctx.strokeStyle=on?col['--accent']:col['--muted'];ctx.lineWidth=on?2:1.2;
-      ctx.beginPath();ctx.arc(n.px,n.py,on?9:6,0,7);ctx.fill();ctx.stroke();
-      if(on){ctx.fillStyle=col['--accent'];ctx.beginPath();ctx.arc(n.px,n.py,4,0,7);ctx.fill();}
-      ctx.fillStyle=on?col['--ink']:col['--muted'];ctx.globalAlpha=on?1:.85;
-      const tx=n.px+14, right=tx+ctx.measureText(n.l).width>W-8;
-      ctx.textAlign=right?'right':'left';ctx.fillText(n.l,right?n.px-14:tx,n.py);ctx.globalAlpha=1;});
-    if(!reduce) requestAnimationFrame(draw);
-  }
-  cv.addEventListener('pointermove',e=>{const r=cv.getBoundingClientRect();mouse.x=e.clientX-r.left;mouse.y=e.clientY-r.top;if(reduce)draw()});
-  cv.addEventListener('pointerleave',()=>{mouse.x=mouse.y=-999;if(reduce)draw()});
-  new MutationObserver(()=>{readColors();if(reduce)draw()}).observe(root,{attributes:true,attributeFilter:['data-theme']});
-  matchMedia('(prefers-color-scheme: dark)').addEventListener('change',()=>{readColors();if(reduce)draw()});
-  addEventListener('resize',()=>{size();if(reduce)draw()});
-  readColors();size();
-  (document.fonts?document.fonts.ready:Promise.resolve()).then(()=>draw());
+  const toast=document.getElementById('toast');let t;
+  function show(m){toast.textContent=m;toast.hidden=false;clearTimeout(t);t=setTimeout(()=>toast.hidden=true,2400)}
+  document.querySelectorAll('[data-copy]').forEach(b=>b.addEventListener('click',()=>{const v=b.dataset.copy;
+    if(navigator.clipboard)navigator.clipboard.writeText(v).then(()=>show('Correo copiado: '+v),()=>show(v));else show(v)}));
 })();
 </script>
 </body>

@@ -6,7 +6,7 @@
 <title>Ali Rayo · Backend sólido, interfaz con criterio</title>
 <meta name="description" content="Ali Alexander Rayo Gutiérrez: desarrollador backend semi-senior (NestJS, Python, AWS) que también construye interfaces con HTML, CSS, JavaScript, React y Next.js. Medellín, disponible remoto.">
 <meta name="theme-color" content="#150E22">
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23150E22'/%3E%3Crect x='10' y='34' width='34' height='18' rx='5' fill='%233A2A60' transform='rotate(-8 27 43)'/%3E%3Crect x='16' y='14' width='38' height='24' rx='6' fill='%23B9A4FF'/%3E%3Ccircle cx='48' cy='48' r='5' fill='%236FE3C1'/%3E%3C/svg%3E">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23150E22'/%3E%3Cg transform='translate(12 12)'%3E%3Cpath d='M20 22 36 30 20 38 4 30Z' fill='%234B3A7D'/%3E%3Cpath d='M20 14 36 22 20 30 4 22Z' fill='%236C59A6'/%3E%3Cpath d='M20 2 36 10 20 18 4 10Z' fill='%23B9A4FF'/%3E%3Ccircle cx='34' cy='4' r='3.4' fill='%236FE3C1'/%3E%3C/g%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&display=swap">
@@ -43,7 +43,10 @@ p{margin:0}
 .top{position:sticky;top:0;z-index:30;padding-top:env(safe-area-inset-top,0px);background:color-mix(in srgb,var(--bg) 78%,transparent);backdrop-filter:blur(14px)}
 .top .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px;height:72px}
 .brand{font-weight:800;font-size:18px;text-decoration:none;color:var(--ink);letter-spacing:-.01em}
-.brand span{color:var(--lilac)}
+.brand{display:inline-flex;align-items:center;gap:11px}
+.brand .word{color:var(--ink)}.brand .word span{color:var(--lilac)}
+.brand .mark{flex:none;transition:transform .3s}
+.brand:hover .mark{transform:translateY(-2px)}
 .pills{display:flex;gap:4px;padding:5px;border-radius:999px;background:var(--s2);border:1px solid var(--line)}
 .pills a{text-decoration:none;color:var(--soft);font-size:14px;padding:8px 16px;border-radius:999px;transition:background .2s,color .2s}
 .pills a:hover,.pills a.on{background:var(--s4);color:#fff}
@@ -195,7 +198,7 @@ dialog::backdrop{background:rgba(10,6,18,.72);backdrop-filter:blur(6px)}
 
 <header class="top">
   <div class="wrap">
-    <a class="brand" href="#inicio">ali<span>.</span>rayo</a>
+    <a class="brand" href="#inicio" aria-label="Ali Rayo, inicio"><svg class="mark" viewBox="0 0 40 40" width="34" height="34" aria-hidden="true"><path d="M20 22 36 30 20 38 4 30Z" fill="#3A2A60"/><path d="M20 14 36 22 20 30 4 22Z" fill="#6C59A6"/><path d="M20 2 36 10 20 18 4 10Z" fill="#B9A4FF"/><circle cx="34" cy="4" r="3.4" fill="#6FE3C1"/></svg><span class="word">ali<span>.</span>rayo</span></a>
     <nav class="pills" aria-label="Secciones">
       <a href="#trabajo" class="keep">Trabajo</a>
       <a href="#capas">Capas</a>

@@ -182,7 +182,7 @@ dialog::backdrop{background:rgba(10,6,18,.72);backdrop-filter:blur(6px)}
 .fig .capg{display:none}
 .figbtn.cap .fig .capg{display:inline}
 .figbtn.cap .fig .fh{display:none}
-.fig .wave{transform-box:view-box;transform-origin:112px 352px}
+.fig .wave{transform-box:view-box;transform-origin:108px 350px}
 .fig-tip{position:absolute;left:50%;top:-6px;transform:translateX(-50%);white-space:nowrap;font-size:12.5px;font-weight:600;padding:6px 11px;border-radius:999px;background:var(--s3);border:1px solid var(--line2);color:var(--ink);opacity:0;transition:opacity .25s}
 .figbtn:hover .fig-tip,.figbtn:focus-visible .fig-tip{opacity:1}
 @media (prefers-reduced-motion:no-preference){
@@ -392,17 +392,7 @@ dialog::backdrop{background:rgba(10,6,18,.72);backdrop-filter:blur(6px)}
 <!-- cuello -->
 <rect x="178" y="262" width="44" height="42" rx="14" fill="#9C6744"/>
 
-<!-- brazo que saluda -->
-<g class="wave">
-  <path d="M112 352 L92 292" stroke="url(#skinA)" stroke-width="30" stroke-linecap="round"/>
-  <rect x="68" y="236" width="11" height="34" rx="5.5" transform="rotate(-14 73 253)" fill="url(#hand)"/>
-  <rect x="80" y="230" width="11" height="38" rx="5.5" transform="rotate(-4 85 249)" fill="url(#hand)"/>
-  <rect x="92" y="232" width="11" height="36" rx="5.5" transform="rotate(6 97 250)" fill="url(#hand)"/>
-  <rect x="103" y="240" width="10" height="30" rx="5" transform="rotate(16 108 255)" fill="url(#hand)"/>
-  <ellipse cx="88" cy="276" rx="22" ry="20" fill="url(#hand)"/>
-  <ellipse cx="64" cy="282" rx="8" ry="14" transform="rotate(-38 64 282)" fill="url(#hand)"/>
-  <ellipse cx="80" cy="268" rx="9" ry="5" fill="#fff" opacity=".2"/>
-</g>
+
 
 <!-- torso: polo oscura -->
 <path d="M200 288 C158 288 130 298 124 322 L118 396 C118 410 128 418 142 418 L258 418 C272 418 282 410 282 396 L276 322 C270 298 242 288 200 288Z" fill="url(#shirt)"/>
@@ -500,6 +490,19 @@ dialog::backdrop{background:rgba(10,6,18,.72);backdrop-filter:blur(6px)}
     <ellipse cx="78" cy="186" rx="6" ry="10" fill="#fff" opacity=".35"/>
     <ellipse cx="310" cy="186" rx="6" ry="10" fill="#fff" opacity=".35"/>
   </g>
+<!-- brazo que saluda -->
+<g class="wave">
+  <path d="M108 350 L74 296" stroke="url(#skinA)" stroke-width="30" stroke-linecap="round"/>
+  <g transform="translate(-16 2)">
+  <rect x="68" y="236" width="11" height="34" rx="5.5" transform="rotate(-14 73 253)" fill="url(#hand)"/>
+  <rect x="80" y="230" width="11" height="38" rx="5.5" transform="rotate(-4 85 249)" fill="url(#hand)"/>
+  <rect x="92" y="232" width="11" height="36" rx="5.5" transform="rotate(6 97 250)" fill="url(#hand)"/>
+  <rect x="103" y="240" width="10" height="30" rx="5" transform="rotate(16 108 255)" fill="url(#hand)"/>
+  <ellipse cx="88" cy="276" rx="22" ry="20" fill="url(#hand)"/>
+  <ellipse cx="64" cy="282" rx="8" ry="14" transform="rotate(-38 64 282)" fill="url(#hand)"/>
+  <ellipse cx="80" cy="268" rx="9" ry="5" fill="#fff" opacity=".2"/>
+  </g>
+</g>
 </svg><span class="fig-tip" data-en="Tap me: focus mode">Tócame: modo concentración</span></button>
     </div>
   </section>

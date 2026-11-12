@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Ali Rayo · Backend & Producto</title>
 <meta name="description" content="Ali Alexander Rayo Gutiérrez: desarrollador backend semi-senior (NestJS, Python, AWS) que también construye interfaces con Next.js y React. Medellín, disponible remoto.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%232643E9'/%3E%3Ctext x='50%25' y='54%25' text-anchor='middle' dominant-baseline='middle' font-family='Arial Black,Arial,sans-serif' font-weight='900' font-size='30' fill='white'%3EAR%3C/text%3E%3Ccircle cx='50' cy='14' r='5' fill='%23F2A93B'/%3E%3C/svg%3E">
+<meta name="theme-color" content="#2643E9">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&family=JetBrains+Mono:wght@400;500&display=swap">
@@ -16,7 +18,7 @@
 */
 :root{
   --bg:#EEF1F7; --surface:#FFFFFF; --ink:#0D1B3D; --muted:#56607A; --line:#CDD3E1;
-  --accent:#2643E9; --accent-soft:#DCE2FF; --signal:#E39A21; --ok:#1E8E5A;
+  --accent:#2643E9; --accent-strong:#2643E9; --accent-soft:#DCE2FF; --signal:#E39A21; --ok:#1E8E5A;
   --f:"Archivo", "Helvetica Neue", Arial, sans-serif;
   --mono:"JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
   --gutter:max(20px, env(safe-area-inset-left, 0px));
@@ -24,10 +26,10 @@
 }
 @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
   --bg:#0B1430; --surface:#121D40; --ink:#E8ECF7; --muted:#98A2BD; --line:#24315C;
-  --accent:#8297FF; --accent-soft:#1B2A5C; --signal:#FFC062; --ok:#4CC88A; color-scheme:dark }}
+  --accent:#8297FF; --accent-strong:#2B44D6; --accent-soft:#1B2A5C; --signal:#FFC062; --ok:#4CC88A; color-scheme:dark }}
 :root[data-theme="dark"]{
   --bg:#0B1430; --surface:#121D40; --ink:#E8ECF7; --muted:#98A2BD; --line:#24315C;
-  --accent:#8297FF; --accent-soft:#1B2A5C; --signal:#FFC062; --ok:#4CC88A; color-scheme:dark }
+  --accent:#8297FF; --accent-strong:#2B44D6; --accent-soft:#1B2A5C; --signal:#FFC062; --ok:#4CC88A; color-scheme:dark }
 
 *{box-sizing:border-box}
 html,body{margin:0}
@@ -57,7 +59,13 @@ p{margin:0}
 
 /* Hero */
 .hero{position:relative;min-height:min(88vh,820px);display:flex;align-items:flex-end;overflow:hidden;border-bottom:1px solid var(--line)}
-#sys{position:absolute;inset:0;width:100%;height:100%;display:block}
+.hero::before{content:"";position:absolute;inset:0;pointer-events:none;
+  background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
+  background-size:48px 48px;opacity:.45;
+  -webkit-mask-image:radial-gradient(ellipse 70% 80% at 72% 40%,#000 20%,transparent 75%);mask-image:radial-gradient(ellipse 70% 80% at 72% 40%,#000 20%,transparent 75%)}
+.hero::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(420px circle at var(--mx,72%) var(--my,40%),color-mix(in srgb,var(--accent) 16%,transparent),transparent 70%)}
+#sys{position:absolute;inset:0;width:100%;height:100%;display:block;z-index:1}
 .hero .wrap{position:relative;z-index:2;width:100%;padding-block:0 56px;pointer-events:none}
 .hero .wrap > *{pointer-events:auto}
 .status{display:inline-flex;align-items:center;gap:10px;font-size:14px;color:var(--muted);margin-bottom:22px;background:color-mix(in srgb,var(--bg) 70%,transparent);padding:6px 12px 6px 10px;border-radius:999px;border:1px solid var(--line)}
@@ -79,7 +87,7 @@ p{margin:0}
 /* Section head */
 .sec{padding-block:96px 0}
 .sec-head{display:grid;grid-template-columns:1fr 1.1fr;gap:40px;align-items:end;margin-bottom:44px}
-.sec-head h2{font-size:clamp(40px,6vw,80px);font-weight:800;font-variation-settings:"wdth" 120;letter-spacing:-.035em}
+.sec-head h2{font-size:clamp(38px,5.4vw,72px);font-weight:800;font-variation-settings:"wdth" 108;letter-spacing:-.035em}
 .sec-head p{color:var(--muted);max-width:52ch}
 
 /* Project viewer */
@@ -96,11 +104,15 @@ p{margin:0}
 .plist button[aria-selected="true"] .pt{color:var(--accent)}
 .plist button[aria-selected="true"]{box-shadow:inset 3px 0 0 var(--accent);padding-left:16px}
 
-.stage{background:var(--surface);border:1px solid var(--line);border-radius:20px;overflow:hidden;min-width:0}
+.stage{background:var(--surface);border:1px solid var(--line);border-radius:22px;overflow:hidden;min-width:0;box-shadow:0 40px 80px -50px color-mix(in srgb,var(--accent) 55%,transparent)}
 .panel{display:none}
 .panel.on{display:block}
 @media (prefers-reduced-motion:no-preference){ .panel.on{animation:swap .45s cubic-bezier(.2,.7,.2,1)} @keyframes swap{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}} }
-.shot{background:var(--bg);border-bottom:1px solid var(--line);padding:22px;min-height:340px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.shot{--glow:var(--accent);position:relative;background:var(--bg);border-bottom:1px solid var(--line);padding:34px 26px;min-height:360px;display:flex;align-items:center;justify-content:center;overflow:hidden;perspective:1100px}
+.shot::before{content:"";position:absolute;inset:0;background-image:radial-gradient(color-mix(in srgb,var(--ink) 16%,transparent) 1px,transparent 1px);background-size:18px 18px;opacity:.6}
+.shot::after{content:"";position:absolute;width:70%;height:70%;left:15%;top:15%;border-radius:50%;background:var(--glow);filter:blur(70px);opacity:.28;pointer-events:none}
+.shot > *{position:relative;z-index:1;transition:transform .25s ease-out;transform:rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transform-style:preserve-3d}
+#p-mg .shot{--glow:#1E8E5A} #p-pg .shot{--glow:#E39A21} #p-tc .shot{--glow:#C2410C} #p-ps .shot{--glow:#7C3AED} #p-up .shot{--glow:#0EA5E9}
 .pbody{padding:26px 28px 30px;display:grid;grid-template-columns:1.3fr 1fr;gap:28px}
 .pbody h3{font-size:30px;font-weight:800;font-variation-settings:"wdth" 115;letter-spacing:-.02em;margin-bottom:12px}
 .pbody p{color:var(--muted);font-size:16px}
@@ -171,6 +183,25 @@ p{margin:0}
 .skills .chip{font-size:14px;padding:6px 12px}
 .skills .chip.k{border-color:var(--accent);color:var(--accent);background:var(--accent-soft)}
 
+/* Layers (stack) */
+.layers{display:grid;grid-template-columns:1.05fr 1fr;gap:48px;align-items:center}
+.iso{position:relative;height:440px;perspective:1400px}
+.iso .plane{position:absolute;left:50%;width:min(360px,80%);height:150px;margin-left:calc(min(360px,80%) / -2);border-radius:18px;
+  transform:rotateX(58deg) rotateZ(-38deg);transform-origin:center;border:1.5px solid var(--line);background:var(--surface);
+  box-shadow:0 30px 40px -30px color-mix(in srgb,var(--ink) 60%,transparent);cursor:pointer;transition:transform .35s cubic-bezier(.2,.7,.2,1),border-color .2s,background .2s;
+  display:grid;place-items:center}
+.iso .plane span{font-weight:800;font-variation-settings:"wdth" 112;font-size:22px;letter-spacing:-.01em;transform:rotate(0)}
+.iso .plane:nth-child(1){top:0} .iso .plane:nth-child(2){top:90px} .iso .plane:nth-child(3){top:180px} .iso .plane:nth-child(4){top:270px}
+.iso .plane[aria-pressed="true"]{border-color:var(--accent);background:color-mix(in srgb,var(--accent) 14%,var(--surface));transform:rotateX(58deg) rotateZ(-38deg) translateZ(34px)}
+.iso .plane:hover{transform:rotateX(58deg) rotateZ(-38deg) translateZ(20px)}
+.iso .plane:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
+.ldesc h3{font-size:30px;font-weight:800;font-variation-settings:"wdth" 108;letter-spacing:-.02em;margin-bottom:10px}
+.ldesc p{color:var(--muted);max-width:46ch}
+.ldesc .skills .chip{font-size:15px;padding:7px 14px}
+.lnav{display:flex;gap:8px;margin-bottom:22px;flex-wrap:wrap}
+.lnav button{font:500 14px var(--f);padding:7px 14px;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--muted);cursor:pointer}
+.lnav button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+
 /* Experience */
 .xp{border-top:1px solid var(--line)}
 .xp article{display:grid;grid-template-columns:180px 1fr 1fr;gap:28px;padding:28px 0;border-bottom:1px solid var(--line)}
@@ -180,14 +211,16 @@ p{margin:0}
 .xp ul{margin:0;padding-left:18px;font-size:15.5px;display:grid;gap:6px}
 
 /* Footer CTA */
-.end{margin-top:110px;background:var(--accent);color:#fff}
+.end{margin-top:110px;background:var(--accent-strong);color:#fff;position:relative;overflow:hidden}
+.end::before{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.18) 1px,transparent 1px);background-size:22px 22px;pointer-events:none}
+.end .wrap{position:relative}
 .end .wrap{padding-block:80px 40px}
-.end h2{font-size:clamp(44px,8vw,120px);font-weight:850;font-variation-settings:"wdth" 125;letter-spacing:-.045em;line-height:.9}
+.end h2{font-size:clamp(42px,7vw,104px);font-weight:850;font-variation-settings:"wdth" 112;letter-spacing:-.045em;line-height:.9}
 .end p{margin-top:22px;max-width:48ch;opacity:.9;font-size:18px}
 .end .row{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
 .end .btn{border-color:#fff;color:#fff}
-.end .btn:hover{background:#fff;color:var(--accent)}
-.end .btn.solid{background:#fff;color:var(--accent);border-color:#fff}
+.end .btn:hover{background:#fff;color:var(--accent-strong)}
+.end .btn.solid{background:#fff;color:var(--accent-strong);border-color:#fff}
 .end small{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-top:70px;padding-top:20px;border-top:1px solid rgba(255,255,255,.3);font-size:14px;opacity:.85}
 .toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:10px;font-size:14px;z-index:50}
 [hidden]{display:none!important}
@@ -200,6 +233,8 @@ p{margin:0}
   .sec-head,.viewer,.split,.pbody{grid-template-columns:1fr}
   .plist{position:static}
   .xp article{grid-template-columns:1fr;gap:10px}
+  .layers{grid-template-columns:1fr;gap:12px}
+  .iso{height:470px;transform:scale(.78);transform-origin:top center;margin-bottom:-90px}
   .hint{display:none}
   .hero{flex-direction:column;align-items:stretch;min-height:0}
   #sys{position:relative;inset:auto;height:300px}
@@ -487,24 +522,35 @@ p{margin:0}
   <section class="sec wrap" id="front" aria-labelledby="h-front">
     <div class="sec-head">
       <h2 id="h-front">Del servidor a la pantalla</h2>
-      <p>Mi fuerte es el backend, pero no me detengo en la API. Pienso en quién va a usar el sistema y construyo la interfaz que lo hace fácil.</p>
+      <p>Mi fuerte es el backend, pero no me detengo en la API. Trabajo en todas las capas de un producto, desde la interfaz que ve el usuario hasta la infraestructura que la sostiene. Elige una capa.</p>
     </div>
-    <div class="split">
-      <div class="box">
-        <h3>Backend y nube</h3>
-        <p>Servicios que aguantan producción: bien separados, observables y desplegados con infraestructura como código.</p>
-        <div class="skills">
-          <span class="chip k">NestJS</span><span class="chip k">Node.js</span><span class="chip k">TypeScript</span><span class="chip k">Python</span><span class="chip">Flask</span><span class="chip">Django</span><span class="chip">C#</span>
-          <span class="chip k">PostgreSQL</span><span class="chip">MongoDB</span><span class="chip">SQL Server</span><span class="chip">MySQL</span><span class="chip">Prisma</span>
-          <span class="chip k">AWS</span><span class="chip">Lambda</span><span class="chip">API Gateway</span><span class="chip">S3</span><span class="chip">RDS</span><span class="chip k">Terraform</span><span class="chip">Docker</span><span class="chip">GitHub Actions</span>
-        </div>
+    <div class="layers">
+      <div class="iso" role="group" aria-label="Capas del producto">
+        <button class="plane" type="button" data-layer="ui" aria-pressed="true"><span>Interfaz</span></button>
+        <button class="plane" type="button" data-layer="api" aria-pressed="false"><span>API y lógica</span></button>
+        <button class="plane" type="button" data-layer="data" aria-pressed="false"><span>Datos</span></button>
+        <button class="plane" type="button" data-layer="cloud" aria-pressed="false"><span>Nube y DevOps</span></button>
       </div>
-      <div class="box">
-        <h3>Frontend y producto</h3>
-        <p>Paneles administrativos y flujos con roles, formularios validados y datos en tiempo real, con el mismo cuidado que pongo en el backend.</p>
-        <div class="skills">
-          <span class="chip k">Next.js</span><span class="chip k">React</span><span class="chip">App Router</span><span class="chip">TanStack Query</span><span class="chip">react-hook-form</span><span class="chip">Zod</span><span class="chip">HTML y CSS</span><span class="chip">JavaScript</span>
-          <span class="chip">Diseño de flujos con roles</span><span class="chip">Clean Architecture</span><span class="chip">Spec-driven development</span><span class="chip">IA generativa</span>
+      <div class="ldesc" aria-live="polite">
+        <div data-desc="ui">
+          <h3>Interfaz</h3>
+          <p>Paneles administrativos, formularios validados y flujos con roles. Maqueto con HTML y CSS a mano y construyo la lógica de pantalla con JavaScript, TypeScript y React.</p>
+          <div class="skills"><span class="chip k">HTML</span><span class="chip k">CSS</span><span class="chip k">JavaScript</span><span class="chip k">TypeScript</span><span class="chip k">React</span><span class="chip k">Next.js</span><span class="chip">App Router</span><span class="chip">TanStack Query</span><span class="chip">react-hook-form</span><span class="chip">Zod</span><span class="chip">Diseño responsive</span><span class="chip">Accesibilidad</span></div>
+        </div>
+        <div data-desc="api" hidden>
+          <h3>API y lógica</h3>
+          <p>APIs REST y microservicios con Clean Architecture, autenticación JWT, control de acceso por roles e integraciones con sistemas de negocio.</p>
+          <div class="skills"><span class="chip k">NestJS</span><span class="chip k">Node.js</span><span class="chip k">Python</span><span class="chip">Flask</span><span class="chip">Django</span><span class="chip">C#</span><span class="chip">Swagger / OpenAPI</span><span class="chip">Odoo</span><span class="chip">Zoho</span><span class="chip">Siigo</span><span class="chip">DIAN</span><span class="chip">OpenAI</span></div>
+        </div>
+        <div data-desc="data" hidden>
+          <h3>Datos</h3>
+          <p>Modelado relacional y documental, aislamiento por cliente con row-level security y migraciones grandes sin perder relaciones.</p>
+          <div class="skills"><span class="chip k">PostgreSQL</span><span class="chip k">MongoDB</span><span class="chip">SQL Server</span><span class="chip">MySQL</span><span class="chip">SQLite</span><span class="chip">Prisma</span><span class="chip">ETL en Python</span></div>
+        </div>
+        <div data-desc="cloud" hidden>
+          <h3>Nube y DevOps</h3>
+          <p>Despliegues reproducibles en AWS con infraestructura como código, contenedores y pipelines que prueban y publican solos.</p>
+          <div class="skills"><span class="chip k">AWS</span><span class="chip">Lambda</span><span class="chip">API Gateway</span><span class="chip">EC2</span><span class="chip">RDS</span><span class="chip">S3</span><span class="chip k">Terraform</span><span class="chip k">Docker</span><span class="chip">GitHub Actions</span><span class="chip">Vercel</span></div>
         </div>
       </div>
     </div>
@@ -589,6 +635,26 @@ p{margin:0}
       if(e.key==='ArrowUp'||e.key==='ArrowLeft'){e.preventDefault();select(tabs[(i-1+tabs.length)%tabs.length],true)}
     });
   });
+
+  // Halo del hero que sigue al cursor
+  const hero=document.querySelector('.hero');
+  hero.addEventListener('pointermove',e=>{const r=hero.getBoundingClientRect();hero.style.setProperty('--mx',(e.clientX-r.left)+'px');hero.style.setProperty('--my',(e.clientY-r.top)+'px')});
+
+  // Inclinación 3D de las maquetas según el cursor
+  if(!matchMedia('(prefers-reduced-motion: reduce)').matches){
+    document.querySelectorAll('.shot').forEach(sh=>{
+      sh.addEventListener('pointermove',e=>{const r=sh.getBoundingClientRect();const x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
+        sh.style.setProperty('--ry',(x*10)+'deg');sh.style.setProperty('--rx',(-y*8)+'deg')});
+      sh.addEventListener('pointerleave',()=>{sh.style.setProperty('--ry','0deg');sh.style.setProperty('--rx','0deg')});
+    });
+  }
+
+  // Capas del producto
+  const planes=[...document.querySelectorAll('.plane')];
+  planes.forEach(p=>p.addEventListener('click',()=>{
+    planes.forEach(q=>q.setAttribute('aria-pressed',q===p));
+    document.querySelectorAll('[data-desc]').forEach(d=>d.hidden=d.dataset.desc!==p.dataset.layer);
+  }));
 
   // Diagrama del sistema (canvas)
   const cv=document.getElementById('sys'), ctx=cv.getContext('2d');

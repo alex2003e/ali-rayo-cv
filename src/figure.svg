@@ -1,0 +1,161 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 540" class="fig " aria-hidden="true">
+<defs>
+  <radialGradient id="skin" cx=".36" cy=".3" r=".85"><stop offset="0" stop-color="#E2B38C"/><stop offset=".45" stop-color="#C48D64"/><stop offset="1" stop-color="#94603F"/></radialGradient>
+  <linearGradient id="skinA" x1="0" x2="1"><stop offset="0" stop-color="#D3A07A"/><stop offset=".6" stop-color="#B57F58"/><stop offset="1" stop-color="#8E5C3C"/></linearGradient>
+  <radialGradient id="hand" cx=".35" cy=".3" r=".8"><stop offset="0" stop-color="#DDAB84"/><stop offset="1" stop-color="#A06A47"/></radialGradient>
+  <linearGradient id="hair" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2C2129"/><stop offset="1" stop-color="#0F0B0E"/></linearGradient>
+  <radialGradient id="lump" cx=".35" cy=".3" r=".75"><stop offset="0" stop-color="#3E2F38"/><stop offset=".6" stop-color="#211820"/><stop offset="1" stop-color="#110C10"/></radialGradient>
+  <linearGradient id="shirt" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3A3346"/><stop offset=".45" stop-color="#211C29"/><stop offset="1" stop-color="#110E15"/></linearGradient>
+  <linearGradient id="sleeve" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#352E40"/><stop offset="1" stop-color="#16121B"/></linearGradient>
+  <linearGradient id="jean" x1="0" x2="1"><stop offset="0" stop-color="#6E8FC6"/><stop offset=".5" stop-color="#46679F"/><stop offset="1" stop-color="#2B4574"/></linearGradient>
+  <linearGradient id="shoe" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3B3448"/><stop offset="1" stop-color="#17131C"/></linearGradient>
+  <linearGradient id="lil" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#D3C6FF"/><stop offset="1" stop-color="#8D76E6"/></linearGradient>
+  <linearGradient id="cup" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3E3650"/><stop offset="1" stop-color="#16121B"/></linearGradient>
+  <linearGradient id="band" x1="0" x2="1"><stop offset="0" stop-color="#2B2433"/><stop offset=".5" stop-color="#4A3F5C"/><stop offset="1" stop-color="#2B2433"/></linearGradient>
+  <radialGradient id="iris" cx=".4" cy=".35" r=".7"><stop offset="0" stop-color="#7A5034"/><stop offset=".6" stop-color="#3C2416"/><stop offset="1" stop-color="#1E110A"/></radialGradient>
+  <linearGradient id="base" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5A4884"/><stop offset="1" stop-color="#2B1F47"/></linearGradient>
+  <radialGradient id="baseTop" cx=".4" cy=".3" r=".8"><stop offset="0" stop-color="#7C68C0"/><stop offset="1" stop-color="#3A2A60"/></radialGradient>
+  <filter id="soft" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="6"/></filter>
+  <filter id="soft2" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="2.5"/></filter>
+  <clipPath id="eL"><ellipse cx="160" cy="194" rx="18" ry="13"/></clipPath>
+  <clipPath id="eR"><ellipse cx="240" cy="194" rx="18" ry="13"/></clipPath>
+  <clipPath id="faceC"><path d="M92 172 C92 100 142 70 200 70 C258 70 308 100 308 172 C308 244 268 286 200 288 C132 286 92 244 92 172Z"/></clipPath>
+</defs>
+
+<!-- base de exhibición -->
+<ellipse cx="200" cy="514" rx="132" ry="20" fill="#000" opacity=".45" filter="url(#soft)"/>
+<path d="M76 494 L76 506 C76 520 132 530 200 530 C268 530 324 520 324 506 L324 494Z" fill="url(#base)"/>
+<ellipse cx="200" cy="494" rx="124" ry="20" fill="url(#baseTop)"/>
+<ellipse cx="170" cy="488" rx="60" ry="6" fill="#fff" opacity=".12"/>
+<ellipse cx="200" cy="492" rx="76" ry="10" fill="#000" opacity=".35" filter="url(#soft2)"/>
+
+<!-- piernas y tenis -->
+<rect x="156" y="398" width="42" height="84" rx="16" fill="url(#jean)"/>
+<rect x="202" y="398" width="42" height="84" rx="16" fill="url(#jean)"/>
+<rect x="164" y="404" width="6" height="64" rx="3" fill="#fff" opacity=".18"/>
+<rect x="210" y="404" width="6" height="64" rx="3" fill="#fff" opacity=".18"/>
+<path d="M156 464 h42 M202 464 h42" stroke="#86A4D6" stroke-width="4"/>
+<rect x="146" y="472" width="56" height="24" rx="12" fill="url(#shoe)"/>
+<rect x="198" y="472" width="56" height="24" rx="12" fill="url(#shoe)"/>
+<rect x="148" y="489" width="52" height="7" rx="3.5" fill="#F1ECFA"/>
+<rect x="200" y="489" width="52" height="7" rx="3.5" fill="#F1ECFA"/>
+<ellipse cx="164" cy="478" rx="10" ry="3" fill="#fff" opacity=".2"/><ellipse cx="236" cy="478" rx="10" ry="3" fill="#fff" opacity=".2"/>
+
+<!-- pelo: volumen trasero -->
+<path d="M78.8 224.4 L78.0 219.9 L78.7 214.9 L78.7 210.4 L77.4 206.4 L73.4 203.3 L70.6 199.6 L69.3 195.5 L68.5 191.3 L65.6 187.5 L64.2 183.3 L64.5 178.9 L66.6 174.5 L69.9 170.1 L70.4 166.0 L67.2 161.8 L65.4 157.5 L65.2 153.2 L66.5 149.0 L66.6 144.7 L66.3 140.2 L67.7 136.1 L70.7 132.4 L75.1 129.2 L79.2 126.2 L77.4 121.1 L76.8 116.3 L77.6 111.9 L80.0 108.2 L83.6 105.1 L84.8 100.7 L87.1 97.0 L90.9 94.1 L95.8 92.2 L101.5 91.1 L102.4 86.4 L103.3 81.3 L105.3 77.1 L108.5 74.0 L112.9 71.9 L117.0 69.7 L120.3 66.6 L124.5 64.6 L129.6 63.9 L135.2 64.3 L138.9 61.8 L141.4 57.1 L144.6 53.2 L148.6 50.7 L153.3 49.8 L158.5 50.1 L162.9 48.7 L167.4 47.7 L172.3 48.0 L177.3 49.6 L181.8 48.6 L186.1 46.4 L190.5 43.3 L195.2 41.7 L200.0 41.7 L204.7 43.3 L209.3 45.2 L214.0 45.3 L218.5 46.6 L222.7 49.1 L227.4 49.1 L231.9 50.0 L237.2 48.5 L242.3 47.9 L247.0 48.9 L251.1 51.4 L254.4 55.2 L258.3 57.7 L262.3 59.9 L265.6 63.0 L270.3 64.1 L274.4 66.1 L278.7 67.9 L284.0 68.6 L288.4 70.5 L291.7 73.7 L293.7 78.1 L294.9 83.0 L298.0 86.0 L300.4 89.7 L304.9 91.7 L308.3 94.7 L310.8 98.3 L314.9 100.9 L318.8 103.8 L321.2 107.6 L322.0 112.1 L321.3 117.1 L321.3 121.6 L322.6 125.6 L326.6 128.7 L329.4 132.4 L330.7 136.5 L331.5 140.7 L334.4 144.5 L335.8 148.7 L335.5 153.1 L333.4 157.5 L330.1 161.9 L329.6 166.0 L332.8 170.2 L334.6 174.5 L334.8 178.8 L333.5 183.0 L333.4 187.3 L333.7 191.8 L332.3 195.9 L329.3 199.6 L324.9 202.8 L320.8 205.8 L322.6 210.9 C330 250 300 268 270 262 C240 272 160 272 130 262 C100 268 70 250 78.8 224.4Z" fill="url(#hair)"/>
+
+<!-- cuello -->
+<rect x="178" y="262" width="44" height="42" rx="14" fill="#9C6744"/>
+
+
+
+<!-- torso: polo oscura -->
+<path d="M200 288 C158 288 130 298 124 322 L118 396 C118 410 128 418 142 418 L258 418 C272 418 282 410 282 396 L276 322 C270 298 242 288 200 288Z" fill="url(#shirt)"/>
+<path d="M136 318 C130 344 128 372 130 400" stroke="#fff" stroke-opacity=".08" stroke-width="10" fill="none" stroke-linecap="round"/>
+<path d="M128 302 C108 308 96 322 94 344 L124 356 L132 326Z" fill="url(#sleeve)"/>
+<path d="M272 302 C292 308 304 322 306 344 L276 356 L268 326Z" fill="url(#sleeve)"/>
+<path d="M176 290 L200 322 L166 330 L158 298Z" fill="#3A3346"/>
+<path d="M224 290 L200 322 L234 330 L242 298Z" fill="#2E2838"/>
+<rect x="196" y="322" width="8" height="40" rx="3" fill="#120F17"/>
+<circle cx="200" cy="336" r="2.8" fill="#4A4060"/><circle cx="200" cy="350" r="2.8" fill="#4A4060"/>
+<ellipse cx="200" cy="292" rx="46" ry="9" fill="#000" opacity=".45" filter="url(#soft2)"/>
+
+<!-- collar con anillo -->
+<path d="M178 294 C176 330 190 356 200 362 M222 294 C224 330 210 356 200 362" stroke="#D5D8E2" stroke-width="2.2" stroke-dasharray="4 2" fill="none" stroke-linecap="round"/>
+<circle cx="200" cy="371" r="8" fill="none" stroke="#E4E6EE" stroke-width="3.4"/>
+<path d="M194 366 a7 7 0 0 1 7 -3" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/>
+
+<!-- cordón y carné -->
+<path d="M170 292 C158 326 150 354 152 380" stroke="#B9A4FF" stroke-width="6" fill="none" stroke-linecap="round"/>
+<path d="M232 292 C214 324 184 356 164 380" stroke="#9C87EC" stroke-width="6" fill="none" stroke-linecap="round"/>
+<g transform="rotate(-6 158 404)">
+  <rect x="152" y="374" width="12" height="9" rx="2" fill="#C9CCD6"/>
+  <rect x="133" y="380" width="50" height="60" rx="8" fill="#F6F3FC"/>
+  <path d="M133 396 V388 a8 8 0 0 1 8 -8 h34 a8 8 0 0 1 8 8 V396Z" fill="#B9A4FF"/>
+  <text x="158" y="421" text-anchor="middle" font-family="ui-monospace,Menlo,Consolas,monospace" font-weight="700" font-size="15" fill="#150E22">&lt;/&gt;</text>
+  <rect x="143" y="428" width="30" height="4" rx="2" fill="#CFC5E3"/>
+  <rect x="136" y="383" width="10" height="50" rx="5" fill="#fff" opacity=".35"/>
+</g>
+
+<!-- laptop con el logo y mano -->
+<g transform="rotate(-10 306 380)">
+  <rect x="266" y="350" width="84" height="60" rx="10" fill="url(#lil)"/>
+  <rect x="266" y="404" width="84" height="8" rx="4" fill="#7A63D2"/>
+  <rect x="272" y="356" width="72" height="8" rx="4" fill="#fff" opacity=".25"/>
+  <g transform="translate(296 366) scale(.66)"><path d="M20 22 36 30 20 38 4 30Z" fill="#3A2A60"/><path d="M20 14 36 22 20 30 4 22Z" fill="#6C59A6"/><path d="M20 2 36 10 20 18 4 10Z" fill="#F1ECFA"/><circle cx="34" cy="4" r="3.4" fill="#6FE3C1"/></g>
+</g>
+<path d="M290 346 L292 392" stroke="url(#skinA)" stroke-width="30" stroke-linecap="round"/>
+<ellipse cx="292" cy="398" rx="19" ry="18" fill="url(#hand)"/>
+
+<!-- orejas y aretes -->
+<ellipse cx="86" cy="196" rx="18" ry="24" fill="url(#skinA)"/>
+<ellipse cx="314" cy="196" rx="18" ry="24" fill="url(#skinA)"/>
+<path d="M88 184 a7 10 0 0 1 7 16 M312 184 a7 10 0 0 0 -7 16" stroke="#7E4F33" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+<circle cx="88" cy="221" r="5" fill="none" stroke="#E4E6EE" stroke-width="2.4"/>
+<circle cx="312" cy="221" r="5" fill="none" stroke="#E4E6EE" stroke-width="2.4"/>
+
+<!-- cara -->
+<path d="M92 172 C92 100 142 70 200 70 C258 70 308 100 308 172 C308 244 268 286 200 288 C132 286 92 244 92 172Z" fill="url(#skin)"/>
+<g clip-path="url(#faceC)">
+  <ellipse cx="300" cy="200" rx="26" ry="90" fill="#6A3F25" opacity=".22" filter="url(#soft)"/>
+  <!-- barba ligera -->
+  <path d="M100 210 C110 262 152 292 200 294 C248 292 290 262 300 210 C288 248 262 266 238 262 C226 278 174 278 162 262 C138 266 112 248 100 210Z" fill="#2A1A12" opacity=".3"/>
+  <ellipse cx="200" cy="270" rx="16" ry="9" fill="#2A1A12" opacity=".35"/>
+</g>
+<ellipse cx="164" cy="116" rx="44" ry="18" fill="#fff" opacity=".16" filter="url(#soft2)"/>
+<ellipse cx="140" cy="226" rx="17" ry="9" fill="#E5806A" opacity=".28"/>
+<ellipse cx="260" cy="226" rx="17" ry="9" fill="#E5806A" opacity=".28"/>
+
+<!-- cejas -->
+<path d="M136 166 C146 152 170 150 184 158 C186 162 184 166 180 166 C168 162 152 163 142 171 C137 173 134 170 136 166Z" fill="#1A1216"/>
+<path d="M264 166 C254 152 230 150 216 158 C214 162 216 166 220 166 C232 162 248 163 258 171 C263 173 266 170 264 166Z" fill="#1A1216"/>
+
+<!-- ojos -->
+<g clip-path="url(#eL)"><rect x="140" y="180" width="40" height="30" fill="#FBF8F4"/><circle cx="161" cy="196" r="10.5" fill="url(#iris)"/><circle cx="161" cy="196" r="4.8" fill="#0E0806"/><rect x="140" y="180" width="40" height="4" fill="#B47D57"/></g>
+<g clip-path="url(#eR)"><rect x="220" y="180" width="40" height="30" fill="#FBF8F4"/><circle cx="239" cy="196" r="10.5" fill="url(#iris)"/><circle cx="239" cy="196" r="4.8" fill="#0E0806"/><rect x="220" y="180" width="40" height="4" fill="#B47D57"/></g>
+<circle cx="165" cy="191" r="3.6" fill="#fff"/><circle cx="157" cy="200" r="1.6" fill="#fff" opacity=".85"/>
+<circle cx="243" cy="191" r="3.6" fill="#fff"/><circle cx="235" cy="200" r="1.6" fill="#fff" opacity=".85"/>
+<path d="M141 190 C148 181 172 180 179 188" stroke="#24150F" stroke-width="3.6" fill="none" stroke-linecap="round"/>
+<path d="M221 188 C228 180 252 181 259 190" stroke="#24150F" stroke-width="3.6" fill="none" stroke-linecap="round"/>
+
+<!-- nariz -->
+<path d="M188 222 C186 232 192 238 200 238 C208 238 214 232 212 222" fill="#A8704C" opacity=".55"/>
+<ellipse cx="200" cy="224" rx="9" ry="7" fill="#D69E76"/>
+<ellipse cx="197" cy="221" rx="3.5" ry="2.4" fill="#fff" opacity=".45"/>
+
+<!-- bigote, sonrisa -->
+<path d="M176 250 C186 242 196 244 200 247 C204 244 214 242 224 250 C214 248 186 248 176 250Z" fill="#24180F" opacity=".5"/>
+<path d="M178 254 C188 264 212 264 222 254 C214 268 186 268 178 254Z" fill="#6E3B2E"/>
+<path d="M186 262 C194 266 206 266 214 262 C208 270 192 270 186 262Z" fill="#A9654F"/>
+<path d="M175 252 c1 2 2 3 4 3 M225 252 c-1 2 -2 3 -4 3" stroke="#6E3B2E" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+
+<!-- pelo: frente y mechones crespos -->
+<path d="M88 196 C84 110 140 62 200 60 C260 62 316 110 312 196 L296.4 167.9 L296.4 164.9 L296.7 161.8 L296.4 158.8 L295.4 156.0 L293.8 153.4 L291.4 151.1 L288.6 149.1 L285.3 147.3 L283.8 144.8 L283.0 141.7 L281.8 138.9 L280.0 136.3 L277.6 134.1 L274.6 132.4 L271.2 131.0 L267.5 130.0 L264.8 128.2 L263.0 125.5 L260.9 122.9 L258.4 120.8 L255.4 119.1 L251.9 118.0 L248.2 117.4 L244.4 117.2 L240.9 116.6 L238.3 114.3 L235.4 112.2 L232.2 110.7 L228.8 109.6 L225.2 109.2 L221.4 109.4 L217.6 110.0 L213.9 110.7 L210.6 109.0 L207.2 107.6 L203.6 106.7 L200.0 106.4 L196.4 106.7 L192.8 107.6 L189.4 109.0 L186.1 110.7 L182.4 110.0 L178.6 109.4 L174.8 109.2 L171.2 109.6 L167.8 110.7 L164.6 112.2 L161.7 114.3 L159.1 116.6 L155.6 117.2 L151.8 117.4 L148.1 118.0 L144.6 119.1 L141.6 120.8 L139.1 122.9 L137.0 125.5 L135.2 128.2 L132.5 130.0 L128.8 131.0 L125.4 132.4 L122.4 134.1 L120.0 136.3 L118.2 138.9 L117.0 141.7 L116.2 144.8 L114.7 147.3 L111.4 149.1 L108.6 151.1 L106.2 153.4 L104.6 156.0 L103.6 158.8 L103.3 161.8 L103.6 164.9 L103.6 167.9 L101.1 170.3Z" fill="url(#hair)"/>
+<circle cx="173.3" cy="56.8" r="17.1" fill="url(#lump)"/><circle cx="210.4" cy="58.1" r="17.8" fill="url(#lump)"/><circle cx="236.9" cy="63.1" r="18.9" fill="url(#lump)"/><circle cx="150.2" cy="66.4" r="17.2" fill="url(#lump)"/><circle cx="190.4" cy="68.5" r="18.9" fill="url(#lump)"/><circle cx="257.8" cy="69.9" r="16.3" fill="url(#lump)"/><circle cx="207.6" cy="76.7" r="15.0" fill="url(#lump)"/><circle cx="154.5" cy="80.9" r="16.6" fill="url(#lump)"/><circle cx="271.7" cy="81.3" r="14.3" fill="url(#lump)"/><circle cx="222.7" cy="82.5" r="16.6" fill="url(#lump)"/><circle cx="134.9" cy="83.7" r="17.7" fill="url(#lump)"/><circle cx="186.3" cy="83.9" r="17.7" fill="url(#lump)"/><circle cx="170.8" cy="84.8" r="16.8" fill="url(#lump)"/><circle cx="239.3" cy="87.1" r="17.6" fill="url(#lump)"/><circle cx="256.6" cy="89.1" r="18.5" fill="url(#lump)"/><circle cx="285.7" cy="94.6" r="14.7" fill="url(#lump)"/><circle cx="119.5" cy="95.6" r="14.2" fill="url(#lump)"/><circle cx="142.3" cy="97.1" r="16.6" fill="url(#lump)"/><circle cx="194.7" cy="99.9" r="18.4" fill="url(#lump)"/><circle cx="215.7" cy="100.8" r="18.5" fill="url(#lump)"/><circle cx="272.4" cy="102.0" r="14.4" fill="url(#lump)"/><circle cx="232.0" cy="103.7" r="18.7" fill="url(#lump)"/><circle cx="299.0" cy="104.7" r="14.1" fill="url(#lump)"/><circle cx="165.0" cy="105.7" r="17.3" fill="url(#lump)"/><circle cx="132.2" cy="110.4" r="16.0" fill="url(#lump)"/><circle cx="151.0" cy="111.5" r="14.4" fill="url(#lump)"/><circle cx="108.0" cy="111.5" r="14.2" fill="url(#lump)"/><circle cx="254.0" cy="112.5" r="15.1" fill="url(#lump)"/><circle cx="307.9" cy="120.9" r="17.4" fill="url(#lump)"/><circle cx="272.2" cy="121.0" r="17.7" fill="url(#lump)"/><circle cx="120.8" cy="126.4" r="14.5" fill="url(#lump)"/><circle cx="290.1" cy="128.9" r="18.8" fill="url(#lump)"/><circle cx="84.3" cy="130.6" r="15.2" fill="url(#lump)"/><circle cx="100.3" cy="136.8" r="15.1" fill="url(#lump)"/><circle cx="87.3" cy="146.3" r="16.0" fill="url(#lump)"/><circle cx="310.3" cy="147.1" r="16.5" fill="url(#lump)"/><circle cx="321.8" cy="160.6" r="16.9" fill="url(#lump)"/><circle cx="87.1" cy="163.9" r="16.1" fill="url(#lump)"/>
+<g fill="none" stroke="#5E4A57" stroke-width="2" stroke-linecap="round" opacity=".55"><path d="M165.6 59.4 a7.2 7.2 0 1 1 9.4 6.0"/><path d="M228.4 65.9 a8.0 8.0 0 1 1 10.4 6.6"/><path d="M181.9 71.4 a7.9 7.9 0 1 1 10.4 6.6"/><path d="M200.9 79.0 a6.3 6.3 0 1 1 8.3 5.3"/><path d="M265.3 83.4 a6.0 6.0 0 1 1 7.9 5.0"/><path d="M126.9 86.3 a7.4 7.4 0 1 1 9.7 6.2"/><path d="M163.2 87.4 a7.1 7.1 0 1 1 9.3 5.9"/><path d="M248.3 91.8 a7.8 7.8 0 1 1 10.2 6.5"/><path d="M113.1 97.8 a5.9 5.9 0 1 1 7.8 5.0"/><path d="M186.4 102.7 a7.7 7.7 0 1 1 10.1 6.5"/><path d="M265.9 104.2 a6.1 6.1 0 1 1 7.9 5.1"/><path d="M292.7 106.9 a5.9 5.9 0 1 1 7.8 4.9"/><path d="M125.0 112.8 a6.7 6.7 0 1 1 8.8 5.6"/><path d="M101.6 113.7 a6.0 6.0 0 1 1 7.8 5.0"/><path d="M300.1 123.5 a7.3 7.3 0 1 1 9.6 6.1"/><path d="M114.3 128.6 a6.1 6.1 0 1 1 8.0 5.1"/><path d="M77.4 132.9 a6.4 6.4 0 1 1 8.4 5.3"/><path d="M80.1 148.7 a6.7 6.7 0 1 1 8.8 5.6"/><path d="M314.2 163.1 a7.1 7.1 0 1 1 9.3 5.9"/></g>
+<path d="M118 120 C140 84 176 66 214 66" stroke="#fff" stroke-opacity=".14" stroke-width="10" fill="none" stroke-linecap="round" filter="url(#soft2)"/>
+
+  <g class="capg">
+    <path d="M78 214 C66 96 132 34 200 34 C268 34 334 96 322 214" stroke="url(#band)" stroke-width="16" fill="none" stroke-linecap="round"/>
+    <rect x="62" y="168" width="44" height="72" rx="20" fill="url(#cup)"/>
+    <rect x="70" y="178" width="28" height="52" rx="14" fill="url(#lil)"/>
+    <rect x="294" y="168" width="44" height="72" rx="20" fill="url(#cup)"/>
+    <rect x="302" y="178" width="28" height="52" rx="14" fill="url(#lil)"/>
+    <circle cx="316" cy="190" r="3.5" fill="#6FE3C1"/>
+    <ellipse cx="78" cy="186" rx="6" ry="10" fill="#fff" opacity=".35"/>
+    <ellipse cx="310" cy="186" rx="6" ry="10" fill="#fff" opacity=".35"/>
+  </g>
+<!-- brazo que saluda -->
+<g class="wave">
+  <path d="M108 350 L74 296" stroke="url(#skinA)" stroke-width="30" stroke-linecap="round"/>
+  <g transform="translate(-16 2)">
+  <rect x="68" y="236" width="11" height="34" rx="5.5" transform="rotate(-14 73 253)" fill="url(#hand)"/>
+  <rect x="80" y="230" width="11" height="38" rx="5.5" transform="rotate(-4 85 249)" fill="url(#hand)"/>
+  <rect x="92" y="232" width="11" height="36" rx="5.5" transform="rotate(6 97 250)" fill="url(#hand)"/>
+  <rect x="103" y="240" width="10" height="30" rx="5" transform="rotate(16 108 255)" fill="url(#hand)"/>
+  <ellipse cx="88" cy="276" rx="22" ry="20" fill="url(#hand)"/>
+  <ellipse cx="64" cy="282" rx="8" ry="14" transform="rotate(-38 64 282)" fill="url(#hand)"/>
+  <ellipse cx="80" cy="268" rx="9" ry="5" fill="#fff" opacity=".2"/>
+  </g>
+</g>
+</svg>

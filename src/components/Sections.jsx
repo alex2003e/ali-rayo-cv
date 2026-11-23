@@ -1,5 +1,5 @@
 import { useLang } from '../i18n.jsx';
-import { stats, experience, ui, EMAIL, PHONE, LINKEDIN, GITHUB, CV_URL } from '../data.js';
+import { stats, experience, education, ui, EMAIL, PHONE, LINKEDIN, GITHUB, CV_URL } from '../data.js';
 
 export function Stats() {
   const { t } = useLang();
@@ -26,6 +26,15 @@ export function Experience() {
             <time>{t(job.when)}</time>
             <div><h3>{t(job.role)}</h3><p className="co">{t(job.company)}</p></div>
             <ul>{job.points.map((p, j) => <li key={j}>{t(p)}</li>)}</ul>
+          </article>
+        ))}
+      </div>
+      <h3 className="edu-title">{t(ui.eduTitle)}</h3>
+      <div className="xp">
+        {education.map((ed, i) => (
+          <article className="job edu" key={i}>
+            <time>{ed.when}</time>
+            <div><h3>{t(ed.title)}</h3><p className="co">{ed.school}</p></div>
           </article>
         ))}
       </div>

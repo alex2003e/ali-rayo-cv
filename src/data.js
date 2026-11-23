@@ -13,8 +13,8 @@ export const ui = {
   h1a: { es: 'Backend sólido.', en: 'Solid backend.' },
   h1b: { es: 'Interfaz con criterio.', en: 'Thoughtful interfaces.' },
   lead: {
-    es: 'Soy Ali Rayo. Construyo APIs y plataformas con NestJS, Python y AWS, y las pantallas que las usan con HTML, CSS, JavaScript, React y Next.js.',
-    en: 'I’m Ali Rayo. I build APIs and platforms with NestJS, Python and AWS, and the screens that use them with HTML, CSS, JavaScript, React and Next.js.',
+    es: 'Soy Ali Rayo, ingeniero de sistemas. Construyo APIs y plataformas con NestJS, Python y AWS, y las pantallas que las usan con HTML, CSS, JavaScript, React y Next.js.',
+    en: 'I’m Ali Rayo, a systems engineer. I build APIs and platforms with NestJS, Python and AWS, and the screens that use them with HTML, CSS, JavaScript, React and Next.js.',
   },
   seeWork: { es: 'Ver mi trabajo', en: 'See my work' },
   downloadCv: { es: 'Descargar CV', en: 'Download CV (PDF, Spanish)' },
@@ -45,6 +45,7 @@ export const ui = {
   sendExpired: { es: 'Enviar con token vencido', en: 'Send with expired token' },
   simulation: { es: 'Simulación', en: 'Simulation' },
   xpTitle: { es: 'Experiencia', en: 'Experience' },
+  eduTitle: { es: 'Formación académica', en: 'Education' },
   xpSub: { es: 'Backend para operaciones reales: energía solar, mercadeo y pymes.', en: 'Backend for real operations: solar energy, marketing and small businesses.' },
   ctaTitle: { es: '¿Construimos algo juntos?', en: 'Shall we build something together?' },
   builtWith: { es: 'Hecho con React y CSS, sin librerías de animación.', en: 'Built with React and CSS, no animation libraries.' },
@@ -185,6 +186,19 @@ export const experience = [
       { es: 'Pedidos, inventario y facturación electrónica con Siigo y la DIAN.', en: 'Orders, inventory and e-invoicing with Siigo and the DIAN (Colombian tax authority).' },
       { es: 'Atención al cliente con IA generativa.', en: 'Customer support with generative AI.' },
     ],
+  },
+];
+
+export const education = [
+  {
+    when: '2026',
+    title: { es: 'Ingeniero de Sistemas', en: 'B.S. in Systems Engineering' },
+    school: 'Universidad del Tolima',
+  },
+  {
+    when: '2023 · 2020',
+    title: { es: 'Tecnólogo y Técnico en Análisis y Desarrollo de Sistemas', en: 'Technologist and Technician in Systems Analysis and Development' },
+    school: 'SENA',
   },
 ];
 

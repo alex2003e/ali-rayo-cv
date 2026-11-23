@@ -147,6 +147,8 @@ dialog::backdrop{background:rgba(10,6,18,.72);backdrop-filter:blur(6px)}
 
 /* Experience */
 .xp{display:grid;gap:14px}
+.edu-title{font-size:21px;font-weight:700;margin:44px 0 16px}
+.job.edu{grid-template-columns:200px 1fr}
 .job{display:grid;grid-template-columns:200px 1fr 1.1fr;gap:28px;padding:28px;border-radius:22px;background:var(--s1);border:1px solid var(--line)}
 .job time{color:var(--muted);font-size:15px}
 .job h3{font-size:21px;font-weight:700}
@@ -256,7 +258,7 @@ dialog::backdrop{background:rgba(10,6,18,.72);backdrop-filter:blur(6px)}
   .bento{grid-template-columns:repeat(2,minmax(0,1fr))}
   .card,.card.big,.card.wide{grid-column:span 2}
   .layers{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .job{grid-template-columns:1fr;gap:10px}
+  .job,.job.edu{grid-template-columns:1fr;gap:10px}
   .pills a:not(.keep){display:none}
   .sec{padding-top:84px}
 }
